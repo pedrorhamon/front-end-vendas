@@ -12,6 +12,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TableModule } from 'primeng/table';
+
 
 
 
@@ -31,7 +33,8 @@ import { HttpClientModule } from '@angular/common/http';
     ButtonModule,
     InputTextModule,
     FloatLabelModule,
-    HttpClientModule
+    HttpClientModule,
+    TableModule
   ],
   providers: [
     provideClientHydration()

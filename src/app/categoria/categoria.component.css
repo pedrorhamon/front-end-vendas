@@ -1,0 +1,9 @@
+.categoria-list-container {
+  padding: 2rem;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
