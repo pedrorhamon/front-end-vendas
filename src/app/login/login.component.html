@@ -1,7 +1,22 @@
 <div class="login-container">
   <p-card header="Login">
-    <p class="m-0">
-        Lorem ipsum dolor sit amet...
-    </p>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="p-fluid">
+        <div class="p-field">
+          <label for="username">Username</label>
+          <input id="username" type="text" pInputText formControlName="username" />
+        </div>
+        <div class="p-field">
+          <label for="password">Password</label>
+          <input id="password" type="password" pInputText formControlName="password" />
+        </div>
+        <!-- <div class="p-field-checkbox">
+          <p-checkbox inputId="remember" formControlName="remember"></p-checkbox>
+          <label for="remember">Lembrar-me</label>
+        </div> -->
+        <br>
+        <button pButton type="submit" label="Login" class="p-mt-2"></button>
+      </div>
+    </form>
   </p-card>
 </div>
