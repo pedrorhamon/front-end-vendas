@@ -1,1 +1,12 @@
-<p>categoria works!</p>
+<div class="categoria-list-container">
+  <p-card *ngFor="let categoria of categorias">
+    <div class="p-card-content">
+      {{ categoria.name }}
+    </div>
+  </p-card>
+</div>
+<div class="pagination-controls">
+  <button pButton label="Previous" (click)="previousPage()" [disabled]="page === 0"></button>
+  <button pButton label="Next" (click)="nextPage()" [disabled]="page === totalPages - 1"></button>
+</div>
+

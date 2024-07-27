@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Categoria } from './model/categoria';
+import { Page } from '../../assets/page';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class CategoriaService {
   constructor(private http: HttpClient) { }
 
 
-  getCategorias(): Observable<Categoria[]> {
-    return this.http.get<Categoria[]>(`${this.baseUrl}`);
+  getCategorias(page: number, size: number): Observable<Page<Categoria>> {
+    let params = new HttpParams().set('page', page.toString()).set('size', size.toString());
+    return this.http.get<Page<Categoria>>(this.baseUrl, { params });
   }
 }
