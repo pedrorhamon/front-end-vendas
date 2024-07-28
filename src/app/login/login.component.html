@@ -1,21 +1,20 @@
 <div class="login-container">
   <p-card header="Login">
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="loginForm">
       <div class="p-fluid">
         <div class="p-field">
           <label for="email">Email</label>
-          <input id="email" type="text" pInputText formControlName="email" />
+          <input id="email" type="email" pInputText formControlName="email" required email />
         </div>
         <div class="p-field">
           <label for="senha">Senha</label>
-          <input id="senha" type="password" pInputText formControlName="senha" />
-        </div>
-        <div class="p-field-checkbox">
-          <p-checkbox  [binary]="true" inputId="remember" formControlName="remember"></p-checkbox>
-          <label for="remember"> Lembrar-me</label>
+          <input id="senha" type="password" pInputText formControlName="senha" required />
         </div>
         <br>
-        <button pButton type="submit" label="Login" class="p-mt-2"></button>
+        <button pButton type="button" label="Login" class="p-mt-2" (click)="onSubmit()"></button>
+      </div>
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
       </div>
     </form>
   </p-card>
