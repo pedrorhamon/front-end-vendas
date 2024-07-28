@@ -1,13 +1,35 @@
 .categoria-list-container {
-  padding: 2rem;
+  padding: 20px;
 }
 
-.pagination-controls {
+.header {
   display: flex;
-  justify-content: center;
-  margin-top: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-.p-button-rounded {
-  margin-right: 0.5rem;
+.categoria-new-container {
+  padding: 20px;
 }
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+button {
+  margin-right: 10px;
+}
+
+/* Botão de aceitação em vermelho */
+.p-confirm-dialog .p-confirm-dialog-accept {
+  background-color: #f44336 !important;
+  border: none;
+}
+
+/* Botão de fechar à esquerda */
+.p-confirm-dialog .p-dialog-header .p-dialog-header-close {
+  position: absolute;
+  left: 1rem;
+}
+

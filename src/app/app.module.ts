@@ -14,8 +14,12 @@ import { CategoriaComponent } from './categoria/categoria.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TableModule } from 'primeng/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CategoriaEditComponent } from './app/categoria/categoria-edit/categoria-edit.component';
+import { CategoriaEditComponent } from './categoria/categoria-edit/categoria-edit.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog'; // Import ConfirmDialogModule
 
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 
 
@@ -39,9 +43,15 @@ import { CategoriaEditComponent } from './app/categoria/categoria-edit/categoria
     FloatLabelModule,
     HttpClientModule,
     TableModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ConfirmDialogModule,
+    MessagesModule,
+    MessageModule
+
   ],
   providers: [
+    ConfirmationService,
+    MessageService,
     provideClientHydration()
   ],
   bootstrap: [AppComponent]

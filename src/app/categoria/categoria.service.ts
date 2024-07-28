@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable } from 'rxjs';
 import { Categoria } from './model/categoria';
 import { Page } from '../../assets/page';
 
@@ -28,6 +28,13 @@ export class CategoriaService {
   }
 
   deleteCategoria(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+    return this.http.delete<void>(`${this.baseUrl}/${id}`).pipe(
+      catchError(error => {
+        if (error.status === 400 && error.error.message.includes('exists')) {
+          throw new Error('Categoria possui relacionamentos e não pode ser excluída.');
+        }
+        throw error;
+      })
+    );
   }
 }

@@ -1,9 +1,13 @@
+<p-confirmDialog></p-confirmDialog>
+<p-messages></p-messages>
+
 <div class="categoria-list-container">
-  <p-table [value]="categorias"
-  [paginator]="true"
-  [rows]="5"
-  [tableStyle]="{ 'min-width': '50rem' }"
-   >
+  <div class="header">
+    <h2>Lista de Categorias</h2>
+    <button pButton type="button" label="Nova Categoria" icon="pi pi-plus" class="p-button-success" (click)="novaCategoria()"></button>
+  </div>
+
+  <p-table [value]="categorias" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template pTemplate="header">
       <tr>
         <th>Id</th>
@@ -16,14 +20,10 @@
         <td>{{ categoria.id }}</td>
         <td>{{ categoria.name }}</td>
         <td>
-          <button pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"></button>
-          <button pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger"></button>
+          <button pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editCategoria(categoria.id)"></button>
+          <button pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteCategoria(categoria.id)"></button>
         </td>
       </tr>
     </ng-template>
   </p-table>
 </div>
-<!-- <div class="pagination-controls">
-  <button pButton label="Previous" (click)="previousPage()" [disabled]="page === 0"></button>
-  <button pButton label="Next" (click)="nextPage()" [disabled]="page === totalPages - 1"></button>
-</div> -->
