@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from 'express';
+import { Router } from '@angular/router';
 import { CategoriaService } from './categoria.service';
 import { Categoria } from './model/categoria';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-categoria',
@@ -13,10 +14,17 @@ export class CategoriaComponent implements OnInit {
   page: number = 0;
   size: number = 10;
   totalPages: number = 0;
+  categoria?: Categoria;
 
-  constructor(private categoriaService: CategoriaService) { }
+  constructor(private route: ActivatedRoute,private router: Router, private categoriaService: CategoriaService) { }
 
   ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.categoriaService.getCategoriaById(+id).subscribe(categoria => {
+        this.categoria = categoria;
+      });
+    }
     this.loadCategorias();
   }
 
@@ -39,5 +47,15 @@ export class CategoriaComponent implements OnInit {
       this.page--;
       this.loadCategorias();
     }
+  }
+
+  editCategoria(id: number): void {
+    this.router.navigate(['/categoria/edit', id]);
+  }
+
+  deleteCategoria(id: number): void {
+    this.categoriaService.deleteCategoria(id).subscribe(() => {
+      this.loadCategorias();
+    });
   }
 }

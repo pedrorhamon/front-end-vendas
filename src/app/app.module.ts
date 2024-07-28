@@ -14,6 +14,7 @@ import { CategoriaComponent } from './categoria/categoria.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TableModule } from 'primeng/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CategoriaEditComponent } from './app/categoria/categoria-edit/categoria-edit.component';
 
 
 
@@ -24,7 +25,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   declarations: [
     AppComponent,
     LoginComponent,
-    CategoriaComponent
+    CategoriaComponent,
+    CategoriaEditComponent
   ],
   imports: [
     BrowserModule,
