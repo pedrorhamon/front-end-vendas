@@ -20,7 +20,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog'; // Import ConfirmDi
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { ConfirmationService, MessageService } from 'primeng/api';
-
+import { ToastModule } from 'primeng/toast';
 
 
 
@@ -46,7 +46,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
     BrowserAnimationsModule,
     ConfirmDialogModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    ToastModule
 
   ],
   providers: [

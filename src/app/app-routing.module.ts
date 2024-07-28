@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'categoria', component: CategoriaComponent },
   { path: 'categoria/edit/:id', component: CategoriaEditComponent },
   { path: 'categoria/delete/:id', component: CategoriaComponent },
+  { path: 'categoria/new', component: CategoriaEditComponent },
 ];
 
 @NgModule({

@@ -37,4 +37,8 @@ export class CategoriaService {
       })
     );
   }
+
+  createCategoria(categoria: Categoria): Observable<Categoria> {
+    return this.http.post<Categoria>(this.baseUrl, categoria);
+  }
 }

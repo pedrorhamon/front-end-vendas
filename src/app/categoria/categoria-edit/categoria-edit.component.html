@@ -1,1 +1,24 @@
-<p>categoria-edit works!</p>
+<p-confirmDialog></p-confirmDialog>
+<p-messages></p-messages>
+
+<div class="categoria-edit-container p-fluid p-formgrid p-grid">
+  <div class="p-col-12">
+    <h2>{{ categoria.id ? 'Editar Categoria' : 'Nova Categoria' }}</h2>
+  </div>
+
+  <form [formGroup]="categoriaForm" (ngSubmit)="onSubmit()">
+    <div class="p-col-12">
+      <div class="p-field">
+        <label for="name">Nome</label>
+        <input id="name" type="text" pInputText formControlName="name" class="form-control" />
+      </div>
+    </div>
+
+    <div class="p-col-12">
+      <div class="button-group">
+        <button pButton type="button" label="Cancelar" class="p-button-secondary" (click)="onCancel()"></button>
+        <button pButton type="submit" label="{{ categoria.id ? 'Atualizar' : 'Salvar' }}" class="p-button-primary"></button>
+      </div>
+    </div>
+  </form>
+</div>
