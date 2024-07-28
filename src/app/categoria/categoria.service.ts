@@ -18,4 +18,8 @@ export class CategoriaService {
     let params = new HttpParams().set('page', page.toString()).set('size', size.toString());
     return this.http.get<Page<Categoria>>(this.baseUrl, { params });
   }
+
+  getCategoriaById(id: number): Observable<Categoria> {
+    return this.http.get<Categoria>(`${this.baseUrl}/${id}`);
+  }
 }
