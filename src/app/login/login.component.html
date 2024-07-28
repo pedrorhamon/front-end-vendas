@@ -1,3 +1,5 @@
+<p-confirmDialog></p-confirmDialog>
+
 <div class="login-container">
   <p-card header="Login">
     <form [formGroup]="loginForm">
@@ -13,9 +15,9 @@
         <br>
         <button pButton type="button" label="Login" class="p-mt-2" (click)="onSubmit()"></button>
       </div>
-      <div *ngIf="errorMessage" class="error-message">
+      <!-- <div *ngIf="errorMessage" class="error-message">
         {{ errorMessage }}
-      </div>
+      </div> -->
     </form>
   </p-card>
 </div>
