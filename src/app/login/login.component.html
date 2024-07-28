@@ -3,17 +3,17 @@
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="p-fluid">
         <div class="p-field">
-          <label for="username">Username</label>
-          <input id="username" type="text" pInputText formControlName="username" />
+          <label for="email">Email</label>
+          <input id="email" type="text" pInputText formControlName="email" />
         </div>
         <div class="p-field">
-          <label for="password">Password</label>
-          <input id="password" type="password" pInputText formControlName="password" />
+          <label for="senha">Senha</label>
+          <input id="senha" type="password" pInputText formControlName="senha" />
         </div>
-        <!-- <div class="p-field-checkbox">
-          <p-checkbox inputId="remember" formControlName="remember"></p-checkbox>
-          <label for="remember">Lembrar-me</label>
-        </div> -->
+        <div class="p-field-checkbox">
+          <p-checkbox  [binary]="true" inputId="remember" formControlName="remember"></p-checkbox>
+          <label for="remember"> Lembrar-me</label>
+        </div>
         <br>
         <button pButton type="submit" label="Login" class="p-mt-2"></button>
       </div>

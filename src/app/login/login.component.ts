@@ -14,8 +14,8 @@ export class LoginComponent implements OnInit{
 
   constructor(private fb: FormBuilder) {
     this.loginForm = this.fb.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required],
+      email: ['', Validators.required, Validators.email],
+      senha: ['', Validators.required],
       remember: [false]
     });
   }
@@ -27,6 +27,10 @@ export class LoginComponent implements OnInit{
       console.log('Form Submitted', this.loginForm.value);
       // Adicione a lógica de login aqui
     }
+  }
+
+  get email() {
+    return this.loginForm.get('email');
   }
 
 }
