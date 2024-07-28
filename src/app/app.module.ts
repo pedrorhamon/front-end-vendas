@@ -13,6 +13,8 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TableModule } from 'primeng/table';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 
@@ -34,7 +36,8 @@ import { TableModule } from 'primeng/table';
     InputTextModule,
     FloatLabelModule,
     HttpClientModule,
-    TableModule
+    TableModule,
+    BrowserAnimationsModule
   ],
   providers: [
     provideClientHydration()
