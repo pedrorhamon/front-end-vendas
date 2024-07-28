@@ -22,4 +22,8 @@ export class CategoriaService {
   getCategoriaById(id: number): Observable<Categoria> {
     return this.http.get<Categoria>(`${this.baseUrl}/${id}`);
   }
+
+  updateCategoria(id: number, categoria: Categoria): Observable<Categoria> {
+    return this.http.put<Categoria>(`${this.baseUrl}/${id}`, categoria);
+  }
 }
