@@ -19,3 +19,18 @@
   display: flex;
   align-items: center;
 }
+
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+}
+
+.user-info i {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.user-info span {
+  font-size: 1rem;
+}

@@ -3,6 +3,11 @@
     <a routerLink="/">Vendas</a>
   </div>
   <div class="navbar-menu">
-    <button pButton icon="pi pi-sign-in" label="Login" routerLink="/login" class="p-button-rounded p-button-success"></button>
+    <button pButton icon="pi pi-sign-in" label="Login" routerLink="/login" *ngIf="!isAuthenticated" class="p-button-rounded p-button-success"></button>
+    <button pButton icon="pi pi-power-off" label="Logout"  (click)="logout()" class="p-button-rounded p-button-danger"></button>
+    <div class="user-info" *ngIf="isAuthenticated">
+      <i class="pi pi-user"></i> <!-- Ícone de usuário -->
+      <span>{{ userName }}</span> <!-- Nome do usuário -->
+    </div>
   </div>
 </nav>
