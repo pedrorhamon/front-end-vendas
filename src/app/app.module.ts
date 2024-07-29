@@ -1,27 +1,30 @@
+import { FooterComponent } from './template/footer/footer.component';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
+import { CheckboxModule } from 'primeng/checkbox';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { InputTextModule } from 'primeng/inputtext';
+import { MessageModule } from 'primeng/message';
+import { MessagesModule } from 'primeng/messages';
+import { TableModule } from 'primeng/table';
+import { ToastModule } from 'primeng/toast';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { CheckboxModule } from 'primeng/checkbox';
-import { ReactiveFormsModule } from '@angular/forms';
-import { CardModule } from 'primeng/card';
-import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
-import { FloatLabelModule } from 'primeng/floatlabel';
-import { CategoriaComponent } from './categoria/categoria.component';
-import { HttpClientModule } from '@angular/common/http';
-import { TableModule } from 'primeng/table';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CategoriaEditComponent } from './categoria/categoria-edit/categoria-edit.component';
-import { ConfirmDialogModule } from 'primeng/confirmdialog'; // Import ConfirmDialogModule
+import { CategoriaComponent } from './categoria/categoria.component';
+import { LoginComponent } from './login/login.component';
 
-import { MessagesModule } from 'primeng/messages';
-import { MessageModule } from 'primeng/message';
-import { ConfirmationService, MessageService } from 'primeng/api';
-import { ToastModule } from 'primeng/toast';
-import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
+import { NavbarComponent } from './template/navbar/navbar.component';
+import { SidebarComponent } from './template/sidebar/sidebar.component';
 
 
 
@@ -32,7 +35,10 @@ import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
     AppComponent,
     LoginComponent,
     CategoriaComponent,
-    CategoriaEditComponent
+    CategoriaEditComponent,
+    NavbarComponent,
+    SidebarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
