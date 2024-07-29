@@ -21,6 +21,8 @@ import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
+
 
 
 
@@ -47,7 +49,9 @@ import { ToastModule } from 'primeng/toast';
     ConfirmDialogModule,
     MessagesModule,
     MessageModule,
-    ToastModule
+    ToastModule,
+    RecaptchaModule,
+    RecaptchaFormsModule
 
   ],
   providers: [

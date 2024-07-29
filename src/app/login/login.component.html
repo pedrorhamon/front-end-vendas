@@ -12,12 +12,12 @@
           <label for="senha">Senha</label>
           <input id="senha" type="password" pInputText formControlName="senha" required />
         </div>
+        <div class="p-field">
+          <re-captcha (resolved)="onRecaptchaResolved($event)" siteKey="6LccJhsqAAAAAPzRWr1G49G4oKEmTmgKWUSrxWMq"></re-captcha>
+        </div>
         <br>
         <button pButton type="button" label="Login" class="p-mt-2" (click)="onSubmit()"></button>
       </div>
-      <!-- <div *ngIf="errorMessage" class="error-message">
-        {{ errorMessage }}
-      </div> -->
     </form>
   </p-card>
 </div>

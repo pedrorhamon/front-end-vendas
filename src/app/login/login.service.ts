@@ -9,12 +9,11 @@ import { Token } from './model/token';
 })
 export class LoginService {
 
-  private baseUrl = 'http://localhost:8080/api/usuarios/autenticar';
+  private baseUrl = 'http://localhost:8080/api/usuarios';
 
   constructor(private http: HttpClient) { }
 
-  autenticar(email: string, senha: string): Observable<any> {
-    const credentials = { email, senha };
-    return this.http.post(this.baseUrl, credentials);
+  autenticar(credencias: Credencias): Observable<any> {
+    return this.http.post(`${this.baseUrl}/autenticar`, credencias);
   }
 }
