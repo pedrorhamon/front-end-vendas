@@ -1,1 +1,9 @@
-<p>sidebar works!</p>
+<p-sidebar [(visible)]="visible" position="left" [modal]="true" showCloseIcon="true" (onHide)="onHide()">
+  <h3>Menu</h3>
+  <ul>
+    <li><a routerLink="/">Home</a></li>
+    <li><a routerLink="/categoria">Categoria</a></li>
+    <li><a routerLink="/outra-pagina">Outra Página</a></li>
+  </ul>
+</p-sidebar>
+<button pButton icon="pi pi-bars" (click)="visible = true" label="Menu" class="p-button-rounded p-button-info"></button>

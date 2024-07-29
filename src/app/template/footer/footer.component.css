@@ -1,23 +1,6 @@
-/* Estilos globais */
-html, body {
-  height: 100%;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.main-content {
-  flex: 1;
-  padding: 1rem;
-  margin-top: 2.5rem; /* Ajuste conforme a altura da navbar */
-  margin-bottom: 2.5rem; /* Ajuste conforme a altura do footer */
-}
-
-/* Estilos específicos do footer */
 footer {
   background-color: #f8f9fa;
   padding: 1rem 0;
   text-align: right;
   width: 100%;
 }
-

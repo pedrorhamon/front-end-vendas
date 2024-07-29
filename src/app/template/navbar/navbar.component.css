@@ -1,0 +1,21 @@
+/* Customize navbar styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2196f3;
+  color: #fff;
+  padding: 1rem;
+  border-bottom: 5px solid #1976d2;
+}
+
+.navbar-brand a {
+  color: #fff;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.navbar-menu {
+  display: flex;
+  align-items: center;
+}

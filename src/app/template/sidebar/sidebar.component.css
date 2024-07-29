@@ -1,0 +1,29 @@
+/* Customize sidebar styles */
+:host ::ng-deep .p-sidebar {
+  width: 250px;
+}
+
+:host ::ng-deep .p-sidebar h3 {
+  margin: 0;
+  padding: 1rem;
+  background-color: #1976d2;
+  color: #fff;
+}
+
+:host ::ng-deep .p-sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+:host ::ng-deep .p-sidebar li {
+  padding: 0.5rem 1rem;
+}
+
+:host ::ng-deep .p-sidebar a {
+  color: #1976d2;
+  text-decoration: none;
+}
+
+:host ::ng-deep .p-sidebar a:hover {
+  text-decoration: underline;
+}

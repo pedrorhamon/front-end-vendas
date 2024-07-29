@@ -1,4 +1,3 @@
-import { FooterComponent } from './template/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -14,6 +13,7 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
+import { SidebarModule } from 'primeng/sidebar';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 
@@ -22,9 +22,13 @@ import { AppComponent } from './app.component';
 import { CategoriaEditComponent } from './categoria/categoria-edit/categoria-edit.component';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { LoginComponent } from './login/login.component';
-
+import { FooterComponent } from './template/footer/footer.component';
 import { NavbarComponent } from './template/navbar/navbar.component';
 import { SidebarComponent } from './template/sidebar/sidebar.component';
+import { MenubarModule } from 'primeng/menubar';
+import { HomeComponent } from './home/home.component';
+
+
 
 
 
@@ -38,7 +42,8 @@ import { SidebarComponent } from './template/sidebar/sidebar.component';
     CategoriaEditComponent,
     NavbarComponent,
     SidebarComponent,
-    FooterComponent
+    FooterComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +62,9 @@ import { SidebarComponent } from './template/sidebar/sidebar.component';
     MessageModule,
     ToastModule,
     RecaptchaModule,
-    RecaptchaFormsModule
+    RecaptchaFormsModule,
+    SidebarModule,
+    MenubarModule
 
   ],
   providers: [

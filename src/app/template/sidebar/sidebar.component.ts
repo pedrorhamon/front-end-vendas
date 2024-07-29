@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class SidebarComponent {
 
+  visible: boolean = false;
+
+  onHide() {
+    this.visible = false;
+  }
+
 }
