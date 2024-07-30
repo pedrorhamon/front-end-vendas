@@ -34,3 +34,11 @@
 .user-info span {
   font-size: 1rem;
 }
+
+.spacer {
+  flex-grow: 1; /* Permite que o espaço ocupe o restante do espaço disponível */
+}
+
+button {
+  margin-left: 10px; /* Adicione margem se desejar espaçamento entre os botões */
+}

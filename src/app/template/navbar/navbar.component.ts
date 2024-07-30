@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent {
   userName: string = 'Pedro Rhamon'; // Inicialize com o nome do usuário
-  isAuthenticated: boolean = false; // Controle se o usuário está autenticado
 
   constructor(private usuarioService: LoginService, private router: Router) {
     // this.checkAuthentication();
@@ -27,11 +26,7 @@ export class NavbarComponent {
     );
   }
 
-  // checkAuthentication() {
-  //   this.isAuthenticated = !!this.usuarioService.getToken(); // Verifique se o token está presente
-  //   if (this.isAuthenticated) {
-  //     // Se necessário, recupere o nome do usuário do token ou de um serviço
-  //     this.userName = this.getUserNameFromToken(); // Método fictício para obter o nome
-  //   }
-  // }
+  isAuthenticated(): boolean {
+    return this.usuarioService.isAuthenticated();
+  }
 }

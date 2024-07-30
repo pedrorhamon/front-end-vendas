@@ -1,8 +1,13 @@
 <p-toast></p-toast>
 
-<app-navbar></app-navbar>
-<br>
-<app-sidebar></app-sidebar>
+<div *ngIf="isAuthenticated()">
+  <app-navbar></app-navbar>
+</div>
+
+<!-- Exibe a barra lateral e o rodapé somente se o usuário estiver autenticado -->
+<div *ngIf="isAuthenticated()">
+  <app-sidebar></app-sidebar>
+</div>
 
 <div class="main-content">
   <router-outlet></router-outlet>

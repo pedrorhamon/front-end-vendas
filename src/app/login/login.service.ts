@@ -47,4 +47,9 @@ export class LoginService {
     );
 }
 
+isAuthenticated(): boolean {
+  // Verifica se o token de autenticação está presente
+  return !!localStorage.getItem('token');
+}
+
 }
