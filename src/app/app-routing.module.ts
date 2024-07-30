@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { CategoriaEditComponent } from './categoria/categoria-edit/categoria-edit.component';
 import { HomeComponent } from './home/home.component';
+import { UsuarioComponent } from './usuario/usuario.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'categoria/delete/:id', component: CategoriaComponent },
   { path: 'categoria/new', component: CategoriaEditComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'usuario', component: UsuarioComponent },
 ];
 
 @NgModule({

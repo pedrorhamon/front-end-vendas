@@ -33,4 +33,16 @@ export class UsuarioService {
   criar(usuarioRequest: UsuarioRequest): Observable<Usuario> {
     return this.http.post<Usuario>(this.baseUrl, usuarioRequest);
   }
+
+  atualizar(id: number, usuarioRequest: UsuarioRequest): Observable<Usuario> {
+    return this.http.put<Usuario>(`${this.baseUrl}/${id}`, usuarioRequest);
+  }
+
+  desativar(id: number): Observable<void> {
+    return this.http.put<void>(`${this.baseUrl}/desativar/${id}`, {});
+  }
+
+  deletar(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  }
 }
