@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Page } from '../../assets/page';
 import { Usuario } from './model/usuario';
 import { UsuarioService } from './usuario.service';
-import { LazyLoadEvent, MessageService } from 'primeng/api';
+import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { TableLazyLoadEvent } from 'primeng/table';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -22,7 +22,7 @@ export class UsuarioComponent implements OnInit {
 
 
   constructor(
-    private route: ActivatedRoute,
+    private route: ActivatedRoute, private confirmationService: ConfirmationService,
     private router: Router, private fb: FormBuilder, private usuarioService: UsuarioService, private messageService: MessageService) {
     // this.usuarioForm = this.fb.group({
     //   id: [''],
@@ -114,16 +114,27 @@ export class UsuarioComponent implements OnInit {
   }
 
   deletarUsuario(id: number): void {
-    this.usuarioService.deletar(id).subscribe({
-      next: () => {
-        this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Usuário deletado' });
-        this.listarUsuarios(); // Recarrega a lista de usuários
-      },
-      error: (err) => {
-        console.error('Erro ao deletar usuário', err);
-        this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Erro ao deletar usuário' });
+    this.confirmationService.confirm({
+      message: 'Tem certeza que gostaria de excluir o Usuário?',
+      acceptLabel: 'Sim',
+      rejectLabel: 'Não',
+      acceptIcon: 'pi pi-check',
+      rejectIcon: 'pi pi-times',
+      acceptButtonStyleClass: 'p-button-danger', // Classe customizada para o botão de aceitação
+      rejectButtonStyleClass: 'p-button-secondary',
+      accept: () => {
+        this.usuarioService.deletar(id).subscribe({
+          next: () => {
+            this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Usuário deletado' });
+            this.listarUsuarios(); // Recarrega a lista de usuários
+          },
+          error: (err) => {
+            console.error('Erro ao deletar usuário', err);
+            this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Erro ao deletar usuário' });
+          }
+        });
       }
-    });
+    })
   }
 
   novoUsuario(): void {
