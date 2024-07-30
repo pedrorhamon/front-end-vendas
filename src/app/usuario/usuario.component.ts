@@ -138,7 +138,7 @@ export class UsuarioComponent implements OnInit {
   }
 
   novoUsuario(): void {
-    this.router.navigate(['/categoria/new']);
+    this.router.navigate(['/usuario/new']);
   }
 
 }

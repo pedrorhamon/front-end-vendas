@@ -29,6 +29,7 @@ import { MenubarModule } from 'primeng/menubar';
 import { HomeComponent } from './home/home.component';
 import { ChartModule } from 'primeng/chart';
 import { UsuarioComponent } from './usuario/usuario.component';
+import { UsuarioEditComponent } from './usuario/usuario-edit/usuario-edit.component';
 
 
 
@@ -47,7 +48,8 @@ import { UsuarioComponent } from './usuario/usuario.component';
     SidebarComponent,
     FooterComponent,
     HomeComponent,
-    UsuarioComponent
+    UsuarioComponent,
+    UsuarioEditComponent
   ],
   imports: [
     BrowserModule,
