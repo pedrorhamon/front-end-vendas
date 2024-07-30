@@ -1,9 +1,9 @@
-export class Usuario {
-  id!: number;
-  name!: string;
+export interface Usuario {
+  id: number;
+  name: string;
   email?: string;
-  ativo: boolean = true;
-  createdAt?: string;
-  updatedAt?: string;
-  permissoes!: string[];
+  ativo: boolean;
+  createdAt: Date;  // Mantém como string
+  updatedAt: Date;  // Mantém como string
+  permissoes: string[] | undefined;
 }

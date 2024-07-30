@@ -1,0 +1,58 @@
+/* usuario-list.component.css */
+.card {
+  padding: 2rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+
+.p-grid {
+  margin-bottom: 1rem;
+}
+
+.p-field {
+  margin-bottom: 1rem;
+}
+
+button {
+  margin-top: 1.5rem;
+}
+
+p-table {
+  margin-top: 1.5rem;
+}
+
+.p-datatable-header {
+  font-weight: bold;
+}
+
+.p-datatable-thead > tr > th {
+  background-color: #f4f4f4;
+  text-align: center;
+}
+
+.p-datatable-tbody > tr > td {
+  text-align: center;
+}
+
+.p-button-rounded {
+  margin-right: 0.5rem;
+}
+
+.p-button-success {
+  background-color: #4caf50;
+  border-color: #4caf50;
+}
+
+.p-button-danger {
+  background-color: #f44336;
+  border-color: #f44336;
+}
+
+.p-button-success:hover {
+  background-color: #45a049;
+}
+
+.p-button-danger:hover {
+  background-color: #e53935;
+}
