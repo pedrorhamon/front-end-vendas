@@ -1,1 +1,56 @@
-<p>usuario works!</p>
+<!-- usuario-list.component.html -->
+<div class="card">
+  <form [formGroup]="usuarioForm" (ngSubmit)="listarUsuarios()">
+    <div class="p-grid">
+      <div class="p-col-12 p-md-4">
+        <div class="p-field">
+          <label for="id">ID</label>
+          <input id="id" type="text" pInputText formControlName="id">
+        </div>
+      </div>
+      <div class="p-col-12 p-md-4">
+        <div class="p-field">
+          <label for="descricao">Nome</label>
+          <input id="descricao" type="text" pInputText formControlName="descricao">
+        </div>
+      </div>
+      <div class="p-col-12 p-md-4">
+        <button pButton type="submit" label="Filtrar"></button>
+      </div>
+    </div>
+  </form>
+
+  <p-table [value]="usuarios" [paginator]="true" [rows]="10" [totalRecords]="totalRecords" [lazy]="true"
+           (onLazyLoad)="listarUsuarios($event)" [loading]="loading" [responsiveLayout]="'scroll'">
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="id">ID <p-sortIcon field="id"></p-sortIcon></th>
+        <th pSortableColumn="name">Nome <p-sortIcon field="name"></p-sortIcon></th>
+        <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
+        <th pSortableColumn="ativo">Ativo <p-sortIcon field="ativo"></p-sortIcon></th>
+        <th pSortableColumn="createdAt">Criado Em <p-sortIcon field="createdAt"></p-sortIcon></th>
+        <th pSortableColumn="updatedAt">Atualizado Em <p-sortIcon field="updatedAt"></p-sortIcon></th>
+        <th>Ações</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-usuario>
+      <tr>
+        <td>{{ usuario.id }}</td>
+        <td>{{ usuario.name }}</td>
+        <td>{{ usuario.email }}</td>
+        <td>{{ usuario.ativo ? 'Sim' : 'Não' }}</td>
+        <td>{{ usuario.createdAt | date:'dd/MM/yyyy HH:mm' }}</td>
+        <td>{{ usuario.updatedAt | date:'dd/MM/yyyy HH:mm' }}</td>
+        <td>
+          <button pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editarUsuario(usuario)"></button>
+          <button pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deletarUsuario(usuario.id)"></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="7">Nenhum usuário encontrado.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
