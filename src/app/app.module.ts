@@ -31,6 +31,7 @@ import { ChartModule } from 'primeng/chart';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { UsuarioEditComponent } from './usuario/usuario-edit/usuario-edit.component';
 
+import { MultiSelectModule } from 'primeng/multiselect';
 
 
 
@@ -71,7 +72,8 @@ import { UsuarioEditComponent } from './usuario/usuario-edit/usuario-edit.compon
     RecaptchaFormsModule,
     SidebarModule,
     MenubarModule,
-    ChartModule
+    ChartModule,
+    MultiSelectModule
 
   ],
   providers: [

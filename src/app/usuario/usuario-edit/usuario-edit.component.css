@@ -1,0 +1,34 @@
+.usuario-edit-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.usuario-edit-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.p-field {
+  margin-bottom: 1rem;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.p-error {
+  color: #f44336;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px; /* Ajuste o espaço entre os botões conforme necessário */
+  justify-content: flex-start; /* Alinha os botões à esquerda, ajuste conforme necessário */
+}
+

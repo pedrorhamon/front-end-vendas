@@ -1,3 +1,5 @@
+import { Permissao } from "./permission";
+
 export interface Usuario {
   id: number;
   name: string;
@@ -5,5 +7,5 @@ export interface Usuario {
   ativo: boolean;
   createdAt: Date;  // Mantém como string
   updatedAt: Date;  // Mantém como string
-  permissoes: string[] | undefined;
+  permissoes: Permissao[];
 }

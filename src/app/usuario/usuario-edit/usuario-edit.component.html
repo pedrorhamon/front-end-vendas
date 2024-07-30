@@ -1,1 +1,37 @@
-<p>usuario-edit works!</p>
+<p-confirmDialog></p-confirmDialog>
+<p-messages></p-messages>
+
+<form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()">
+  <div class="p-fluid p-formgrid p-grid">
+    <div class="p-field p-col-12 p-md-4">
+      <label for="name">Name</label>
+      <input id="name" pInputText formControlName="name" />
+    </div>
+
+    <div class="p-field p-col-12 p-md-4">
+      <label for="email">Email</label>
+      <input id="email" pInputText formControlName="email" />
+    </div>
+
+    <div class="p-field p-col-12 p-md-4">
+      <label for="password">Password</label>
+      <input id="password" type="password" pInputText formControlName="senha" />
+    </div>
+
+    <div class="p-field p-col-12 p-md-4">
+      <p-checkbox id="ativo" formControlName="ativo" binary="true"></p-checkbox>
+      <label for="ativo">Active</label>
+    </div>
+
+    <div class="p-field p-col-12 p-md-4">
+      <label for="permissoes">Permissions</label>
+      <p-multiSelect id="permissoes" formControlName="permissoes" [options]="permissionsOptions" optionLabel="label" display="chip"></p-multiSelect>
+    </div>
+
+    <div class="p-field p-col-12 button-group">
+      <button pButton type="button" label="Cancelar" (click)="onCancel()"></button>
+      <button pButton type="submit" label="Salvar" [disabled]="usuarioForm.invalid"></button>
+    </div>
+
+  </div>
+</form>
