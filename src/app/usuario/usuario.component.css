@@ -1,58 +1,32 @@
-/* usuario-list.component.css */
-.card {
-  padding: 2rem;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-  border-radius: 5px;
-  background-color: #ffffff;
+.usuario-list-container {
+  padding: 20px;
 }
 
-.p-grid {
-  margin-bottom: 1rem;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-.p-field {
-  margin-bottom: 1rem;
+
+.form-group {
+  margin-bottom: 15px;
 }
 
 button {
-  margin-top: 1.5rem;
+  margin-right: 10px;
 }
 
-p-table {
-  margin-top: 1.5rem;
+/* Botão de aceitação em vermelho */
+.p-confirm-dialog .p-confirm-dialog-accept {
+  background-color: #f44336 !important;
+  border: none;
 }
 
-.p-datatable-header {
-  font-weight: bold;
+/* Botão de fechar à esquerda */
+.p-confirm-dialog .p-dialog-header .p-dialog-header-close {
+  position: absolute;
+  left: 1rem;
 }
 
-.p-datatable-thead > tr > th {
-  background-color: #f4f4f4;
-  text-align: center;
-}
-
-.p-datatable-tbody > tr > td {
-  text-align: center;
-}
-
-.p-button-rounded {
-  margin-right: 0.5rem;
-}
-
-.p-button-success {
-  background-color: #4caf50;
-  border-color: #4caf50;
-}
-
-.p-button-danger {
-  background-color: #f44336;
-  border-color: #f44336;
-}
-
-.p-button-success:hover {
-  background-color: #45a049;
-}
-
-.p-button-danger:hover {
-  background-color: #e53935;
-}
