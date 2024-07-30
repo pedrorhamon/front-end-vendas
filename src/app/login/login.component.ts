@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
       this.usuarioService.autenticar(credenciais).subscribe(
         response => {
           localStorage.setItem('token', response.token);
-          this.router.navigate(['/categoria']); // Redirecione para a página inicial ou outra página
+          this.router.navigate(['/home']); // Redirecione para a página inicial ou outra página
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Logado com sucesso' });
         },
         error => {
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
         }
       );
     } else {
-      this.messageService.add({ severity: 'warn', summary: 'Validation Error', detail: 'Please fill in all fields correctly and complete the reCAPTCHA' });
+      this.messageService.add({ severity: 'warn', summary: 'Validation Error', detail: 'Por favor complete o reCAPTCHA' });
     }
   }
 
