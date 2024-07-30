@@ -18,7 +18,8 @@ export class NavbarComponent {
     this.usuarioService.logout().subscribe(
       () => {
         console.log('Logout realizado com sucesso');
-        this.router.navigate(['']);
+        this.router.navigate(['/login']);
+        // Redirecionar para a página de login ou qualquer outra lógica
       },
       error => {
         console.error('Erro ao realizar logout', error);

@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'categoria/delete/:id', component: CategoriaComponent },
   { path: 'categoria/new', component: CategoriaEditComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent }
 ];
 
 @NgModule({

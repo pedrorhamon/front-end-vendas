@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Credencias } from './model/credencias';
-import { catchError, map, Observable, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, tap, throwError } from 'rxjs';
 import { Token } from './model/token';
 
 @Injectable({
@@ -11,8 +11,8 @@ export class LoginService {
 
   private baseUrl = 'http://localhost:8080/api/usuarios';
 
-  private isLoggedIn: boolean = false;
-  private userName: string = 'Pedro Rhamon';
+  private userNameSubject = new BehaviorSubject<string | null>(null);
+  userName$ = this.userNameSubject.asObservable();
 
 
   constructor(private http: HttpClient) { }
@@ -46,10 +46,13 @@ export class LoginService {
         })
     );
 }
-
 isAuthenticated(): boolean {
-  // Verifica se o token de autenticação está presente
-  return !!localStorage.getItem('token');
+  // Verifica se o código está sendo executado no contexto do navegador
+  if (typeof window !== 'undefined') {
+    return !!localStorage.getItem('token');
+  }
+  return false;
 }
+
 
 }

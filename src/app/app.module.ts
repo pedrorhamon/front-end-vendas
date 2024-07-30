@@ -27,6 +27,9 @@ import { NavbarComponent } from './template/navbar/navbar.component';
 import { SidebarComponent } from './template/sidebar/sidebar.component';
 import { MenubarModule } from 'primeng/menubar';
 import { HomeComponent } from './home/home.component';
+import { ChartModule } from 'primeng/chart';
+import { UsuarioComponent } from './usuario/usuario.component';
+
 
 
 
@@ -43,7 +46,8 @@ import { HomeComponent } from './home/home.component';
     NavbarComponent,
     SidebarComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    UsuarioComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +68,8 @@ import { HomeComponent } from './home/home.component';
     RecaptchaModule,
     RecaptchaFormsModule,
     SidebarModule,
-    MenubarModule
+    MenubarModule,
+    ChartModule
 
   ],
   providers: [
