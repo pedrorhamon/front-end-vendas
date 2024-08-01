@@ -1,5 +1,5 @@
-<p-confirmDialog></p-confirmDialog>
-<p-messages></p-messages>
+<!-- <p-confirmDialog></p-confirmDialog> -->
+<!-- <p-messages></p-messages> -->
 
 <form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()">
   <div class="p-fluid p-formgrid p-grid">
@@ -23,9 +23,15 @@
       <label for="ativo">Active</label>
     </div>
 
+    <!-- <div class="form-group">
+      <label for="permissoes">Permissões</label>
+      <p-multiSelect [options]="permissionsOptions" formControlName="permissoes" optionLabel="label" optionValue="value"></p-multiSelect>
+    </div> -->
+
     <div class="p-field p-col-12 p-md-4">
-      <label for="permissoes">Permissions</label>
-      <p-multiSelect id="permissoes" formControlName="permissoes" [options]="permissionsOptions" optionLabel="label" display="chip"></p-multiSelect>
+      <label for="permissoes">Permissões</label>
+      <p-multiSelect [options]="permissionsOptions" formControlName="permissoes" optionLabel="label" optionValue="value" [(ngModel)]="selectedPermissions"></p-multiSelect>
+
     </div>
 
     <div class="p-field p-col-12 button-group">

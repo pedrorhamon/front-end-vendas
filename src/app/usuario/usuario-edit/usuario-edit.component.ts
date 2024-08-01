@@ -21,6 +21,8 @@ export class UsuarioEditComponent implements OnInit {
   totalPages: number = 0;
   isEditMode = false;
   usuarioId!: number;
+  selectedPermissions: Permissao[] = []; // Armazena as permissões selecionadas
+
 
   constructor(
     private permissaoService: PermissionService,
@@ -55,22 +57,65 @@ export class UsuarioEditComponent implements OnInit {
   listarPermissoes(): void {
     this.permissaoService.listarPermissoes(this.page, this.size).subscribe(data => {
       this.permissoesList = data.content;
-      // Mapeia permissões para as opções do multiselect
-      this.permissionsOptions = this.permissoesList.map(p => ({ label: p.name, value: p.id }));
+      this.permissionsOptions = this.permissoesList.map(p => ({
+        label: p.name,
+        value: p.id
+      }));
+      console.log('Permissions Options:', this.permissionsOptions); // Verifique os dados aqui
     });
   }
+
 
   get name() { return this.usuarioForm.get('name')!; }
   get email() { return this.usuarioForm.get('email')!; }
   get senha() { return this.usuarioForm.get('senha')!; }
   get permissoes() { return this.usuarioForm.get('permissoes')!; }
 
+  // loadUsuario(): void {
+  //   this.usuarioService.getUsuariosById(this.usuarioId).subscribe(usuario => {
+  //     this.usuarioForm.patchValue({
+  //       id: usuario.id,
+  //       name: usuario.name,
+  //       email: usuario.email,
+  //       senha: '', // Se necessário, ajuste conforme sua lógica de senha
+  //       ativo: usuario.ativo,
+  //       createdAt: usuario.createdAt,
+  //       updatedAt: usuario.updatedAt
+  //     });
+
+  //     // Ajusta o campo de permissões com base nos IDs das permissões
+  //     if (usuario.permissoes) {
+  //       // Mapeia os IDs das permissões para os objetos de permissões
+  //       const selectedPermissions = usuario.permissoes.map(p => this.permissionsOptions.find(opt => opt.value.id === p.id));
+  //       this.usuarioForm.patchValue({
+  //         permissoes: selectedPermissions
+  //       });
+  //     }
+  //   });
+  // }
+
   loadUsuario(): void {
     this.usuarioService.getUsuariosById(this.usuarioId).subscribe(usuario => {
-      this.usuarioForm.patchValue(usuario);
-      // Ajuste para formatar datas se necessário
+      console.log('Usuario:', usuario); // Verifique os dados aqui
+
+      this.usuarioForm.patchValue({
+        id: usuario.id,
+        name: usuario.name,
+        email: usuario.email,
+        senha: '', // Se necessário, ajuste conforme sua lógica de senha
+        ativo: usuario.ativo,
+        createdAt: usuario.createdAt,
+        updatedAt: usuario.updatedAt
+      });
+
+      if (usuario.permissoes) {
+        this.selectedPermissions = usuario.permissoes.map(p => {
+          return this.permissionsOptions.find(opt => opt.value.name === p.name)?.value || null;
+        }).filter(permission => permission !== null);
+      }
     });
   }
+
 
   onSubmit(): void {
     if (this.usuarioForm.valid) {
@@ -91,7 +136,7 @@ export class UsuarioEditComponent implements OnInit {
         },
         error => {
           this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Erro ao cadastrar o usuário.' });
-        }););
+        });
       }
     }
   }

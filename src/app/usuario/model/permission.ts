@@ -1,4 +1,4 @@
-export class Permissao {
-  id!: number;
-  name!: string;
+export interface Permissao {
+  id: number;
+  name: string;
 }
