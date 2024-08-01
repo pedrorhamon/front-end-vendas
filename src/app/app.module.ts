@@ -32,6 +32,7 @@ import { UsuarioComponent } from './usuario/usuario.component';
 import { UsuarioEditComponent } from './usuario/usuario-edit/usuario-edit.component';
 
 import { MultiSelectModule } from 'primeng/multiselect';
+import { PessoaComponent } from './pessoa/pessoa.component';
 
 
 
@@ -50,7 +51,8 @@ import { MultiSelectModule } from 'primeng/multiselect';
     FooterComponent,
     HomeComponent,
     UsuarioComponent,
-    UsuarioEditComponent
+    UsuarioEditComponent,
+    PessoaComponent
   ],
   imports: [
     BrowserModule,
