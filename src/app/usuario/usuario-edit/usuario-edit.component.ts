@@ -13,7 +13,7 @@ import { PermissionService } from '../permission.service';
 })
 export class UsuarioEditComponent implements OnInit {
   permissoesList: Permissao[] = [];
-  permissionsOptions: any[] = []; // Array para opções do p-multiselect
+  permissionsOptions: any[] = []; // Inicialize o array de opções
   usuarioForm!: FormGroup;
   page: number = 0;
   size: number = 10;
@@ -37,11 +37,11 @@ export class UsuarioEditComponent implements OnInit {
       id: [null],
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      senha: ['', Validators.required],
+      senha: [''], // Campo de senha
       ativo: [true],
       createdAt: [new Date().toISOString()],
       updatedAt: [new Date().toISOString()],
-      permissoes: [[], Validators.required]
+      permissoes: [[]] // Campo de permissões
     });
 
     if (this.isEditMode) {
@@ -52,30 +52,23 @@ export class UsuarioEditComponent implements OnInit {
 
   listarPermissoes(): void {
     this.permissaoService.listarPermissoes(this.page, this.size).subscribe(data => {
-      this.permissoesList = data.content || []; // Verifica se content não é undefined
-      this.totalPages = data.totalPages || 0;
+      this.permissoesList = data.content;
+      // Mapeia permissões para as opções do multiselect
       this.permissionsOptions = this.permissoesList.map(p => ({ label: p.name, value: p.id }));
     });
   }
 
+  get name() { return this.usuarioForm.get('name')!; }
+  get email() { return this.usuarioForm.get('email')!; }
+  get senha() { return this.usuarioForm.get('senha')!; }
+  get permissoes() { return this.usuarioForm.get('permissoes')!; }
 
   loadUsuario(): void {
     this.usuarioService.getUsuariosById(this.usuarioId).subscribe(usuario => {
-      if (usuario) {
-        this.usuarioForm.patchValue({
-          id: usuario.id,
-          name: usuario.name,
-          email: usuario.email,
-          ativo: usuario.ativo,
-          createdAt: usuario.createdAt,
-          updatedAt: usuario.updatedAt,
-          permissoes: usuario.permissoes ? usuario.permissoes.map(p => p.id) : [] // Verifica se permissoes não é undefined
-        });
-        // Ajuste para formatar datas se necessário
-      }
+      this.usuarioForm.patchValue(usuario);
+      // Ajuste para formatar datas se necessário
     });
   }
-
 
   onSubmit(): void {
     if (this.usuarioForm.valid) {

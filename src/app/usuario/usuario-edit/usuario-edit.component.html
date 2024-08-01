@@ -13,7 +13,7 @@
       <input id="email" pInputText formControlName="email" />
     </div>
 
-    <div class="p-field p-col-12 p-md-4">
+    <div class="p-field p-col-12 p-md-4"  *ngIf="!isEditMode">
       <label for="password">Password</label>
       <input id="password" type="password" pInputText formControlName="senha" />
     </div>

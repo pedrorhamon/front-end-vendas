@@ -1,3 +1,5 @@
+import { Permissao } from "./permission";
+
 export class UsuarioRequest {
   id!: number;
   name!: string;
