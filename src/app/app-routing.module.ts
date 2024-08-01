@@ -6,6 +6,7 @@ import { CategoriaEditComponent } from './categoria/categoria-edit/categoria-edi
 import { HomeComponent } from './home/home.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { UsuarioEditComponent } from './usuario/usuario-edit/usuario-edit.component';
+import { PessoaComponent } from './pessoa/pessoa.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'usuario', component: UsuarioComponent },
   { path: 'usuario/edit/:id', component: UsuarioEditComponent },
   { path: 'usuario/new', component: UsuarioEditComponent },
+  { path: 'pessoa', component: PessoaComponent },
 ];
 
 @NgModule({
