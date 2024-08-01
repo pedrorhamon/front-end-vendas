@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UsuarioRequest } from '../model/usuario.request';
 import { Permissao } from '../model/permission';
 import { PermissionService } from '../permission.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-usuario-edit',
@@ -26,7 +27,8 @@ export class UsuarioEditComponent implements OnInit {
     private fb: FormBuilder,
     private usuarioService: UsuarioService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -76,12 +78,20 @@ export class UsuarioEditComponent implements OnInit {
 
       if (this.isEditMode) {
         this.usuarioService.atualizar(this.usuarioId, usuarioRequest).subscribe(() => {
+          this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Usuário atualizado com sucesso.' });
           this.router.navigate(['/usuario']); // Redireciona após a atualização
+        },
+        error => {
+          this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Erro ao atualizar o usuário.' });
         });
       } else {
         this.usuarioService.criar(usuarioRequest).subscribe(() => {
+          this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Usuário atualizado com sucesso.' });
           this.router.navigate(['/usuario']); // Redireciona após a criação
-        });
+        },
+        error => {
+          this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Erro ao cadastrar o usuário.' });
+        }););
       }
     }
   }
