@@ -30,3 +30,9 @@ button {
   left: 1rem;
 }
 
+/* usuario.component.css */
+p-progressSpinner {
+  display: block;
+  margin: 0 auto; /* Centraliza o spinner horizontalmente */
+}
+

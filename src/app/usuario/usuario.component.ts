@@ -37,13 +37,25 @@ export class UsuarioComponent implements OnInit {
         // Implementação para carregar uma categoria específica, se necessário
       });
     }
-    this.listarUsuarios();
+    // this.listarUsuarios();
+    this.verificarUsuarios();
   }
 
   convertStringToDate(dateString: string): Date {
     // Supondo que o formato da data seja 'dd/MM/yyyy HH:mm'
     const [day, month, year, hour, minute] = dateString.split(/[/ :]/);
     return new Date(+year, +month - 1, +day, +hour, +minute);
+  }
+
+  verificarUsuarios(): void {
+    this.usuarioService.getUsuarios(0, 1).subscribe(data => {
+      if (data.totalElements > 0) {
+        this.listarUsuarios();
+      } else {
+        console.log('Nenhum usuário encontrado.');
+        // Opcional: Adicione uma mensagem ou ação caso não haja usuários
+      }
+    });
   }
 
   listarUsuarios(): void {
@@ -61,52 +73,6 @@ export class UsuarioComponent implements OnInit {
     });
   }
 
-
-
-
-  // listarUsuarios(event?: TableLazyLoadEvent): void {
-  //   this.loading = true;
-
-  //   // Garantir que event.first e event.rows sejam definidos
-  //   const page = event && event.first !== null && event.first !== undefined ? Math.floor(event.first / event.rows!) : 0;
-  //   const size = event && event.rows !== null && event.rows !== undefined ? event.rows : 10;
-
-  //   const id = this.usuarioForm.get('id')?.value;
-  //   const descricao = this.usuarioForm.get('descricao')?.value;
-
-  //   this.usuarioService.listar(id, descricao, page, size).subscribe({
-  //     next: (response: Page<Usuario>) => {
-  //       this.usuarios = response.content;
-  //       this.totalRecords = response.totalElements;
-  //       this.loading = false;
-  //     },
-  //     error: () => {
-  //       this.loading = false;
-  //     }
-  //   });
-  // }
-
-
-
-  // listarUsuarios(event?: TableLazyLoadEvent): void {
-  //   this.loading = true;
-  //   const page = (event?.first ?? 0) / (event?.rows ?? 10);
-  //   const size = event?.rows ?? 10;
-  //   const id = this.usuarioForm.get('id')?.value || null;
-  //   const descricao = this.usuarioForm.get('descricao')?.value || null;
-
-  //   this.usuarioService.listar(id, descricao, page, size).subscribe({
-  //     next: (response) => {
-  //       this.usuarios = response.content || [];
-  //       this.totalRecords = response.totalElements || 0;
-  //       this.loading = false;
-  //     },
-  //     error: (err) => {
-  //       console.error('Erro ao listar usuários', err);
-  //       this.loading = false;
-  //     }
-  //   });
-  // }
 
   editarUsuario(usuario: Usuario): void {
     // Implementar a lógica para editar o usuário

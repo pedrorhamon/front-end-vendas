@@ -6,6 +6,7 @@ import { UsuarioRequest } from '../model/usuario.request';
 import { Permissao } from '../model/permission';
 import { PermissionService } from '../permission.service';
 import { MessageService } from 'primeng/api';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-usuario-edit',
@@ -14,7 +15,7 @@ import { MessageService } from 'primeng/api';
 })
 export class UsuarioEditComponent implements OnInit {
   permissoesList: Permissao[] = [];
-  permissionsOptions: any[] = []; // Inicialize o array de opções
+  permissionsOptions: any[] = [];
   usuarioForm!: FormGroup;
   page: number = 0;
   size: number = 10;
@@ -22,6 +23,8 @@ export class UsuarioEditComponent implements OnInit {
   isEditMode = false;
   usuarioId!: number;
   selectedPermissions: Permissao[] = []; // Armazena as permissões selecionadas
+  permissionsLoaded$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
 
 
   constructor(
@@ -34,8 +37,8 @@ export class UsuarioEditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.usuarioId = this.route.snapshot.params['id']; // Obtém o ID da URL
-    this.isEditMode = !!this.usuarioId; // Define se está em modo de edição
+    this.usuarioId = this.route.snapshot.params['id'];
+    this.isEditMode = !!this.usuarioId;
 
     this.usuarioForm = this.fb.group({
       id: [null],
@@ -48,10 +51,26 @@ export class UsuarioEditComponent implements OnInit {
       permissoes: [[]] // Campo de permissões
     });
 
-    if (this.isEditMode) {
-      this.loadUsuario();
-    }
     this.listarPermissoes();
+
+    if (this.isEditMode) {
+       this.permissionsLoaded$.subscribe(loaded => {
+        if (loaded) {
+          this.verificarUsuarios();
+        }
+      });
+    }
+  }
+
+  verificarUsuarios(): void {
+    this.usuarioService.getUsuarios(0, 1).subscribe(data => {
+      if (data.totalElements > 0) {
+        this.loadUsuario();
+      } else {
+        console.log('Nenhum usuário encontrado.');
+        // Opcional: Adicione uma mensagem ou ação caso não haja usuários
+      }
+    });
   }
 
   listarPermissoes(): void {
@@ -59,40 +78,12 @@ export class UsuarioEditComponent implements OnInit {
       this.permissoesList = data.content;
       this.permissionsOptions = this.permissoesList.map(p => ({
         label: p.name,
-        value: p.id
+        value: p
       }));
       console.log('Permissions Options:', this.permissionsOptions); // Verifique os dados aqui
+      this.permissionsLoaded$.next(true);
     });
   }
-
-
-  get name() { return this.usuarioForm.get('name')!; }
-  get email() { return this.usuarioForm.get('email')!; }
-  get senha() { return this.usuarioForm.get('senha')!; }
-  get permissoes() { return this.usuarioForm.get('permissoes')!; }
-
-  // loadUsuario(): void {
-  //   this.usuarioService.getUsuariosById(this.usuarioId).subscribe(usuario => {
-  //     this.usuarioForm.patchValue({
-  //       id: usuario.id,
-  //       name: usuario.name,
-  //       email: usuario.email,
-  //       senha: '', // Se necessário, ajuste conforme sua lógica de senha
-  //       ativo: usuario.ativo,
-  //       createdAt: usuario.createdAt,
-  //       updatedAt: usuario.updatedAt
-  //     });
-
-  //     // Ajusta o campo de permissões com base nos IDs das permissões
-  //     if (usuario.permissoes) {
-  //       // Mapeia os IDs das permissões para os objetos de permissões
-  //       const selectedPermissions = usuario.permissoes.map(p => this.permissionsOptions.find(opt => opt.value.id === p.id));
-  //       this.usuarioForm.patchValue({
-  //         permissoes: selectedPermissions
-  //       });
-  //     }
-  //   });
-  // }
 
   loadUsuario(): void {
     this.usuarioService.getUsuariosById(this.usuarioId).subscribe(usuario => {
@@ -108,12 +99,22 @@ export class UsuarioEditComponent implements OnInit {
         updatedAt: usuario.updatedAt
       });
 
-      if (usuario.permissoes) {
-        this.selectedPermissions = usuario.permissoes.map(p => {
-          return this.permissionsOptions.find(opt => opt.value.name === p.name)?.value || null;
-        }).filter(permission => permission !== null);
-      }
-    });
+      /* Com isso não estava funcionando, não rederizava o multiselect*/
+    //   if (usuario.permissoes) {
+    //     this.selectedPermissions = usuario.permissoes.map(p => {
+    //       return this.permissionsOptions.find(opt => opt.value.name === p.name)?.value || null;
+    //     }).filter(permission => permission !== null);
+    //   }
+    // });
+
+          /* Acrescentei uma verificação na label do componente e voltou a funcionar*/
+    if (usuario.permissoes) {
+      this.selectedPermissions = usuario.permissoes.map(permissionName => {
+        return this.permissionsOptions.find(opt => opt.label === permissionName)?.value || null;
+      }).filter(permission => permission !== null);
+      this.usuarioForm.get('permissoes')?.setValue(this.selectedPermissions);
+    }
+  });
   }
 
 
