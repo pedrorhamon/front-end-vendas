@@ -1,7 +1,6 @@
 import { TipoLancamento } from "./tipolancamento";
 
-export interface Lancamento {
-  id?: number;
+export interface LancamentoRequest {
   descricao: string;
   dataVencimento: string; // Formato esperado: "dd/MM/yyyy"
   dataPagamento?: string; // Formato esperado: "dd/MM/yyyy"
