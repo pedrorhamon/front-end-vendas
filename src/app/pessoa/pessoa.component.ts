@@ -39,6 +39,13 @@ export class PessoaComponent implements OnInit{
     });
   }
 
+  editarUsuario(pessoa: Pessoa): void {
+    // Implementar a lógica para editar o usuário
+    // this.router.navigate(['/usuario/']);
+    this.router.navigate(['/pessoa/edit', pessoa.id]);
+    console.log('Editar pessoa', pessoa);
+  }
+
   desativarPessoa(id: number): void {
     this.pessoaService.desativar(id).subscribe({
       next: () => {
