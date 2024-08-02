@@ -14,7 +14,7 @@ export class LancamentoService {
 
   constructor(private http: HttpClient) { }
 
-  istar(id?: number, descricao?: string, page: number = 0, size: number = 10): Observable<Page<LancamentoResponse>> {
+  listar(id?: number, descricao?: string, page: number = 0, size: number = 10): Observable<Page<Lancamento>> {
     let params = new HttpParams()
       .set('page', page.toString())
       .set('size', size.toString());
@@ -30,7 +30,7 @@ export class LancamentoService {
     return this.http.get<Page<Lancamento>>(this.baseUrl, { params });
   }
 
-  listarPorDatas(dataVencimentoDe?: string, dataVencimentoAte?: string, page: number = 0, size: number = 10): Observable<Page<LancamentoResponse>> {
+  listarPorDatas(dataVencimentoDe?: string, dataVencimentoAte?: string, page: number = 0, size: number = 10): Observable<Page<Lancamento>> {
     let params = new HttpParams()
       .set('page', page.toString())
       .set('size', size.toString());

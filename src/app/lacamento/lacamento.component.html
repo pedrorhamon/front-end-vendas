@@ -7,3 +7,34 @@
     <button pButton type="button" label="Novo Lancamento" icon="pi pi-plus" class="p-button-success"></button>
   </div>
 
+
+  <p-table [value]="lancamentos" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Id</th>
+        <th>Descrição</th>
+        <th>Data de Vencimento</th>
+        <th>Data de Pagamento</th>
+        <th>Valor</th>
+        <th>Tipo de Lançamento</th>
+        <th>Ações</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-lancamento>
+      <tr>
+        <td>{{ lancamento.id }}</td>
+        <td>{{ lancamento.descricao }}</td>
+        <td>{{ lancamento.dataVencimento }}</td>
+        <td>{{ lancamento.dataPagamento}}</td>
+        <td>{{ lancamento.valor}}</td>
+        <td>{{ lancamento.tipoLancamento}}</td>
+        <td>
+          <!-- <button pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editarPessoa(pessoa.id)"></button>
+          <button pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deletarPessoa(pessoa.id)"></button> -->
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+
