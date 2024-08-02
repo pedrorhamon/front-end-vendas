@@ -12,6 +12,9 @@
       <tr>
         <th>Id</th>
         <th>Nome</th>
+        <th>Ativo</th>
+        <th>Criado Em</th>
+        <th>Atualizado Em</th>
         <th>Ações</th>
       </tr>
     </ng-template>
@@ -19,6 +22,9 @@
       <tr>
         <td>{{ pessoa.id }}</td>
         <td>{{ pessoa.name }}</td>
+        <td>{{ pessoa.ativo ? 'Sim' : 'Não' }}</td>
+        <td>{{ pessoa.createdAt}}</td>
+        <td>{{ pessoa.updatedAt}}</td>
         <td>
           <button pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" ></button>
           <button pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" ></button>
