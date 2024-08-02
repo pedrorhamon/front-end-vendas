@@ -8,6 +8,7 @@ import { UsuarioComponent } from './usuario/usuario.component';
 import { UsuarioEditComponent } from './usuario/usuario-edit/usuario-edit.component';
 import { PessoaComponent } from './pessoa/pessoa.component';
 import { PessoaEditComponent } from './pessoa/pessoa-edit/pessoa-edit.component';
+import { LacamentoComponent } from './lacamento/lacamento.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'pessoa', component: PessoaComponent },
   { path: 'pessoa/edit/:id', component: PessoaEditComponent },
   { path: 'pessoa/new', component: PessoaEditComponent },
+  { path: 'lancamento', component: LacamentoComponent },
 ];
 
 @NgModule({
