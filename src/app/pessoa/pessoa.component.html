@@ -7,7 +7,7 @@
     <button pButton type="button" label="Nova Pessoa" icon="pi pi-plus" class="p-button-success"></button>
   </div>
 
-  <p-table  [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }">
+  <p-table [value]="pessoas"  [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template pTemplate="header">
       <tr>
         <th>Id</th>
@@ -15,10 +15,10 @@
         <th>Ações</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-categoria>
+    <ng-template pTemplate="body" let-pessoa>
       <tr>
-        <td>{{ categoria.id }}</td>
-        <td>{{ categoria.name }}</td>
+        <td>{{ pessoa.id }}</td>
+        <td>{{ pessoa.name }}</td>
         <td>
           <button pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" ></button>
           <button pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" ></button>
