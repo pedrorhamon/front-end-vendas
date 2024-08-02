@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { UsuarioEditComponent } from './usuario/usuario-edit/usuario-edit.component';
 import { PessoaComponent } from './pessoa/pessoa.component';
+import { PessoaEditComponent } from './pessoa/pessoa-edit/pessoa-edit.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -21,6 +22,8 @@ const routes: Routes = [
   { path: 'usuario/edit/:id', component: UsuarioEditComponent },
   { path: 'usuario/new', component: UsuarioEditComponent },
   { path: 'pessoa', component: PessoaComponent },
+  { path: 'pessoa/edit/:id', component: PessoaEditComponent },
+  { path: 'pessoa/new', component: PessoaEditComponent },
 ];
 
 @NgModule({

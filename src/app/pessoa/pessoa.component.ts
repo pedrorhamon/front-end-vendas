@@ -17,7 +17,7 @@ export class PessoaComponent implements OnInit{
   loading: boolean = true;
   totalPages: number = 0;
   page: number = 0;
-  size: number = 10;
+  size: number = 20;
 
   constructor(
     private pessoaService: PessoaService,
@@ -39,11 +39,11 @@ export class PessoaComponent implements OnInit{
     });
   }
 
-  editarUsuario(pessoa: Pessoa): void {
+  editarPessoa(id: number): void {
     // Implementar a lógica para editar o usuário
     // this.router.navigate(['/usuario/']);
-    this.router.navigate(['/pessoa/edit', pessoa.id]);
-    console.log('Editar pessoa', pessoa);
+    this.router.navigate(['/pessoa/edit', id]);
+    console.log('Editar pessoa', id);
   }
 
   desativarPessoa(id: number): void {
@@ -84,6 +84,10 @@ export class PessoaComponent implements OnInit{
         );
       }
     });
+  }
+
+  novaPessoa(): void {
+    this.router.navigate(['/pessoa/new']);
   }
 
 }

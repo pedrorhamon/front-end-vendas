@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Pessoa } from './model/pessoa';
 import { Observable } from 'rxjs';
 import { Page } from '../../assets/page';
+import { PessoaRequest } from './model/pessoa.request';
 
 @Injectable({
   providedIn: 'root'
@@ -31,12 +32,24 @@ export class PessoaService {
     return this.http.get<Page<Pessoa>>(this.baseUrl, { params });
   }
 
+  criar(pessoaRequest: PessoaRequest): Observable<Pessoa> {
+    return this.http.post<Pessoa>(this.baseUrl, pessoaRequest);
+  }
+
+  atualizar(id: number, pessoaRequest: PessoaRequest): Observable<Pessoa> {
+    return this.http.put<Pessoa>(`${this.baseUrl}/${id}`, pessoaRequest);
+  }
+
   desativar(id: number): Observable<void> {
     return this.http.put<void>(`${this.baseUrl}/desativar/${id}`, {});
   }
 
   deletar(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  }
+
+  getPessoaById(id: number): Observable<Pessoa> {
+    return this.http.get<Pessoa>(`${this.baseUrl}/${id}`);
   }
 
 }

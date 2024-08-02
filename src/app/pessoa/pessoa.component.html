@@ -4,7 +4,7 @@
 <div class="pessoa-list-container">
   <div class="header">
     <h2>Lista de Pessoas</h2>
-    <button pButton type="button" label="Nova Pessoa" icon="pi pi-plus" class="p-button-success"></button>
+    <button pButton type="button" label="Nova Pessoa" icon="pi pi-plus" class="p-button-success" (click)="novaPessoa()"></button>
   </div>
 
   <p-table [value]="pessoas"  [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }">
@@ -26,7 +26,7 @@
         <td>{{ pessoa.createdAt}}</td>
         <td>{{ pessoa.updatedAt}}</td>
         <td>
-          <button pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editarUsuario(pessoa.id)"></button>
+          <button pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editarPessoa(pessoa.id)"></button>
           <button pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deletarPessoa(pessoa.id)"></button>
         </td>
       </tr>
