@@ -61,18 +61,27 @@ export class PessoaComponent implements OnInit{
 
   deletarPessoa(id: number): void {
     this.confirmationService.confirm({
-      message: 'Tem certeza de que deseja deletar esta pessoa?',
+      message: 'Tem certeza que gostaria de excluir a Pessoa?',
+      acceptLabel: 'Sim',
+      rejectLabel: 'Não',
+      acceptIcon: 'pi pi-check',
+      rejectIcon: 'pi pi-times',
+      acceptButtonStyleClass: 'p-button-danger', // Classe customizada para o botão de aceitação
+      rejectButtonStyleClass: 'p-button-secondary', // Classe customizada para o botão de rejeição
       accept: () => {
-        this.pessoaService.deletar(id).subscribe({
-          next: () => {
-            this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Pessoa deletada' });
+        this.pessoaService.deletar(id).subscribe(
+          () => {
+            this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Pessoa excluída com sucesso.' });
             this.listarPessoas();
           },
-          error: (err) => {
-            console.error('Erro ao deletar pessoa', err);
-            this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Erro ao deletar pessoa' });
+          error => {
+            if (error.status === 400 && error.error.message === 'Pessoa possui relacionamentos e não pode ser excluída.') {
+              this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Pessoa não pode ser excluída pois possui relacionamentos com Lançamentos.' });
+            } else {
+              this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'A pessoa selecionada possui relacionamento com Lançamento.' });
+            }
           }
-        });
+        );
       }
     });
   }
