@@ -39,4 +39,35 @@ export class PessoaComponent implements OnInit{
     });
   }
 
+  desativarPessoa(id: number): void {
+    this.pessoaService.desativar(id).subscribe({
+      next: () => {
+        this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Pessoa desativada' });
+        this.listarPessoas();
+      },
+      error: (err) => {
+        console.error('Erro ao desativar pessoa', err);
+        this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Erro ao desativar pessoa' });
+      }
+    });
+  }
+
+  deletarPessoa(id: number): void {
+    this.confirmationService.confirm({
+      message: 'Tem certeza de que deseja deletar esta pessoa?',
+      accept: () => {
+        this.pessoaService.deletar(id).subscribe({
+          next: () => {
+            this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Pessoa deletada' });
+            this.listarPessoas();
+          },
+          error: (err) => {
+            console.error('Erro ao deletar pessoa', err);
+            this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Erro ao deletar pessoa' });
+          }
+        });
+      }
+    });
+  }
+
 }

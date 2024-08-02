@@ -27,7 +27,7 @@
         <td>{{ pessoa.updatedAt}}</td>
         <td>
           <button pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" ></button>
-          <button pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" ></button>
+          <button pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deletePessoa(pessoa.id)"></button>
         </td>
       </tr>
     </ng-template>

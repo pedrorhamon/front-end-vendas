@@ -31,4 +31,12 @@ export class PessoaService {
     return this.http.get<Page<Pessoa>>(this.baseUrl, { params });
   }
 
+  desativar(id: number): Observable<void> {
+    return this.http.put<void>(`${this.baseUrl}/desativar/${id}`, {});
+  }
+
+  deletar(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  }
+
 }
