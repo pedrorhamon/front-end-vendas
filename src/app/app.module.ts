@@ -35,6 +35,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { PessoaComponent } from './pessoa/pessoa.component';
 import { PessoaEditComponent } from './pessoa/pessoa-edit/pessoa-edit.component';
 import { LacamentoComponent } from './lacamento/lacamento.component';
+import { LancamentoEditComponent } from './lancamento-edit/lancamento-edit.component';
 
 
 
@@ -56,7 +57,8 @@ import { LacamentoComponent } from './lacamento/lacamento.component';
     UsuarioEditComponent,
     PessoaComponent,
     PessoaEditComponent,
-    LacamentoComponent
+    LacamentoComponent,
+    LancamentoEditComponent
   ],
   imports: [
     BrowserModule,
