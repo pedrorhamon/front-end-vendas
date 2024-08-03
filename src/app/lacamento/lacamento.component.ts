@@ -28,7 +28,7 @@ export class LacamentoComponent  implements OnInit {
     });
   }
   editLancamento(id: number): void {
-    this.router.navigate(['/categoria/edit', id]);
+    this.router.navigate(['/lancamento/edit', id]);
   }
 
   deletaLancamento(id: number): void {
@@ -54,6 +54,10 @@ export class LacamentoComponent  implements OnInit {
         );
       }
     });
+  }
+
+  novaLancamento(): void {
+    this.router.navigate(['/lancamento/new']);
   }
 
 }

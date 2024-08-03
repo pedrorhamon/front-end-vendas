@@ -35,7 +35,8 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { PessoaComponent } from './pessoa/pessoa.component';
 import { PessoaEditComponent } from './pessoa/pessoa-edit/pessoa-edit.component';
 import { LacamentoComponent } from './lacamento/lacamento.component';
-import { LancamentoEditComponent } from './lancamento-edit/lancamento-edit.component';
+import { LancamentoEditComponent } from './lacamento/lancamento-edit/lancamento-edit.component';
+import { CalendarModule } from 'primeng/calendar';
 
 
 
@@ -81,7 +82,8 @@ import { LancamentoEditComponent } from './lancamento-edit/lancamento-edit.compo
     SidebarModule,
     MenubarModule,
     ChartModule,
-    MultiSelectModule
+    MultiSelectModule,
+    CalendarModule
 
   ],
   providers: [

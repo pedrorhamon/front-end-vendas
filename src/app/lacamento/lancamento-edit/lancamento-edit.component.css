@@ -1,0 +1,65 @@
+/* lancamento-edit.component.css */
+.p-fluid {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.p-field {
+  margin-bottom: 1.5rem;
+}
+
+.p-field label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.p-field input,
+.p-field p-calendar,
+.p-field p-dropdown {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.p-field input:focus,
+.p-field p-calendar:focus,
+.p-field p-dropdown:focus {
+  border-color: #007ad9;
+  box-shadow: 0 0 5px rgba(0, 122, 217, 0.5);
+  outline: none;
+}
+
+.p-error {
+  color: #f44336;
+  font-size: 0.875rem;
+}
+
+button[pButton] {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  background-color: #007ad9;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button[pButton]:hover {
+  background-color: #005bb5;
+}
+
+button[pButton][disabled] {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

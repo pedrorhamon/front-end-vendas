@@ -30,6 +30,10 @@ export class LancamentoService {
     return this.http.get<Page<Lancamento>>(this.baseUrl, { params });
   }
 
+  getLancamentoById(id: number): Observable<Lancamento> {
+    return this.http.get<Lancamento>(`${this.baseUrl}/${id}`);
+  }
+
   listarPorDatas(dataVencimentoDe?: string, dataVencimentoAte?: string, page: number = 0, size: number = 10): Observable<Page<Lancamento>> {
     let params = new HttpParams()
       .set('page', page.toString())
