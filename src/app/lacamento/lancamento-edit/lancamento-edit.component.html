@@ -35,12 +35,12 @@
 
     <div class="p-field">
       <label for="categoriaId">Categoria</label>
-      <input id="categoriaId" type="number" pInputText formControlName="categoriaId" />
+      <p-multiSelect  formControlName="categoriaId" optionLabel="label" optionValue="value" ></p-multiSelect>
     </div>
 
     <div class="p-field">
       <label for="pessoaId">Pessoa</label>
-      <input id="pessoaId" type="number" pInputText formControlName="pessoaId" />
+      <p-multiSelect formControlName="pessoaId" optionLabel="label" optionValue="value" ></p-multiSelect>
     </div>
 
     <button pButton type="submit" label="Salvar" [disabled]="lancamentoForm.invalid"></button>
