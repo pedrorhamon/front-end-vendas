@@ -37,6 +37,7 @@ import { PessoaEditComponent } from './pessoa/pessoa-edit/pessoa-edit.component'
 import { LacamentoComponent } from './lacamento/lacamento.component';
 import { LancamentoEditComponent } from './lacamento/lancamento-edit/lancamento-edit.component';
 import { CalendarModule } from 'primeng/calendar';
+import { DropdownModule } from 'primeng/dropdown';
 
 
 
@@ -83,7 +84,8 @@ import { CalendarModule } from 'primeng/calendar';
     MenubarModule,
     ChartModule,
     MultiSelectModule,
-    CalendarModule
+    CalendarModule,
+    DropdownModule
 
   ],
   providers: [
