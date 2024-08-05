@@ -1,22 +1,29 @@
 <div class="p-fluid">
+  <h2>{{ editMode ? 'Editar Lançamento' : 'Salvar Lançamento' }}</h2>
   <form [formGroup]="lancamentoForm" (ngSubmit)="onSubmit()">
     <div class="p-field">
       <label for="descricao">Descrição</label>
       <input id="descricao" type="text" pInputText formControlName="descricao" />
-      <!-- <div *ngIf="lancamentoForm.get('descricao')?.invalid && lancamentoForm.get('descricao')?.touched">
-        <small class="p-error">Descrição é obrigatória.</small>
-      </div> -->
     </div>
 
     <div class="p-field">
+      <label for="descricao">Descrição</label>
+      <input id="descricao" type="text" pInputText formControlName="descricao" />
+    </div>
+    <div class="p-field">
+      <label for="descricao">Descrição</label>
+      <input id="descricao" type="text" pInputText formControlName="descricao" />
+    </div>
+
+    <!-- <div class="p-field">
       <label for="dataVencimento">Data de Vencimento</label>
-      <p-calendar id="dataVencimento" formControlName="dataVencimento" dateFormat="dd/mm/yy"></p-calendar>
+      <input id="dataVencimento" formControlName="dataVencimento" dateFormat="dd/mm/yy"></input>
     </div>
 
     <div class="p-field">
       <label for="dataPagamento">Data de Pagamento</label>
       <p-calendar id="dataPagamento" formControlName="dataPagamento" dateFormat="dd/mm/yy"></p-calendar>
-    </div>
+    </div> -->
 
     <div class="p-field">
       <label for="valor">Valor</label>
@@ -24,25 +31,27 @@
     </div>
 
     <div class="p-field">
-      <label for="observacao">Observação</label>
-      <input id="observacao" type="text" pInputText formControlName="observacao" />
-    </div>
-
-    <div class="p-field">
       <label for="tipoLancamento">Tipo de Lançamento</label>
-      <p-dropdown id="tipoLancamento" formControlName="tipoLancamento"></p-dropdown>
+      <p-dropdown id="tipoLancamento" [options]="tiposLancamento" formControlName="tipoLancamento"></p-dropdown>
     </div>
 
-    <div class="p-field">
+    <!-- <div class="p-field">
       <label for="categoriaId">Categoria</label>
-      <p-multiSelect  formControlName="categoriaId" optionLabel="label" optionValue="value" ></p-multiSelect>
+      <p-multiSelect id="categoriaId" formControlName="categoriaId" optionLabel="label" optionValue="value" class="dropdown-full-width"></p-multiSelect>
     </div>
 
     <div class="p-field">
       <label for="pessoaId">Pessoa</label>
-      <p-multiSelect formControlName="pessoaId" optionLabel="label" optionValue="value" ></p-multiSelect>
-    </div>
+      <p-multiSelect id="pessoaId" formControlName="pessoaId" optionLabel="label" optionValue="value" class="dropdown-full-width"></p-multiSelect>
+    </div> -->
 
-    <button pButton type="submit" label="Salvar" [disabled]="lancamentoForm.invalid"></button>
+    <div class="p-field">
+      <label for="observacao">Observação</label>
+      <input id="observacao" type="text" pInputText formControlName="observacao" />
+    </div>
+    <div class="p-button-group">
+      <button pButton type="button" label="Cancelar" class="p-button-secondary" (click)="onCancel()"></button>
+      <button pButton type="submit" label="{{ editMode ? 'Atualizar' : 'Salvar' }}" class="p-button-primary"></button>
+    </div>
   </form>
 </div>

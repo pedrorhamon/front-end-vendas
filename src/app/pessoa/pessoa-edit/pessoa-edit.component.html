@@ -62,7 +62,7 @@
 
     <div class="button-group">
       <button pButton type="button" label="Cancelar" class="p-button-secondary" (click)="onCancel()"></button>
-      <button pButton type="submit" label="{{ editMode ? 'Atualizar' : 'Salvar' }}" class="p-button-primary"></button>
+      <button pButton type="submit" label="{{ editMode ? 'Atualizar' : 'Salvar' }}" class="p-button-primary" [disabled]="pessoaForm.invalid"></button>
     </div>
   </form>
 </div>

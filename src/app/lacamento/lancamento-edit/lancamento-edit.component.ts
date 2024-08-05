@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LancamentoService } from '../lancamento.service';
 import { MessageService } from 'primeng/api';
+import { TipoLancamento } from '../model/tipolancamento';
 
 @Component({
   selector: 'app-lancamento-edit',
@@ -13,10 +14,7 @@ export class LancamentoEditComponent implements OnInit {
   lancamentoForm: FormGroup;
   editMode: boolean = false;
   lancamentoId?: number;
-  tiposLancamento = [
-    { label: 'Despesa', value: 'DESPESA' },
-    { label: 'Receita', value: 'RECEITA' }
-  ];
+  tiposLancamento: { label: string, value: TipoLancamento }[];
 
   constructor(
     private fb: FormBuilder,
@@ -28,13 +26,18 @@ export class LancamentoEditComponent implements OnInit {
     this.lancamentoForm = this.fb.group({
       descricao: ['', [Validators.required]],
       dataVencimento: ['', [Validators.required]],
-      dataPagamento: [''],
+      dataPagamento: ['', [Validators.required]],
       valor: ['', [Validators.required]],
-      observacao: [''],
       tipoLancamento: ['', [Validators.required]],
       categoriaId: ['', [Validators.required]],
-      pessoaId: ['', [Validators.required]]
+      pessoaId: ['', [Validators.required]],
+      observacao: ['']
     });
+
+    this.tiposLancamento = Object.keys(TipoLancamento).map(key => ({
+      label: TipoLancamento[key as keyof typeof TipoLancamento],
+      value: TipoLancamento[key as keyof typeof TipoLancamento]
+    }));
   }
 
   ngOnInit(): void {
@@ -70,6 +73,6 @@ export class LancamentoEditComponent implements OnInit {
   }
 
   onCancel(): void {
-    this.router.navigate(['/lancamentos']);
+    this.router.navigate(['/lancamento']);
   }
 }
