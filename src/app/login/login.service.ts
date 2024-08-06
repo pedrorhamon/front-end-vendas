@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Credencias } from './model/credencias';
 import { BehaviorSubject, catchError, map, Observable, tap, throwError } from 'rxjs';
 import { Token } from './model/token';
+import { jwtDecode } from 'jwt-decode';
+
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +23,11 @@ export class LoginService {
     return this.http.post<Token>(`${this.baseUrl}/autenticar`, credenciais)
       .pipe(
         tap(response => {
+          console.log(response.nome);
 
           localStorage.setItem('token', response.token);
+          this.setUserName();
+
         }),
         catchError(error => {
           // Trate o erro aqui, se necessário
@@ -53,6 +58,21 @@ isAuthenticated(): boolean {
   }
   return false;
 }
+
+private setUserName(): void {
+  const token = localStorage.getItem('token');
+  if (token) {
+    try {
+      const decodedToken: any = jwtDecode(token);
+      console.log('Decoded Token:', decodedToken); // Para depuração, verifique o conteúdo do payload
+      this.userNameSubject.next(decodedToken.name || null); // Use 'name' em vez de 'nome'
+    } catch (e) {
+      console.error('Erro ao decodificar o token', e);
+      this.userNameSubject.next(null);
+    }
+  }
+}
+
 
 
 }
