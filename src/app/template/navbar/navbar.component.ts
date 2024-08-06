@@ -22,8 +22,6 @@ export class NavbarComponent implements OnInit{
     // const decodedToken: any = jwtDecode(token);
     // console.log(decodedToken);
     this.usuarioService.userName$.subscribe(name => {
-      console.log();
-
       this.userName = name;
     });
   }
