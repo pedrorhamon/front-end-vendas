@@ -4,7 +4,7 @@ export interface Lancamento {
   id?: number;
   descricao: string;
   dataVencimento: string; // Formato esperado: "dd/MM/yyyy"
-  dataPagamento?: string; // Formato esperado: "dd/MM/yyyy"
+  dataPagamento: string; // Formato esperado: "dd/MM/yyyy"
   valor?: number;
   observacao?: string;
   tipoLancamento: TipoLancamento;

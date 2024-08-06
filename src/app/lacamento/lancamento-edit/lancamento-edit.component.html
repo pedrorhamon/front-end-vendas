@@ -6,24 +6,15 @@
       <input id="descricao" type="text" pInputText formControlName="descricao" />
     </div>
 
-    <div class="p-field">
-      <label for="descricao">Descrição</label>
-      <input id="descricao" type="text" pInputText formControlName="descricao" />
-    </div>
-    <div class="p-field">
-      <label for="descricao">Descrição</label>
-      <input id="descricao" type="text" pInputText formControlName="descricao" />
-    </div>
-
-    <!-- <div class="p-field">
+    <div class="p-field p-col-12 p-md-4">
       <label for="dataVencimento">Data de Vencimento</label>
-      <input id="dataVencimento" formControlName="dataVencimento" dateFormat="dd/mm/yy"></input>
+      <p-calendar id="dataVencimento" formControlName="dataVencimento" dateFormat="dd/mm/yy"/>
     </div>
 
     <div class="p-field">
       <label for="dataPagamento">Data de Pagamento</label>
       <p-calendar id="dataPagamento" formControlName="dataPagamento" dateFormat="dd/mm/yy"></p-calendar>
-    </div> -->
+    </div>
 
     <div class="p-field">
       <label for="valor">Valor</label>
@@ -38,12 +29,18 @@
     <!-- <div class="p-field">
       <label for="categoriaId">Categoria</label>
       <p-multiSelect id="categoriaId" formControlName="categoriaId" optionLabel="label" optionValue="value" class="dropdown-full-width"></p-multiSelect>
+    </div> -->
+    <div class="p-field">
+      <label for="categoriaId">Categorias</label>
+      <input id="categoriaId" type="text" pInputText formControlName="categoriaId" />
     </div>
 
     <div class="p-field">
-      <label for="pessoaId">Pessoa</label>
-      <p-multiSelect id="pessoaId" formControlName="pessoaId" optionLabel="label" optionValue="value" class="dropdown-full-width"></p-multiSelect>
-    </div> -->
+      <label for="pessoaId">Pessoas</label>
+      <input id="pessoaId" type="text" pInputText formControlName="pessoaId" />
+    </div>
+
+
 
     <div class="p-field">
       <label for="observacao">Observação</label>

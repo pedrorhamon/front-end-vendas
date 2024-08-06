@@ -24,7 +24,12 @@ export class LacamentoComponent  implements OnInit {
 
   listarLancamentos(): void {
     this.lancamentoService.listar().subscribe(lancamentos => {
-      this.lancamentos = lancamentos.content;
+      this.lancamentos = lancamentos.content.sort((a, b) => {
+        if (a && b && a.id !== undefined && b.id !== undefined) {
+          return a.id - b.id;
+        }
+        return 0; // Retorno padrão caso um dos valores seja undefined
+      });
     });
   }
   editLancamento(id: number): void {

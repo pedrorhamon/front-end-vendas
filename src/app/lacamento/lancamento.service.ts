@@ -14,7 +14,7 @@ export class LancamentoService {
 
   constructor(private http: HttpClient) { }
 
-  listar(id?: number, descricao?: string, page: number = 0, size: number = 10): Observable<Page<Lancamento>> {
+  listar(id?: number, descricao?: string, page: number = 0, size: number = 20): Observable<Page<Lancamento>> {
     let params = new HttpParams()
       .set('page', page.toString())
       .set('size', size.toString());
