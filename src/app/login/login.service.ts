@@ -64,7 +64,7 @@ private setUserName(): void {
   if (token) {
     try {
       const decodedToken: any = jwtDecode(token);
-      console.log('Decoded Token:', decodedToken); // Para depuração, verifique o conteúdo do payload
+      // console.log('Decoded Token:', decodedToken); // Para depuração, verifique o conteúdo do payload
       this.userNameSubject.next(decodedToken.name || null); // Use 'name' em vez de 'nome'
     } catch (e) {
       console.error('Erro ao decodificar o token', e);
