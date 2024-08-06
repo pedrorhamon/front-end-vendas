@@ -1,0 +1,36 @@
+/* Ajuste a largura do gráfico para 100% */
+.chart-container {
+  width: 100%;
+  max-width: 800px; /* Você pode ajustar isso conforme necessário */
+  margin: 0 auto; /* Centraliza o gráfico */
+}
+
+/* Ajuste o menu e o header */
+.header, .menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.header {
+  background-color: #42A5F5;
+  color: white;
+}
+
+.menu {
+  background-color: #007BFF;
+  color: white;
+  padding: 10px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .header, .menu {
+    flex-direction: column;
+  }
+
+  .menu {
+    margin-top: 10px;
+  }
+}

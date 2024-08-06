@@ -1,21 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { LancamentoService } from '../lacamento/lancamento.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   data: any;
   options: any;
 
-  constructor() {
+  constructor(private lancamentoService: LancamentoService) {
     this.data = {
-      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+      labels: [], // Serão preenchidas dinamicamente
       datasets: [
         {
-          label: 'Sales',
-          data: [65, 59, 80, 81, 56, 55],
+          label: 'Lançamentos',
+          data: [],
           fill: false,
           borderColor: '#42A5F5'
         }
@@ -33,5 +34,29 @@ export class HomeComponent {
         }
       }
     };
+  }
+
+  ngOnInit(): void {
+    this.loadLancamentos();
+  }
+
+  private loadLancamentos(): void {
+    this.lancamentoService.listar().subscribe(response => {
+      const lancamentos = response.content;
+      const labels = lancamentos.map((lancamento: any) => lancamento.dataVencimento); // Ajuste conforme a sua estrutura de dados
+      const data = lancamentos.map((lancamento: any) => lancamento.valor); // Ajuste conforme a sua estrutura de dados
+
+      this.data = {
+        labels,
+        datasets: [
+          {
+            label: 'Lançamentos',
+            data,
+            fill: false,
+            borderColor: '#42A5F5'
+          }
+        ]
+      };
+    });
   }
 }
