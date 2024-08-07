@@ -6,26 +6,28 @@
       <input id="descricao" type="text" pInputText formControlName="descricao" />
     </div>
 
-    <div class="p-field p-col-12 p-md-4">
-      <label for="dataVencimento">Data de Vencimento</label>
-      <p-calendar id="dataVencimento" formControlName="dataVencimento" dateFormat="dd/mm/yy"/>
-    </div>
-
-    <div class="p-field">
+    <div>
       <label for="dataPagamento">Data de Pagamento</label>
       <p-calendar id="dataPagamento" formControlName="dataPagamento" dateFormat="dd/mm/yy"></p-calendar>
     </div>
 
+    <br>
+    <div>
+      <label for="dataVencimento">Data de Vencimento</label>
+      <p-calendar id="dataVencimento" formControlName="dataVencimento" dateFormat="dd/mm/yy"/>
+    </div>
+
+    <br>
     <div class="p-field">
       <label for="valor">Valor</label>
       <input id="valor" type="text" pInputText formControlName="valor" />
     </div>
 
-    <div class="p-field">
+    <div>
       <label for="tipoLancamento">Tipo de Lançamento</label>
       <p-dropdown id="tipoLancamento" [options]="tiposLancamento" formControlName="tipoLancamento"></p-dropdown>
     </div>
-
+    <br>
     <!-- <div class="p-field">
       <label for="categoriaId">Categoria</label>
       <p-multiSelect id="categoriaId" formControlName="categoriaId" optionLabel="label" optionValue="value" class="dropdown-full-width"></p-multiSelect>
