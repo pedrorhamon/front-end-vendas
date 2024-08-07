@@ -39,7 +39,7 @@ import { LancamentoEditComponent } from './lacamento/lancamento-edit/lancamento-
 import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-
+import { DialogModule } from 'primeng/dialog';
 
 
 
@@ -87,7 +87,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     MultiSelectModule,
     CalendarModule,
     DropdownModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    DialogModule
 
   ],
   providers: [

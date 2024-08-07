@@ -4,12 +4,14 @@ import { Credencias } from './model/credencias';
 import { BehaviorSubject, catchError, map, Observable, tap, throwError } from 'rxjs';
 import { Token } from './model/token';
 import { jwtDecode } from 'jwt-decode';
+import { Usuario } from './model/usuario';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
+
 
   private baseUrl = 'http://localhost:8080/api/usuarios';
 
@@ -73,8 +75,11 @@ setUserName(): void {
   }
 }
 
+recuperarSenha(email: string): Observable<Usuario> {
+  return this.http.get<Usuario>(`${this.baseUrl}/${email}`);
+}
 // setupAutoLogout(token: string): void {
-//   const decodedToken: any = jwtDecode(token);
+  //   const decodedToken: any = jwtDecode(token);
 //   const expTime = decodedToken.exp * 1000; // Convertendo de segundos para milissegundos
 //   const now = new Date().getTime();
 //   const timeout = expTime - now;

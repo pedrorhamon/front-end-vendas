@@ -1,4 +1,4 @@
-<p-confirmDialog></p-confirmDialog>
+<!-- <p-confirmDialog></p-confirmDialog> -->
 <div *ngIf="loading" class="loading-overlay">
   <div class="spinner"></div>
 </div>
@@ -17,9 +17,32 @@
         <div class="p-field">
           <re-captcha (resolved)="onRecaptchaResolved($event)" siteKey="6LccJhsqAAAAAPzRWr1G49G4oKEmTmgKWUSrxWMq"></re-captcha>
         </div>
-        <br>
+          <br>
         <button pButton type="button" label="Login" class="p-mt-2" (click)="onSubmit()"></button>
+        <div class="forgot-password">
+          <a (click)="openForgotPasswordDialog()">Esqueci a senha</a>
+        </div>
       </div>
     </form>
   </p-card>
 </div>
+
+<p-dialog
+  header="Recuperar Senha"
+  [(visible)]="displayForgotPasswordDialog"
+  (onHide)="onDialogHide()"
+  modal="modal"
+  [style]="{width: '300px'}">
+  <form [formGroup]="forgotPasswordForm" (ngSubmit)="sendForgotPasswordRequest()">
+    <div class="p-fluid">
+      <div class="p-field">
+        <label for="forgot-email">Email</label>
+        <input id="forgot-email" type="email" pInputText formControlName="email" required />
+      </div>
+      <div class="p-field">
+        <button pButton type="submit" label="Enviar" [disabled]="forgotPasswordForm.invalid"></button>
+      </div>
+    </div>
+  </form>
+</p-dialog>
+
