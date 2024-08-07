@@ -85,4 +85,19 @@ setupAutoLogout(token: string): void {
     }, timeout);
   }
 }
+
+checkTokenValidity(): void {
+  setInterval(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedToken: any = jwtDecode(token);
+      const now = new Date().getTime();
+      const expTime = decodedToken.exp * 1000;
+
+      if (now >= expTime) {
+        this.logout();
+      }
+    }
+  }, 60000); // Checa a cada 60 segundos
+}
 }
