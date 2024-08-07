@@ -1,5 +1,9 @@
 <p-confirmDialog></p-confirmDialog>
-<p-messages></p-messages>
+<!-- <p-messages></p-messages> -->
+
+<div *ngIf="loading" class="loading-overlay">
+  <div class="spinner"></div>
+</div>
 
 <div class="categoria-edit-container p-fluid p-formgrid p-grid">
   <div class="p-col-12">

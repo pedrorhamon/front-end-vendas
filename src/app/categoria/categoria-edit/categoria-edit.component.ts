@@ -13,6 +13,7 @@ import { MessageService } from 'primeng/api';
 export class CategoriaEditComponent implements OnInit {
   categoriaForm: FormGroup;
   categoria: Categoria = new Categoria();
+  loading: boolean = false
 
   constructor(
     private fb: FormBuilder,
@@ -39,6 +40,7 @@ export class CategoriaEditComponent implements OnInit {
 
   onSubmit(): void {
     if (this.categoriaForm.valid) {
+      this.loading = true;
       if (this.categoria.id) {
         this.atualizar();
       } else {
@@ -56,7 +58,9 @@ export class CategoriaEditComponent implements OnInit {
       error => {
         this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Erro ao salvar a categoria.' });
       }
-    );
+    ).add(() => {
+      this.loading = false; // Desativa o carregamento após a resposta
+    });
   }
 
   atualizar(): void {
@@ -68,7 +72,9 @@ export class CategoriaEditComponent implements OnInit {
       error => {
         this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Erro ao atualizar a categoria.' });
       }
-    );
+    ).add(() => {
+      this.loading = false; // Desativa o carregamento após a resposta
+    });
   }
 
   onCancel(): void {
