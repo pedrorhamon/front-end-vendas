@@ -13,9 +13,9 @@ import { LancamentoEditComponent } from './lacamento/lancamento-edit/lancamento-
 import { authGuard } from './auth/auth.guard';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent, canActivate: [authGuard] },
-  // { path: '', redirectTo: '/categoria', pathMatch: 'full' },
   { path: 'categoria', component: CategoriaComponent, canActivate: [authGuard] },
   { path: 'categoria/edit/:id', component: CategoriaEditComponent, canActivate: [authGuard] },
   { path: 'categoria/delete/:id', component: CategoriaComponent, canActivate: [authGuard] },

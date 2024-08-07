@@ -73,31 +73,31 @@ setUserName(): void {
   }
 }
 
-setupAutoLogout(token: string): void {
-  const decodedToken: any = jwtDecode(token);
-  const expTime = decodedToken.exp * 1000; // Convertendo de segundos para milissegundos
-  const now = new Date().getTime();
-  const timeout = expTime - now;
+// setupAutoLogout(token: string): void {
+//   const decodedToken: any = jwtDecode(token);
+//   const expTime = decodedToken.exp * 1000; // Convertendo de segundos para milissegundos
+//   const now = new Date().getTime();
+//   const timeout = expTime - now;
 
-  if (timeout > 0) {
-    setTimeout(() => {
-      this.logout();
-    }, timeout);
-  }
+//   if (timeout > 0) {
+//     setTimeout(() => {
+//       this.logout();
+//     }, timeout);
+//   }
+// }
+
+// checkTokenValidity(): void {
+//   setInterval(() => {
+//     const token = localStorage.getItem('token');
+//     if (token) {
+//       const decodedToken: any = jwtDecode(token);
+//       const now = new Date().getTime();
+//       const expTime = decodedToken.exp * 1000;
+
+//       if (now >= expTime) {
+//         this.logout();
+//       }
+//     }
+//   }, 60000); // Checa a cada 60 segundos
 }
 
-checkTokenValidity(): void {
-  setInterval(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      const decodedToken: any = jwtDecode(token);
-      const now = new Date().getTime();
-      const expTime = decodedToken.exp * 1000;
-
-      if (now >= expTime) {
-        this.logout();
-      }
-    }
-  }, 60000); // Checa a cada 60 segundos
-}
-}
