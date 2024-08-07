@@ -1,5 +1,7 @@
 <p-confirmDialog></p-confirmDialog>
-
+<div *ngIf="loading" class="loading-overlay">
+  <div class="spinner"></div>
+</div>
 <div class="login-container">
   <p-card header="Login">
     <form [formGroup]="loginForm">

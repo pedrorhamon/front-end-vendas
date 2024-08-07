@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   errorMessage: string = '';
   recaptchaToken: string | null = null;
+  loading: boolean = false
 
   constructor(private fb: FormBuilder, private usuarioService: LoginService, private router: Router, private messageService: MessageService) {
     this.loginForm = this.fb.group({
@@ -56,6 +57,8 @@ export class LoginComponent implements OnInit {
     }
 
     if (this.loginForm.valid && this.recaptchaToken) {
+      this.loading = true; // Ativa o carregamento
+
       const credenciais: Credencias = {
         email: email,
         senha: senha,
@@ -71,7 +74,9 @@ export class LoginComponent implements OnInit {
         error => {
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Email ou senha inválidos' });
         }
-      );
+      ).add(() => {
+        this.loading = false; // Desativa o carregamento após a resposta
+      });
     } else {
       this.messageService.add({ severity: 'warn', summary: 'Validation Error', detail: 'Por favor complete o reCAPTCHA' });
     }
