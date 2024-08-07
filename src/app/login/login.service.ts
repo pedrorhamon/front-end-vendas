@@ -59,7 +59,7 @@ isAuthenticated(): boolean {
   return false;
 }
 
-private setUserName(): void {
+setUserName(): void {
   const token = localStorage.getItem('token');
   if (token) {
     try {
@@ -73,6 +73,16 @@ private setUserName(): void {
   }
 }
 
+setupAutoLogout(token: string): void {
+  const decodedToken: any = jwtDecode(token);
+  const expTime = decodedToken.exp * 1000; // Convertendo de segundos para milissegundos
+  const now = new Date().getTime();
+  const timeout = expTime - now;
 
-
+  if (timeout > 0) {
+    setTimeout(() => {
+      this.logout();
+    }, timeout);
+  }
+}
 }
