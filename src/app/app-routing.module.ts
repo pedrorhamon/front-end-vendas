@@ -10,25 +10,25 @@ import { PessoaComponent } from './pessoa/pessoa.component';
 import { PessoaEditComponent } from './pessoa/pessoa-edit/pessoa-edit.component';
 import { LacamentoComponent } from './lacamento/lacamento.component';
 import { LancamentoEditComponent } from './lacamento/lancamento-edit/lancamento-edit.component';
+import { authGuard } from './auth/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
-  { path: '', redirectTo: '/categoria', pathMatch: 'full' },
-  { path: 'categoria', component: CategoriaComponent },
-  { path: 'categoria/edit/:id', component: CategoriaEditComponent },
-  { path: 'categoria/delete/:id', component: CategoriaComponent },
-  { path: 'categoria/new', component: CategoriaEditComponent },
-  { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'usuario', component: UsuarioComponent },
-  { path: 'usuario/edit/:id', component: UsuarioEditComponent },
-  { path: 'usuario/new', component: UsuarioEditComponent },
-  { path: 'pessoa', component: PessoaComponent },
-  { path: 'pessoa/edit/:id', component: PessoaEditComponent },
-  { path: 'pessoa/new', component: PessoaEditComponent },
-  { path: 'lancamento', component: LacamentoComponent },
-  { path: 'lancamento/edit/:id', component: LancamentoEditComponent },
-  { path: 'lancamento/new', component: LancamentoEditComponent },
+  { path: 'home', component: HomeComponent, canActivate: [authGuard] },
+  // { path: '', redirectTo: '/categoria', pathMatch: 'full' },
+  { path: 'categoria', component: CategoriaComponent, canActivate: [authGuard] },
+  { path: 'categoria/edit/:id', component: CategoriaEditComponent, canActivate: [authGuard] },
+  { path: 'categoria/delete/:id', component: CategoriaComponent, canActivate: [authGuard] },
+  { path: 'categoria/new', component: CategoriaEditComponent, canActivate: [authGuard] },
+  { path: 'usuario', component: UsuarioComponent, canActivate: [authGuard]},
+  { path: 'usuario/edit/:id', component: UsuarioEditComponent, canActivate: [authGuard] },
+  { path: 'usuario/new', component: UsuarioEditComponent, canActivate: [authGuard] },
+  { path: 'pessoa', component: PessoaComponent, canActivate: [authGuard] },
+  { path: 'pessoa/edit/:id', component: PessoaEditComponent, canActivate: [authGuard]},
+  { path: 'pessoa/new', component: PessoaEditComponent, canActivate: [authGuard] },
+  { path: 'lancamento', component: LacamentoComponent, canActivate: [authGuard] },
+  { path: 'lancamento/edit/:id', component: LancamentoEditComponent, canActivate: [authGuard] },
+  { path: 'lancamento/new', component: LancamentoEditComponent, canActivate: [authGuard] },
 ];
 
 @NgModule({
