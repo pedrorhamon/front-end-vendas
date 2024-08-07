@@ -14,6 +14,8 @@ export class PessoaComponent implements OnInit{
 
   pessoas: Pessoa[] = [];
   pessoa: PessoaRequest = {} as PessoaRequest;
+  filteredPessoas: Pessoa[] = [];
+  filterName: string = '';
   loading: boolean = true;
   totalPages: number = 0;
   page: number = 0;
@@ -36,6 +38,8 @@ export class PessoaComponent implements OnInit{
       this.pessoas = page.content;
       this.totalPages = page.totalPages;
       this.loading = false;
+
+      this.filterPessoas()
     });
   }
 
@@ -88,6 +92,18 @@ export class PessoaComponent implements OnInit{
 
   novaPessoa(): void {
     this.router.navigate(['/pessoa/new']);
+  }
+
+  filterPessoas(): void {
+    this.filteredPessoas = this.pessoas.filter(pessoa =>
+      pessoa.name?.toLowerCase().includes(this.filterName.toLowerCase())
+    );
+  }
+
+
+  clearFilter(): void {
+    this.filterName = '';
+    this.filteredPessoas = this.pessoas;
   }
 
 }
