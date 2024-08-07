@@ -33,3 +33,23 @@ button {
   left: 1rem;
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.filter-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.filter-container input {
+  margin-right: 10px;
+  width: 200px;
+}
+
+
+

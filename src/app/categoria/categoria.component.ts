@@ -12,6 +12,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 })
 export class CategoriaComponent implements OnInit {
   categorias: Categoria[] = [];
+  filteredCategorias: Categoria[] = [];
+  filterName: string = '';
   page: number = 0;
   size: number = 10;
   totalPages: number = 0;
@@ -36,8 +38,14 @@ export class CategoriaComponent implements OnInit {
 
   loadCategorias(): void {
     this.categoriaService.getCategorias(this.page, this.size).subscribe(data => {
-      this.categorias = data.content;
+      this.categorias = data.content.sort((a, b) => {
+        if (a && b && a.id !== undefined && b.id !== undefined) {
+          return a.id - b.id;
+        }
+        return 0; // Retorno padrão caso um dos valores seja undefined
+      });
       this.totalPages = data.totalPages;
+      this.filterCategorias();
     });
   }
 
@@ -88,5 +96,16 @@ export class CategoriaComponent implements OnInit {
 
   novaCategoria(): void {
     this.router.navigate(['/categoria/new']);
+  }
+
+  filterCategorias(): void {
+    this.filteredCategorias = this.categorias.filter(categoria =>
+      categoria.name?.toLowerCase().includes(this.filterName.toLowerCase())
+    );
+  }
+
+  clearFilter(): void {
+    this.filterName = '';
+    this.filteredCategorias = this.categorias;
   }
 }

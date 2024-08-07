@@ -1,5 +1,4 @@
 <p-confirmDialog></p-confirmDialog>
-<!-- <p-messages></p-messages> -->
 
 <div class="categoria-list-container">
   <div class="header">
@@ -7,7 +6,12 @@
     <button pButton type="button" label="Nova Categoria" icon="pi pi-plus" class="p-button-success" (click)="novaCategoria()"></button>
   </div>
 
-  <p-table [value]="categorias" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }">
+  <div class="filter-container">
+    <input type="text" pInputText placeholder="Filtrar por nome" [(ngModel)]="filterName" (input)="filterCategorias()" />
+    <button pButton type="button" label="Limpar" icon="pi pi-times" class="p-button-secondary" (click)="clearFilter()"></button>
+  </div>
+
+  <p-table [value]="filteredCategorias" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template pTemplate="header">
       <tr>
         <th>Id</th>

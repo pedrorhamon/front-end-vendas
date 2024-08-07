@@ -40,6 +40,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DialogModule } from 'primeng/dialog';
+import { FormsModule } from '@angular/forms'; // Add this import
 
 
 
@@ -88,7 +89,8 @@ import { DialogModule } from 'primeng/dialog';
     CalendarModule,
     DropdownModule,
     ProgressSpinnerModule,
-    DialogModule
+    DialogModule,
+    FormsModule
 
   ],
   providers: [
