@@ -14,6 +14,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class UsuarioComponent implements OnInit {
   usuarios: Usuario[] = [];
+  filteredUsuarios: Usuario[] = [];
+  filterValue: string = '';
   page: number = 0;
   size: number = 10;
   totalPages: number = 0;
@@ -68,9 +70,17 @@ export class UsuarioComponent implements OnInit {
           updatedAt: usuario.updatedAt
         }))
         .sort((a, b) => a.id - b.id);  // Ordena por id em ordem crescente
-
+      this.filteredUsuarios = this.usuarios;
       this.totalPages = data.totalPages;
     });
+  }
+
+  filterUsuarios(): void {
+    const filterValueLower = this.filterValue.toLowerCase();
+    this.filteredUsuarios = this.usuarios.filter(usuario =>
+      usuario.name.toLowerCase().includes(filterValueLower) ||
+      usuario.email?.toLowerCase().includes(filterValueLower)
+    );
   }
 
 
@@ -107,6 +117,11 @@ export class UsuarioComponent implements OnInit {
 
   novoUsuario(): void {
     this.router.navigate(['/usuario/new']);
+  }
+
+  clearFilter(): void {
+    this.filterValue = '';
+    this.filteredUsuarios = this.usuarios;
   }
 
 }

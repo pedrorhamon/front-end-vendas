@@ -6,8 +6,12 @@
     <button pButton type="button" label="Novo Usuario" icon="pi pi-plus" class="p-button-success"
       (click)="novoUsuario()"></button>
   </div>
+  <div class="filter-container">
+    <input type="text" pInputText placeholder="Filtrar por nome ou email" [(ngModel)]="filterValue" (ngModelChange)="filterUsuarios()" />
+    <button pButton type="button" label="Limpar" icon="pi pi-times" class="p-button-secondary" (click)="clearFilter()"></button>
+  </div>
 
-  <p-table [value]="usuarios" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }">
+  <p-table [value]="filteredUsuarios" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template pTemplate="header">
       <tr>
         <th>ID</th>
