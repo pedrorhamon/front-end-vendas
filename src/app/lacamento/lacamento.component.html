@@ -1,14 +1,34 @@
-<p-confirmDialog></p-confirmDialog>
-<!-- <p-messages></p-messages> -->
+<!-- <p-confirmDialog></p-confirmDialog> -->
 
 <div class="lancamento-list-container">
   <div class="header">
     <h2>Lista de Lançamentos</h2>
-    <button pButton type="button" label="Novo Lancamento" icon="pi pi-plus" class="p-button-success" (click)="novaLancamento()"></button>
+    <button pButton type="button" label="Novo Lançamento" icon="pi pi-plus" class="p-button-success" (click)="novaLancamento()"></button>
+
   </div>
 
+  <form [formGroup]="filtrosForm" class="filters">
+    <div class="filters-content">
+      <div class="date-filters">
+        <div class="p-field">
+          <label for="dataVencimentoDe">Data de Vencimento De</label>
+          <p-calendar id="dataVencimentoDe" formControlName="dataVencimentoDe" [showTime]="false"></p-calendar>
+        </div>
+        <div class="p-field">
+          <label for="dataVencimentoAte">Data de Vencimento Até</label>
+          <p-calendar id="dataVencimentoAte" formControlName="dataVencimentoAte" [showTime]="false"></p-calendar>
+        </div>
+      </div>
+      <div class="button-container">
+        <button pButton type="button" label="Aplicar Filtros" icon="pi pi-filter" (click)="aplicarFiltros()"></button>
+        <button pButton type="button" label="Limpar Filtros" icon="pi pi-times" (click)="limparFiltros()"></button>
+      </div>
+    </div>
+  </form>
 
-  <p-table [value]="lancamentos" [paginator]="true" [rows]="10" [tableStyle]="{ 'min-width': '50rem' }">
+
+
+  <p-table [value]="filteredLancamentos" [paginator]="true" [rows]="10" [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template pTemplate="header">
       <tr>
         <th>Id</th>
@@ -25,9 +45,9 @@
         <td>{{ lancamento.id }}</td>
         <td>{{ lancamento.descricao }}</td>
         <td>{{ lancamento.dataVencimento }}</td>
-        <td>{{ lancamento.dataPagamento}}</td>
-        <td>{{ lancamento.valor}}</td>
-        <td>{{ lancamento.tipoLancamento}}</td>
+        <td>{{ lancamento.dataPagamento }}</td>
+        <td>{{ lancamento.valor | currency:'BRL':'symbol':'1.2-2' }}</td>
+        <td>{{ lancamento.tipoLancamento }}</td>
         <td>
           <button pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editLancamento(lancamento.id)"></button>
           <button pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deletaLancamento(lancamento.id)"></button>
@@ -36,5 +56,3 @@
     </ng-template>
   </p-table>
 </div>
-
-

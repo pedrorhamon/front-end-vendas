@@ -33,3 +33,38 @@ button {
   left: 1rem;
 }
 
+.filters {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.filters-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem; /* Espaço entre os campos e botões */
+}
+
+.date-filters {
+  display: flex;
+  gap: 1rem; /* Espaço entre os campos de data */
+  justify-content: center; /* Centraliza os campos de data */
+}
+
+.p-field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button-container {
+  display: flex;
+  gap: 0.5rem; /* Espaço entre os botões */
+  margin-top: 1rem; /* Espaço acima dos botões */
+}
+
+
+.button-container button {
+  margin-left: 0.5rem; /* Espaço entre os botões */
+}

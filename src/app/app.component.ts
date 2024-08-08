@@ -12,7 +12,9 @@ import { IdleService } from './auth/idle-service.service';
 export class AppComponent {
   title = 'vendas-front';
 
-  constructor(private usuarioService: LoginService, private idleService: IdleService) {}
+  constructor(private usuarioService: LoginService,
+    //  private idleService: IdleService
+    ) {}
 
     // this.checkAuthentication();
 
