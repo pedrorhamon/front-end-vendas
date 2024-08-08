@@ -4,6 +4,7 @@ import { PessoaRequest } from './model/pessoa.request';
 import { PessoaService } from './pessoa.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LoginService } from '../login/login.service';
 
 @Component({
   selector: 'app-pessoa',
@@ -26,7 +27,8 @@ export class PessoaComponent implements OnInit{
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private authService: LoginService
   ) {}
 
    ngOnInit(): void {
@@ -104,6 +106,18 @@ export class PessoaComponent implements OnInit{
   clearFilter(): void {
     this.filterName = '';
     this.filteredPessoas = this.pessoas;
+  }
+
+  canEdit(): boolean {
+    return this.authService.hasRole('ADMIN_PRIVILEGE');
+  }
+
+  canDelete(): boolean {
+    return this.authService.hasRole('ADMIN_PRIVILEGE');
+  }
+
+  canCreate(): boolean {
+    return this.authService.hasRole('ADMIN_PRIVILEGE');
   }
 
 }
