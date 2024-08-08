@@ -40,7 +40,9 @@ import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DialogModule } from 'primeng/dialog';
-import { FormsModule } from '@angular/forms'; // Add this import
+import { FormsModule } from '@angular/forms';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+
 
 
 
@@ -90,7 +92,8 @@ import { FormsModule } from '@angular/forms'; // Add this import
     DropdownModule,
     ProgressSpinnerModule,
     DialogModule,
-    FormsModule
+    FormsModule,
+    InputTextareaModule
 
   ],
   providers: [

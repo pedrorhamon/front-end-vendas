@@ -45,7 +45,13 @@
 
     <div class="p-field">
       <label for="observacao">Observação</label>
-      <input id="observacao" type="text" pInputText formControlName="observacao" />
+      <textarea
+        rows="5"
+        cols="30"
+        pInputTextarea
+        formControlName="observacao">
+    </textarea>
+      <!-- <input id="observacao" type="text" pInputText formControlName="observacao" /> -->
     </div>
     <div class="p-button-group">
       <button pButton type="button" label="Cancelar" class="p-button-secondary" (click)="onCancel()"></button>
