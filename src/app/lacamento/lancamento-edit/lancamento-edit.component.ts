@@ -136,12 +136,13 @@ import { LancamentoService } from '../lancamento.service';
 import { MessageService } from 'primeng/api';
 import { TipoLancamento } from '../model/tipolancamento';
 import { CategoriaService } from '../../categoria/categoria.service';
-import { formatDate } from '@angular/common';
+import { DecimalPipe, formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-lancamento-edit',
   templateUrl: './lancamento-edit.component.html',
-  styleUrls: ['./lancamento-edit.component.css']
+  styleUrls: ['./lancamento-edit.component.css'],
+  providers: [DecimalPipe],
 })
 export class LancamentoEditComponent implements OnInit {
   lancamentoForm: FormGroup;
@@ -151,6 +152,8 @@ export class LancamentoEditComponent implements OnInit {
   pessoas: { label: string, value: any }[] = [];
   categorias: { label: string, value: any }[] = [];
 
+
+
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
@@ -158,7 +161,8 @@ export class LancamentoEditComponent implements OnInit {
     private lancamentoService: LancamentoService,
     private messageService: MessageService,
     private categoriaService: CategoriaService,
-    private pessoaService: PessoaService
+    private pessoaService: PessoaService,
+    private decimalPipe: DecimalPipe
   ) {
     this.lancamentoForm = this.fb.group({
       descricao: ['', [Validators.required]],
@@ -196,6 +200,7 @@ export class LancamentoEditComponent implements OnInit {
   onSubmit(): void {
     if (this.lancamentoForm.valid) {
       const lancamento = this.lancamentoForm.value;
+      lancamento.valor = this.decimalPipe.transform(lancamento.valor, '1.2-2')?.replace(/,/g, '') || '0';
       lancamento.dataVencimento = this.formatDate(lancamento.dataVencimento);
       lancamento.dataPagamento = this.formatDate(lancamento.dataPagamento);
       if (this.editMode && this.lancamentoId !== undefined) {

@@ -42,6 +42,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DialogModule } from 'primeng/dialog';
 import { FormsModule } from '@angular/forms';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { DecimalPipe } from '@angular/common';
 
 
 
@@ -93,13 +95,15 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     ProgressSpinnerModule,
     DialogModule,
     FormsModule,
-    InputTextareaModule
+    InputTextareaModule,
+    InputNumberModule
 
   ],
   providers: [
     ConfirmationService,
     MessageService,
-    provideClientHydration()
+    provideClientHydration(),
+    DecimalPipe
   ],
   bootstrap: [AppComponent]
 })

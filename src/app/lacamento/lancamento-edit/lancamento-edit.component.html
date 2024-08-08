@@ -19,7 +19,35 @@
     <br>
     <div class="p-field">
       <label for="valor">Valor</label>
-      <input id="valor" type="text" pInputText formControlName="valor" />
+      <p-inputNumber
+      inputId="integeronly"
+      formControlName="valor"
+      currencyDisplay="symbol"
+      locale="pt-BR"
+      [prefix]="'R$ '"
+      [minFractionDigits]="2"
+      [maxFractionDigits]="2"
+      [inputStyle]="{ textAlign: 'left' }">
+    </p-inputNumber>
+
+      <!-- <p-inputNumber
+          inputId="valor"
+          formControlName="valor"
+          mode="currency"
+          currency="BRL"
+          currencyDisplay="symbol"
+          locale="pt-BR"
+          [minFractionDigits]="2"
+          [maxFractionDigits]="2"
+          [useGrouping]="true"
+          [min]="0"
+          [max]="999999999.99"
+          [inputStyle]="{ textAlign: 'left' }">
+      </p-inputNumber> -->
+
+
+      <!-- <input id="valor" type="text" pInputText formControlName="valor" /> -->
+    <!-- <input id="valor" type="text" pInputText formControlName="valor" mask="separator.2" thousandSeparator="." decimalMarker=","/> -->
     </div>
 
     <div style="color:  #333; font-weight: bold;">
