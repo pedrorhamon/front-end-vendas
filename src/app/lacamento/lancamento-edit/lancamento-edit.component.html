@@ -7,12 +7,12 @@
       <input id="descricao" type="text" pInputText formControlName="descricao" />
     </div>
 
-    <div>
+    <div style="color:  #333; font-weight: bold;">
       <label for="dataVencimento">Data de Vencimento</label>
       <p-calendar id="dataVencimento" formControlName="dataVencimento" dateFormat="dd/mm/yy"/>
     </div>
     <br>
-    <div>
+    <div style="color:  #333; font-weight: bold; ">
       <label for="dataPagamento">Data de Pagamento</label>
       <p-calendar id="dataPagamento" formControlName="dataPagamento" dateFormat="dd/mm/yy"></p-calendar>
     </div>
@@ -22,7 +22,7 @@
       <input id="valor" type="text" pInputText formControlName="valor" />
     </div>
 
-    <div>
+    <div style="color:  #333; font-weight: bold;">
       <label for="tipoLancamento">Tipo de Lançamento</label>
       <p-dropdown id="tipoLancamento" [options]="tiposLancamento" formControlName="tipoLancamento"></p-dropdown>
     </div>
