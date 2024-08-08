@@ -216,33 +216,11 @@ export class LancamentoEditComponent implements OnInit {
 
   private showValidationErrors(): void {
     if (this.lancamentoForm.hasError('dataPagamentoInvalida')) {
-      const dataVencimento = this.lancamentoForm.get('dataVencimento')?.value;
-      const dataPagamento = this.lancamentoForm.get('dataPagamento')?.value;
-      const dataVencimentoDate = new Date(dataVencimento);
-      const dataPagamentoDate = new Date(dataPagamento);
-
-      if (dataPagamentoDate < dataVencimentoDate) {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Erro',
-          detail: 'Data de pagamento não pode ser menor que a data de vencimento.'
-        });
-      } else {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Erro',
-          detail: 'Data de pagamento deve ser maior ou igual à data de vencimento.'
-        });
-      }
+      this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Data de pagamento deve ser maior ou igual à data de vencimento' });
     } else {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Erro',
-        detail: 'Formulário contém erros. Por favor, corrija-os antes de enviar.'
-      });
+      this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Formulário contém erros. Por favor, corrija-os antes de enviar.' });
     }
   }
-
 
   private formatDate(date: string): string {
     return formatDate(date, 'dd/MM/yyyy', 'en-US');
