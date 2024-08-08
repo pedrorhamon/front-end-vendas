@@ -44,6 +44,7 @@ import { FormsModule } from '@angular/forms';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DecimalPipe } from '@angular/common';
+import { AcessDeniedComponent } from './acess-denied/acess-denied.component';
 
 
 
@@ -66,7 +67,8 @@ import { DecimalPipe } from '@angular/common';
     PessoaComponent,
     PessoaEditComponent,
     LacamentoComponent,
-    LancamentoEditComponent
+    LancamentoEditComponent,
+    AcessDeniedComponent
   ],
   imports: [
     BrowserModule,

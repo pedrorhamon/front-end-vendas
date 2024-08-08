@@ -5,6 +5,8 @@ import { BehaviorSubject, catchError, map, Observable, tap, throwError } from 'r
 import { Token } from './model/token';
 import { jwtDecode } from 'jwt-decode';
 import { Usuario } from './model/usuario';
+import { JwtHelperService } from '@auth0/angular-jwt';
+
 
 
 @Injectable({
@@ -17,7 +19,7 @@ export class LoginService {
 
   private userNameSubject = new BehaviorSubject<string | null>(null);
   userName$ = this.userNameSubject.asObservable();
-
+  // private jwtHelper = new JwtHelperService();
 
   constructor(private http: HttpClient) { }
 
@@ -75,6 +77,30 @@ setUserName(): void {
   }
 }
 
+getRoles(): string[] {
+  const token = localStorage.getItem('token');
+  if (token) {
+    const decodedToken: any = jwtDecode(token);
+
+    return decodedToken.roles || [];
+  }
+  return [];
+}
+
+getUserIdFromToken(): string | null {
+  const token = localStorage.getItem('token');
+  if (token) {
+    try {
+      const decodedToken: any = jwtDecode(token);
+      return decodedToken.sub || null; // 'sub' pode ser o campo do ID do usuário no token
+    } catch (e) {
+      console.error('Erro ao decodificar o token', e);
+      return null;
+    }
+  }
+  return null;
+}
+
 recuperarSenha(email: string): Observable<Usuario> {
   return this.http.get<Usuario>(`${this.baseUrl}/${email}`);
 }
@@ -104,5 +130,6 @@ recuperarSenha(email: string): Observable<Usuario> {
 //       }
 //     }
 //   }, 60000); // Checa a cada 60 segundos
+
 }
 

@@ -11,24 +11,28 @@ import { PessoaEditComponent } from './pessoa/pessoa-edit/pessoa-edit.component'
 import { LacamentoComponent } from './lacamento/lacamento.component';
 import { LancamentoEditComponent } from './lacamento/lancamento-edit/lancamento-edit.component';
 import { authGuard } from './auth/auth.guard';
+import { AcessDeniedComponent } from './acess-denied/acess-denied.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent, canActivate: [authGuard] },
-  { path: 'categoria', component: CategoriaComponent, canActivate: [authGuard] },
-  { path: 'categoria/edit/:id', component: CategoriaEditComponent, canActivate: [authGuard] },
-  { path: 'categoria/delete/:id', component: CategoriaComponent, canActivate: [authGuard] },
-  { path: 'categoria/new', component: CategoriaEditComponent, canActivate: [authGuard] },
-  { path: 'usuario', component: UsuarioComponent, canActivate: [authGuard]},
+  // { path: 'categoria', component: CategoriaComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] } },
+  { path: 'categoria', component: CategoriaComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] } },
+  { path: 'categoria/edit/:id', component: CategoriaEditComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] }  },
+  { path: 'categoria/delete/:id', component: CategoriaComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] }  },
+  { path: 'categoria/new', component: CategoriaEditComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] }  },
+  { path: 'usuario', component: UsuarioComponent, canActivate: [authGuard] },
   { path: 'usuario/edit/:id', component: UsuarioEditComponent, canActivate: [authGuard] },
   { path: 'usuario/new', component: UsuarioEditComponent, canActivate: [authGuard] },
   { path: 'pessoa', component: PessoaComponent, canActivate: [authGuard] },
-  { path: 'pessoa/edit/:id', component: PessoaEditComponent, canActivate: [authGuard]},
+  { path: 'pessoa/edit/:id', component: PessoaEditComponent, canActivate: [authGuard] },
   { path: 'pessoa/new', component: PessoaEditComponent, canActivate: [authGuard] },
   { path: 'lancamento', component: LacamentoComponent, canActivate: [authGuard] },
   { path: 'lancamento/edit/:id', component: LancamentoEditComponent, canActivate: [authGuard] },
   { path: 'lancamento/new', component: LancamentoEditComponent, canActivate: [authGuard] },
+  { path: 'access-denied', component: AcessDeniedComponent }, // Corrigido: sem a barra inicial
+  { path: '**', redirectTo: 'login' } // Rota de fallback para qualquer caminho desconhecido
 ];
 
 @NgModule({
