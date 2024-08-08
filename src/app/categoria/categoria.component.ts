@@ -4,6 +4,7 @@ import { CategoriaService } from './categoria.service';
 import { Categoria } from './model/categoria';
 import { ActivatedRoute } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { LoginService } from '../login/login.service';
 
 @Component({
   selector: 'app-categoria',
@@ -23,7 +24,8 @@ export class CategoriaComponent implements OnInit {
     private messageService: MessageService,
     private route: ActivatedRoute,
     private router: Router,
-    private categoriaService: CategoriaService
+    private categoriaService: CategoriaService,
+    private authService: LoginService
   ) {}
 
   ngOnInit(): void {
@@ -107,5 +109,17 @@ export class CategoriaComponent implements OnInit {
   clearFilter(): void {
     this.filterName = '';
     this.filteredCategorias = this.categorias;
+  }
+
+  canEdit(): boolean {
+    return this.authService.hasRole('ADMIN_PRIVILEGE');
+  }
+
+  canDelete(): boolean {
+    return this.authService.hasRole('ADMIN_PRIVILEGE');
+  }
+
+  canCreate(): boolean {
+    return this.authService.hasRole('ADMIN_PRIVILEGE');
   }
 }

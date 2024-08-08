@@ -20,6 +20,7 @@ export class LoginService {
   private userNameSubject = new BehaviorSubject<string | null>(null);
   userName$ = this.userNameSubject.asObservable();
   // private jwtHelper = new JwtHelperService();
+  private roles: string[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -99,6 +100,10 @@ getUserIdFromToken(): string | null {
     }
   }
   return null;
+}
+
+hasRole(role: string): boolean {
+  return this.roles.includes(role);
 }
 
 recuperarSenha(email: string): Observable<Usuario> {

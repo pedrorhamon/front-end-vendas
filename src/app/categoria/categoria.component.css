@@ -1,5 +1,7 @@
 .categoria-list-container {
   padding: 20px;
+  max-width: 1200px; /* Ajuste conforme necessário */
+  margin: 0 auto; /* Centraliza o contêiner */
 }
 
 .header {
@@ -25,6 +27,7 @@ button {
 .p-confirm-dialog .p-confirm-dialog-accept {
   background-color: #f44336 !important;
   border: none;
+  color: #fff; /* Garanta que o texto seja visível */
 }
 
 /* Botão de fechar à esquerda */
@@ -33,23 +36,63 @@ button {
   left: 1rem;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
+/* Container de filtro */
 .filter-container {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
 }
 
+/* Campo de filtro */
 .filter-container input {
   margin-right: 10px;
   width: 200px;
 }
 
+/* Estilo da tabela */
+.p-table {
+  width: 100%;
+  border-collapse: collapse; /* Garante que as bordas das células não se sobreponham */
+  overflow-x: auto; /* Adiciona rolagem horizontal se necessário */
+}
 
+.p-table th, .p-table td {
+  text-align: left;
+  padding: 12px 8px; /* Padding consistente para cabeçalhos e células */
+  border-bottom: 1px solid #ddd; /* Linha sutil entre linhas */
+}
 
+.p-table th {
+  background-color: #f4f4f4; /* Cor de fundo para o cabeçalho */
+  font-weight: bold; /* Destaca o texto do cabeçalho */
+}
+
+.p-table td {
+  background-color: #fff; /* Cor de fundo para o corpo da tabela */
+}
+
+/* Botões na tabela */
+.p-button-rounded {
+  margin-right: 5px;
+}
+
+/* Adiciona responsividade */
+@media (max-width: 768px) {
+  .filter-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .filter-container input {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  .p-table th, .p-table td {
+    font-size: 14px; /* Ajusta o tamanho da fonte em telas menores */
+  }
+
+  .p-button-rounded {
+    margin-right: 2px; /* Ajusta a margem dos botões para telas menores */
+  }
+}
