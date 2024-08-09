@@ -1,6 +1,6 @@
 export class Categoria {
   id?: number;
-  name?: string;
+  name!: string;
   createdAt?: string;
   updatedAt?: string;
 }

@@ -170,8 +170,8 @@ export class LancamentoEditComponent implements OnInit {
       dataPagamento: ['', [Validators.required]],
       valor: ['', [Validators.required]],
       tipoLancamento: ['', [Validators.required]],
-      categoriaId: [null, [Validators.required]],
-      pessoaId: [null, [Validators.required]],
+      categoriaNomes: [[], [Validators.required]],
+      pessoaNomes: [[], [Validators.required]],
       observacao: ['']
     }, { validator: this.dataPagamentoMaiorOuIgualValidator });
 
@@ -183,6 +183,8 @@ export class LancamentoEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadLancamento();
+    this.loadCategorias();
+    this.loadPessoas();
   }
 
   private loadLancamento(): void {
@@ -191,10 +193,37 @@ export class LancamentoEditComponent implements OnInit {
       this.lancamentoId = +id; // Convert string to number
       this.editMode = true;
       this.lancamentoService.getLancamentoById(this.lancamentoId).subscribe(lancamento => {
-        this.lancamentoForm.patchValue(lancamento);
+        this.lancamentoForm.patchValue({
+          descricao: lancamento.descricao,
+          dataVencimento: this.formatDate(lancamento.dataVencimento),
+          dataPagamento: lancamento.dataPagamento ? this.formatDate(lancamento.dataPagamento) : '',
+          valor: lancamento.valor,
+          tipoLancamento: lancamento.tipoLancamento,
+          categoriaNomes: lancamento.categoriaNomes,
+          pessoaNomes: lancamento.pessoaNomes,
+          observacao: lancamento.observacao
+        });
         console.log('Lançamento carregado:', lancamento);
       });
     }
+  }
+
+  loadCategorias(): void {
+    this.categoriaService.getCategorias(0, 10).subscribe(page => {
+      this.categorias = page.content.map(categoria => ({
+        label: categoria.name,
+        value: categoria.name
+      }));
+    });
+  }
+
+  loadPessoas(): void {
+    this.pessoaService.listarPessoa().subscribe(pessoas => {
+      this.pessoas = pessoas.content.map(pessoa => ({
+        label: pessoa.name,
+        value: pessoa.name
+      }));
+    });
   }
 
   onSubmit(): void {

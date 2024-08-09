@@ -7,6 +7,6 @@ export interface LancamentoRequest {
   valor?: number;
   observacao?: string;
   tipoLancamento: TipoLancamento;
-  categoriaId: number;
-  pessoaId: number;
+  categoriaNomes: string[]; // Lista de nomes de categorias
+  pessoaNomes: string[]; // Lista de nomes de pessoas
 }
