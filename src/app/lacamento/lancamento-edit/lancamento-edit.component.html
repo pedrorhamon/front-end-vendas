@@ -1,4 +1,9 @@
 <p-confirmDialog></p-confirmDialog>
+
+<div *ngIf="loading" class="loading-overlay">
+  <div class="spinner"></div>
+</div>
+
 <div class="p-fluid">
   <h2>{{ editMode ? 'Editar Lançamento' : 'Salvar Lançamento' }}</h2>
   <form [formGroup]="lancamentoForm" (ngSubmit)="onSubmit()">

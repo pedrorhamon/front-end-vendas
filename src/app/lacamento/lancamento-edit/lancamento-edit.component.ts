@@ -151,6 +151,7 @@ export class LancamentoEditComponent implements OnInit {
   tiposLancamento: { label: string, value: TipoLancamento }[];
   pessoas: { label: string, value: any }[] = [];
   categorias: { label: string, value: any }[] = [];
+  loading: boolean = false
 
 
 
@@ -228,6 +229,7 @@ export class LancamentoEditComponent implements OnInit {
 
   onSubmit(): void {
     if (this.lancamentoForm.valid) {
+      this.loading = true;
       const lancamento = this.lancamentoForm.value;
       lancamento.valor = this.decimalPipe.transform(lancamento.valor, '1.2-2')?.replace(/,/g, '') || '0';
       lancamento.dataVencimento = this.formatDate(lancamento.dataVencimento);
@@ -241,6 +243,8 @@ export class LancamentoEditComponent implements OnInit {
         this.lancamentoService.criar(lancamento).subscribe(() => {
           this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Lançamento criado com sucesso' });
           this.router.navigate(['/lancamento']);
+        }).add(() => {
+          this.loading = false; // Desativa o carregamento após a resposta
         });
       }
     } else {
