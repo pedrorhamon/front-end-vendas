@@ -61,6 +61,7 @@ export class LacamentoComponent implements OnInit {
     });
   }
 
+
   limparFiltros(): void {
     this.filtrosForm.reset(); // Reseta os valores do formulário
     this.aplicarFiltros(); // Reaplica os filtros para exibir todos os lançamentos
