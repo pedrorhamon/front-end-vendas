@@ -144,6 +144,7 @@ import { LoginService } from './login.service';
 import { Router } from '@angular/router';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { Credencias } from './model/credencias';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -223,13 +224,25 @@ export class LoginComponent implements OnInit {
     const email = this.forgotPasswordForm.get('email')?.value;
 
     if (this.forgotPasswordForm.valid) {
-      this.usuarioService.recuperarSenha(email).subscribe(
+      this.loading = true;
+      this.usuarioService.recuperarSenha(email).pipe(
+        finalize(() => {
+          this.loading = false;
+      })
+      ).subscribe(
         () => {
+          this.loading = true;
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Instruções enviadas para o e-mail' });
           this.displayForgotPasswordDialog = false;
         },
         error => {
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Erro ao enviar instruções' });
+          const errorMessage = error?.error?.message || 'Erro ao enviar instruções';
+                this.messageService.add({
+                    severity: 'error',
+                    summary: 'Erro',
+                    detail: errorMessage
+                });
+                this.displayForgotPasswordDialog = false;
         }
       );
     }

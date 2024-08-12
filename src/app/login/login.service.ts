@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Credencias } from './model/credencias';
 import { BehaviorSubject, catchError, map, Observable, tap, throwError } from 'rxjs';
@@ -106,9 +106,22 @@ hasRole(role: string): boolean {
   return this.roles.includes(role);
 }
 
-recuperarSenha(email: string): Observable<Usuario> {
-  return this.http.get<Usuario>(`${this.baseUrl}/${email}`);
+// recuperarSenha(email: string): Observable<void> {
+//   const params = new HttpParams().set('email', email);
+
+//   return this.http.post<void>(`${this.baseUrl}/esquecer-senha`, null, { params })
+//     .pipe(
+//       catchError(this.handleError)
+//     );
+// }
+
+
+recuperarSenha(email: string): Observable<string> {
+  return this.http.post<string>(`${this.baseUrl}/esquecer-senha`, null, {
+    params: { email }
+  });
 }
+
 // setupAutoLogout(token: string): void {
   //   const decodedToken: any = jwtDecode(token);
 //   const expTime = decodedToken.exp * 1000; // Convertendo de segundos para milissegundos
@@ -135,6 +148,24 @@ recuperarSenha(email: string): Observable<Usuario> {
 //       }
 //     }
 //   }, 60000); // Checa a cada 60 segundos
+
+private handleError(error: HttpErrorResponse) {
+  // Log do erro para depuração
+  console.error('Ocorreu um erro:', error);
+
+  // Criar uma mensagem de erro amigável para o usuário
+  let errorMessage = 'Ocorreu um erro inesperado. Por favor, tente novamente mais tarde.';
+
+  if (error.error instanceof ErrorEvent) {
+    // Erro do lado do cliente
+    errorMessage = `Erro: ${error.error.message}`;
+  } else {
+    // Erro do lado do servidor
+    errorMessage = `Código do erro: ${error.status}\nMensagem: ${error.message}`;
+  }
+
+  return throwError(() => new Error(errorMessage));
+}
 
 }
 
