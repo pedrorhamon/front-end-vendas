@@ -24,83 +24,169 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-  autenticar(credenciais: Credencias): Observable<Token> {
-    return this.http.post<Token>(`${this.baseUrl}/autenticar`, credenciais)
-      .pipe(
-        tap(response => {
-          console.log(response.nome);
-
-          localStorage.setItem('token', response.token);
-          this.setUserName();
-
-        }),
-        catchError(error => {
-          // Trate o erro aqui, se necessário
-          return throwError(error);
-        })
-      );
+  isClient(): boolean {
+    return typeof window !== 'undefined';
   }
 
-  logout(): Observable<void> {
-    // Obter o token armazenado
-    const token = localStorage.getItem('token');
-    // Enviar o token no cabeçalho Authorization
-    return this.http.post<void>(`${this.baseUrl}/logout`, {}, {
-        headers: new HttpHeaders({
-            'Authorization': `Bearer ${token}`
-        })
-    }).pipe(
-        tap(() => {
-            // Remover o token após o logout
-            localStorage.removeItem('token');
-        })
+  autenticar(credenciais: Credencias): Observable<Token> {
+    return this.http.post<Token>(`${this.baseUrl}/autenticar`, credenciais).pipe(
+      tap(response => {
+        console.log(response.nome);
+        if (this.isClient()) {
+          localStorage.setItem('token', response.token);
+          this.setUserName();
+        }
+      }),
+      catchError(error => {
+        // Trate o erro aqui, se necessário
+        return throwError(error);
+      })
     );
-}
+  }
+
+
+  // autenticar(credenciais: Credencias): Observable<Token> {
+  //   return this.http.post<Token>(`${this.baseUrl}/autenticar`, credenciais)
+  //     .pipe(
+  //       tap(response => {
+  //         console.log(response.nome);
+
+  //         localStorage.setItem('token', response.token);
+  //         this.setUserName();
+
+  //       }),
+  //       catchError(error => {
+  //         // Trate o erro aqui, se necessário
+  //         return throwError(error);
+  //       })
+  //     );
+  // }
+
+  logout(): Observable<void> {
+    const token = this.isClient() ? localStorage.getItem('token') : null;
+    return this.http.post<void>(`${this.baseUrl}/logout`, {}, {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      })
+    }).pipe(
+      tap(() => {
+        if (this.isClient()) {
+          localStorage.removeItem('token');
+        }
+      })
+    );
+  }
+
+//   logout(): Observable<void> {
+//     // Obter o token armazenado
+//     const token = localStorage.getItem('token');
+//     // Enviar o token no cabeçalho Authorization
+//     return this.http.post<void>(`${this.baseUrl}/logout`, {}, {
+//         headers: new HttpHeaders({
+//             'Authorization': `Bearer ${token}`
+//         })
+//     }).pipe(
+//         tap(() => {
+//             // Remover o token após o logout
+//             localStorage.removeItem('token');
+//         })
+//     );
+// }
+// isAuthenticated(): boolean {
+//   // Verifica se o código está sendo executado no contexto do navegador
+//   if (typeof window !== 'undefined') {
+//     return !!localStorage.getItem('token');
+//   }
+//   return false;
+// }
+
 isAuthenticated(): boolean {
-  // Verifica se o código está sendo executado no contexto do navegador
-  if (typeof window !== 'undefined') {
+  if (this.isClient()) {
     return !!localStorage.getItem('token');
   }
   return false;
 }
 
+// setUserName(): void {
+//   const token = localStorage.getItem('token');
+//   if (token) {
+//     try {
+//       const decodedToken: any = jwtDecode(token);
+//       // console.log('Decoded Token:', decodedToken); // Para depuração, verifique o conteúdo do payload
+//       this.userNameSubject.next(decodedToken.name || null); // Use 'name' em vez de 'nome'
+//     } catch (e) {
+//       console.error('Erro ao decodificar o token', e);
+//       this.userNameSubject.next(null);
+//     }
+//   }
+// }
+
+// getRoles(): string[] {
+//   const token = localStorage.getItem('token');
+//   if (token) {
+//     const decodedToken: any = jwtDecode(token);
+
+//     return decodedToken.roles || [];
+//   }
+//   return [];
+// }
+
+// getUserIdFromToken(): string | null {
+//   const token = localStorage.getItem('token');
+//   if (token) {
+//     try {
+//       const decodedToken: any = jwtDecode(token);
+//       return decodedToken.sub || null; // 'sub' pode ser o campo do ID do usuário no token
+//     } catch (e) {
+//       console.error('Erro ao decodificar o token', e);
+//       return null;
+//     }
+//   }
+//   return null;
+// }
+
 setUserName(): void {
-  const token = localStorage.getItem('token');
-  if (token) {
-    try {
-      const decodedToken: any = jwtDecode(token);
-      // console.log('Decoded Token:', decodedToken); // Para depuração, verifique o conteúdo do payload
-      this.userNameSubject.next(decodedToken.name || null); // Use 'name' em vez de 'nome'
-    } catch (e) {
-      console.error('Erro ao decodificar o token', e);
-      this.userNameSubject.next(null);
+  if (this.isClient()) {
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        const decodedToken: any = jwtDecode(token);
+        this.userNameSubject.next(decodedToken.name || null);
+      } catch (e) {
+        console.error('Erro ao decodificar o token', e);
+        this.userNameSubject.next(null);
+      }
     }
   }
 }
 
 getRoles(): string[] {
-  const token = localStorage.getItem('token');
-  if (token) {
-    const decodedToken: any = jwtDecode(token);
-
-    return decodedToken.roles || [];
+  if (this.isClient()) {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedToken: any = jwtDecode(token);
+      return decodedToken.roles || [];
+    }
   }
   return [];
 }
 
 getUserIdFromToken(): string | null {
-  const token = localStorage.getItem('token');
-  if (token) {
-    try {
-      const decodedToken: any = jwtDecode(token);
-      return decodedToken.sub || null; // 'sub' pode ser o campo do ID do usuário no token
-    } catch (e) {
-      console.error('Erro ao decodificar o token', e);
-      return null;
+  if (this.isClient()) {
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        const decodedToken: any = jwtDecode(token);
+        return decodedToken.sub || null;
+      } catch (e) {
+        console.error('Erro ao decodificar o token', e);
+        return null;
+      }
     }
   }
   return null;
 }
+
 
 hasRole(role: string): boolean {
   return this.roles.includes(role);

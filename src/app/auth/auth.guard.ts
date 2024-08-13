@@ -7,11 +7,16 @@ export const authGuard: CanActivateFn = async (route, state) => {
   const loginService = inject(LoginService);
   const router = inject(Router);
 
+  if (typeof window === 'undefined') {
+    // No server-side rendering context, just redirect
+    router.navigate(['/login']);
+    return false;
+  }
   const token = localStorage.getItem('token');
+
   const isAuthenticated = token && !isTokenExpired(token);
 
   if (isAuthenticated) {
-    // Se necessário, você pode adicionar lógica para verificar permissões adicionais aqui
     const requiredRoles = route.data['roles'] as Array<string>;
     const userRoles = loginService.getRoles(); // Certifique-se de ter esse método implementado
 

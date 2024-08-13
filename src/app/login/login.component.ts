@@ -197,8 +197,11 @@ export class LoginComponent implements OnInit {
 
       this.usuarioService.autenticar(credenciais).subscribe(
         response => {
-          localStorage.setItem('token', response.token);
-          this.router.navigate(['/home']);
+          if (typeof window !== 'undefined') {
+            // Verifica se o código está sendo executado no navegador
+            localStorage.setItem('token', response.token);
+            this.router.navigate(['/home']);
+          }
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Logado com sucesso' });
         },
         error => {
@@ -211,6 +214,42 @@ export class LoginComponent implements OnInit {
       this.messageService.add({ severity: 'warn', summary: 'Validation Error', detail: 'Por favor complete o reCAPTCHA' });
     }
   }
+
+
+  // onSubmit() {
+  //   const email = this.loginForm.get('email')?.value;
+  //   const senha = this.loginForm.get('senha')?.value;
+
+  //   if (!email || !senha) {
+  //     this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Usuário ou Senha incorreto' });
+  //     return;
+  //   }
+
+  //   if (this.loginForm.valid && this.recaptchaToken) {
+  //     this.loading = true;
+
+  //     const credenciais: Credencias = {
+  //       email: email,
+  //       senha: senha,
+  //       recaptchaResponse: this.recaptchaToken
+  //     };
+
+  //     this.usuarioService.autenticar(credenciais).subscribe(
+  //       response => {
+  //         localStorage.setItem('token', response.token);
+  //         this.router.navigate(['/home']);
+  //         this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Logado com sucesso' });
+  //       },
+  //       error => {
+  //         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Email ou senha inválidos' });
+  //       }
+  //     ).add(() => {
+  //       this.loading = false;
+  //     });
+  //   } else {
+  //     this.messageService.add({ severity: 'warn', summary: 'Validation Error', detail: 'Por favor complete o reCAPTCHA' });
+  //   }
+  // }
 
   onRecaptchaResolved(token: string | null) {
     this.recaptchaToken = token;
