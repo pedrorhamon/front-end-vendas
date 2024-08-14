@@ -8,6 +8,13 @@ import { PermissionService } from '../permission.service';
 import { MessageService } from 'primeng/api';
 import { BehaviorSubject } from 'rxjs';
 
+
+function passwordMatchValidator(form: FormGroup) {
+  const senha = form.get('senha')?.value;
+  const confirmPassword = form.get('confirmPassword')?.value;
+
+  return senha === confirmPassword ? null : { passwordMismatch: true };
+}
 @Component({
   selector: 'app-usuario-edit',
   templateUrl: './usuario-edit.component.html',
@@ -46,11 +53,12 @@ export class UsuarioEditComponent implements OnInit {
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       senha: [''], // Campo de senha
+      confirmPassword: [''],
       ativo: [true],
       createdAt: [new Date().toISOString()],
       updatedAt: [new Date().toISOString()],
       permissoes: [[]] // Campo de permissões
-    });
+    }, {validators: passwordMatchValidator});
 
     this.listarPermissoes();
 
@@ -61,6 +69,10 @@ export class UsuarioEditComponent implements OnInit {
         }
       });
     }
+
+    this.usuarioForm.get('confirmPassword')?.valueChanges.subscribe(() => {
+      this.senhaMismatch = this.usuarioForm.hasError('passwordMismatch');
+    });
   }
 
   verificarUsuarios(): void {
@@ -142,14 +154,6 @@ export class UsuarioEditComponent implements OnInit {
       }
     }
   }
-
-  passwordMatchValidator(form: FormGroup) {
-    const senha = form.get('senha')?.value;
-    const confirmPassword = form.get('confirmPassword')?.value;
-
-    return senha === confirmPassword ? null : { passwordMismatch: true };
-  }
-
   onCancel(): void {
     this.router.navigate(['/usuario']); // Redireciona para a lista de usuários
   }
