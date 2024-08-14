@@ -19,8 +19,12 @@
     </div>
 
     <div class="p-field p-col-12 p-md-4"  *ngIf="!isEditMode">
-      <label for="password">Confirme sua Senha</label>
-      <input id="password" type="password" pInputText formControlName="senha" />
+      <label for="confirmPassword">Confirme sua Senha</label>
+      <input id="confirmPassword" type="password" pInputText formControlName="confirmPassword" />
+    </div>
+
+    <div *ngIf="senhaMismatch" class="p-field p-col-12 p-md-12">
+      <p-messages [value]="[{severity:'error', summary:'Erro', detail:'As senhas não coincidem.'}]"></p-messages>
     </div>
 
     <div class="p-field p-col-12 p-md-4">
