@@ -24,6 +24,7 @@ export class UsuarioEditComponent implements OnInit {
   usuarioId!: number;
   selectedPermissions: Permissao[] = []; // Armazena as permissões selecionadas
   permissionsLoaded$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  senhaMismatch: boolean = false;
 
 
 
@@ -140,6 +141,13 @@ export class UsuarioEditComponent implements OnInit {
         });
       }
     }
+  }
+
+  passwordMatchValidator(form: FormGroup) {
+    const senha = form.get('senha')?.value;
+    const confirmPassword = form.get('confirmPassword')?.value;
+
+    return senha === confirmPassword ? null : { passwordMismatch: true };
   }
 
   onCancel(): void {

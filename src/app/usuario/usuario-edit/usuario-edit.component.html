@@ -14,13 +14,18 @@
     </div>
 
     <div class="p-field p-col-12 p-md-4"  *ngIf="!isEditMode">
-      <label for="password">Password</label>
+      <label for="password">Senha</label>
+      <input id="password" type="password" pInputText formControlName="senha" />
+    </div>
+
+    <div class="p-field p-col-12 p-md-4"  *ngIf="!isEditMode">
+      <label for="password">Confirme sua Senha</label>
       <input id="password" type="password" pInputText formControlName="senha" />
     </div>
 
     <div class="p-field p-col-12 p-md-4">
       <p-checkbox id="ativo" formControlName="ativo" binary="true"></p-checkbox>
-      <label for="ativo">Active</label>
+      <label for="ativo">Ativo</label>
     </div>
 
     <!-- <div class="form-group">
