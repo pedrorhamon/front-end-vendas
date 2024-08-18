@@ -1,3 +1,4 @@
+import { saveAs } from 'file-saver';
 import { Component, OnInit } from '@angular/core';
 import { Lancamento } from './model/lancamento';
 import { LancamentoService } from './lancamento.service';
@@ -58,6 +59,17 @@ export class LacamentoComponent implements OnInit {
         (dataVencimentoDe === null || dataVencimento >= dataVencimentoDe) &&
         (dataVencimentoAte === null || dataVencimento <= dataVencimentoAte)
       );
+    });
+  }
+
+  exportarLancamentos(): void {
+    // Aqui você pode definir as páginas e o tamanho que deseja exportar.
+    const page = 0; // Página inicial
+    const size = 10; // Tamanho por página
+
+    this.lancamentoService.exportarParaExcel(page, size).subscribe((response: Blob) => {
+      const blob = new Blob([response], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      saveAs(blob, 'lancamentos.xlsx');
     });
   }
 

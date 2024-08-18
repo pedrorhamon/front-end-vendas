@@ -4,7 +4,7 @@
   <div class="header">
     <h2>Lista de Lançamentos</h2>
     <button pButton type="button" label="Novo Lançamento" icon="pi pi-plus" class="p-button-success" (click)="novaLancamento()"></button>
-
+    <button pButton type="button" label="Exportar para Excel" icon="pi pi-file-excel" class="p-button-secondary p-ml-2" (click)="exportarLancamentos()"></button>
   </div>
 
   <form [formGroup]="filtrosForm" class="filters">

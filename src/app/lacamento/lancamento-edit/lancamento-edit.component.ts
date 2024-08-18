@@ -196,8 +196,8 @@ export class LancamentoEditComponent implements OnInit {
       this.lancamentoService.getLancamentoById(this.lancamentoId).subscribe(lancamento => {
         this.lancamentoForm.patchValue({
           descricao: lancamento.descricao,
-          dataVencimento: this.formatDate(lancamento.dataVencimento),
-          dataPagamento: lancamento.dataPagamento ? this.formatDate(lancamento.dataPagamento) : '',
+          dataVencimento: lancamento.dataVencimento,
+          dataPagamento: lancamento.dataPagamento ? lancamento.dataPagamento : '',
           valor: lancamento.valor,
           tipoLancamento: lancamento.tipoLancamento,
           categoriaNomes: lancamento.categoriaNomes,
@@ -234,6 +234,8 @@ export class LancamentoEditComponent implements OnInit {
       lancamento.valor = this.decimalPipe.transform(lancamento.valor, '1.2-2')?.replace(/,/g, '') || '0';
       lancamento.dataVencimento = this.formatDate(lancamento.dataVencimento);
       lancamento.dataPagamento = this.formatDate(lancamento.dataPagamento);
+      // lancamento.dataVencimento = this.formatDate(lancamento.dataVencimento);
+      // lancamento.dataPagamento = this.formatDate(lancamento.dataPagamento);
       if (this.editMode && this.lancamentoId !== undefined) {
         this.lancamentoService.atualizar(this.lancamentoId, lancamento).subscribe(() => {
           this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Lançamento atualizado com sucesso' });
@@ -260,8 +262,12 @@ export class LancamentoEditComponent implements OnInit {
     }
   }
 
-  private formatDate(date: string): string {
-    return formatDate(date, 'dd/MM/yyyy', 'en-US');
+  private formatDate(dateString: string): string {
+    const date = new Date(dateString);
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are 0-based in JavaScript.
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
   }
 
   onCancel(): void {
@@ -287,5 +293,10 @@ export class LancamentoEditComponent implements OnInit {
 
     return null;
   };
+
+  private convertDateToApiFormat(date: string): string {
+    const [day, month, year] = date.split('/');
+    return `${year}-${month}-${day}`; // Convert 'dd/MM/yyyy' to 'yyyy-MM-dd'
+  }
 }
 
