@@ -43,7 +43,7 @@ export class LacamentoComponent implements OnInit {
         }
         return 0; // Retorno padrão caso um dos valores seja undefined
       });
-      this.aplicarFiltros(); // Aplicar filtros após a listagem inicial
+      this.aplicarFiltros();
     });
   }
 
@@ -63,9 +63,8 @@ export class LacamentoComponent implements OnInit {
   }
 
   exportarLancamentos(): void {
-    // Aqui você pode definir as páginas e o tamanho que deseja exportar.
-    const page = 0; // Página inicial
-    const size = 10; // Tamanho por página
+    const page = 0;
+    const size = 10;
 
     this.lancamentoService.exportarParaExcel(page, size).subscribe((response: Blob) => {
       const blob = new Blob([response], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
