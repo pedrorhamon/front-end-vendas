@@ -112,14 +112,15 @@ export class CategoriaComponent implements OnInit {
   }
 
   canEdit(): boolean {
-    return this.authService.hasRole('ADMIN_PRIVILEGE');
+    return this.authService.hasRole('ADMIN_PRIVILEGE') && this.authService.hasRole('READ_PRIVILEGE');
   }
 
   canDelete(): boolean {
-    return this.authService.hasRole('ADMIN_PRIVILEGE');
+    return this.authService.hasRole('ADMIN_PRIVILEGE') && this.authService.hasRole('READ_PRIVILEGE');
   }
 
   canCreate(): boolean {
-    return this.authService.hasRole('ADMIN_PRIVILEGE');
+    return this.authService.hasRole('ADMIN_PRIVILEGE') && this.authService.hasRole('READ_PRIVILEGE');
   }
+
 }
