@@ -45,6 +45,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DecimalPipe } from '@angular/common';
 import { AcessDeniedComponent } from './acess-denied/acess-denied.component';
+import { NovaSenhaComponent } from './nova-senha/nova-senha.component';
 
 
 
@@ -68,7 +69,8 @@ import { AcessDeniedComponent } from './acess-denied/acess-denied.component';
     PessoaEditComponent,
     LacamentoComponent,
     LancamentoEditComponent,
-    AcessDeniedComponent
+    AcessDeniedComponent,
+    NovaSenhaComponent
   ],
   imports: [
     BrowserModule,
