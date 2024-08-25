@@ -12,6 +12,7 @@ import { LacamentoComponent } from './lacamento/lacamento.component';
 import { LancamentoEditComponent } from './lacamento/lancamento-edit/lancamento-edit.component';
 import { authGuard } from './auth/auth.guard';
 import { AcessDeniedComponent } from './acess-denied/acess-denied.component';
+import { NovaSenhaComponent } from './login/nova-senha/nova-senha.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'lancamento', component: LacamentoComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE', 'READ_PRIVILEGE'] } },
   { path: 'lancamento/edit/:id', component: LancamentoEditComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] }},
   { path: 'lancamento/new', component: LancamentoEditComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] }},
+  { path: 'esqueci-senha', component: NovaSenhaComponent, canActivate: [authGuard],  data: { roles: ['ADMIN_PRIVILEGE', 'READ_PRIVILEGE'] }},
   { path: 'access-denied', component: AcessDeniedComponent }, // Corrigido: sem a barra inicial
   { path: '**', redirectTo: 'login' } // Rota de fallback para qualquer caminho desconhecido
 ];
