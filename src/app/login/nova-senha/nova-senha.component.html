@@ -1,1 +1,43 @@
-<p>nova-senha works!</p>
+<div class="nova-senha-container">
+  <h2>Resetar Senha</h2>
+
+  <form #novaSenhaForm="ngForm" (ngSubmit)="onSubmit(novaSenhaForm)">
+    <div class="p-field">
+      <label for="senhaAtual">Senha Atual</label>
+      <p-password
+        id="senhaAtual"
+        name="senhaAtual"
+        [(ngModel)]="senhaAtual"
+        #senhaAtualInput="ngModel"
+        [feedback]="false"
+        required
+        class="w-full"
+        [ngClass]="{'ng-invalid ng-dirty': senhaAtualInput.invalid && senhaAtualInput.touched}"
+      ></p-password>
+      <div *ngIf="senhaAtualInput.invalid && senhaAtualInput.touched" class="p-error">
+        <small *ngIf="senhaAtualInput.errors?.required">A senha atual é obrigatória.</small>
+      </div>
+    </div>
+
+    <div class="p-field">
+      <label for="novaSenha">Nova Senha</label>
+      <p-password
+        id="novaSenha"
+        name="novaSenha"
+        [(ngModel)]="novaSenha"
+        #novaSenhaInput="ngModel"
+        [feedback]="true"
+        required
+        minlength="8"
+        class="w-full"
+        [ngClass]="{'ng-invalid ng-dirty': novaSenhaInput.invalid && novaSenhaInput.touched}"
+      ></p-password>
+      <div *ngIf="novaSenhaInput.invalid && novaSenhaInput.touched" class="p-error">
+        <small *ngIf="novaSenhaInput.errors?.required">A nova senha é obrigatória.</small>
+        <small *ngIf="novaSenhaInput.errors?.minlength">A senha deve ter pelo menos 8 caracteres.</small>
+      </div>
+    </div>
+
+    <div class="p-field">
+      <label for="confirmarSenha">Confirmar Senha</label>
+      <p
