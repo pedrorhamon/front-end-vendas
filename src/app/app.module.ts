@@ -1,51 +1,51 @@
+import { DecimalPipe } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
+import { CalendarModule } from 'primeng/calendar';
 import { CardModule } from 'primeng/card';
+import { ChartModule } from 'primeng/chart';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DialogModule } from 'primeng/dialog';
+import { DropdownModule } from 'primeng/dropdown';
+import { FileUploadModule } from 'primeng/fileupload';
 import { FloatLabelModule } from 'primeng/floatlabel';
+import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { MenubarModule } from 'primeng/menubar';
 import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { SidebarModule } from 'primeng/sidebar';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 
+import { AcessDeniedComponent } from './acess-denied/acess-denied.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CategoriaEditComponent } from './categoria/categoria-edit/categoria-edit.component';
 import { CategoriaComponent } from './categoria/categoria.component';
+import { HomeComponent } from './home/home.component';
+import { LacamentoComponent } from './lacamento/lacamento.component';
+import { LancamentoEditComponent } from './lacamento/lancamento-edit/lancamento-edit.component';
 import { LoginComponent } from './login/login.component';
+import { NovaSenhaComponent } from './login/nova-senha/nova-senha.component';
+import { PessoaEditComponent } from './pessoa/pessoa-edit/pessoa-edit.component';
+import { PessoaComponent } from './pessoa/pessoa.component';
 import { FooterComponent } from './template/footer/footer.component';
 import { NavbarComponent } from './template/navbar/navbar.component';
 import { SidebarComponent } from './template/sidebar/sidebar.component';
-import { MenubarModule } from 'primeng/menubar';
-import { HomeComponent } from './home/home.component';
-import { ChartModule } from 'primeng/chart';
-import { UsuarioComponent } from './usuario/usuario.component';
 import { UsuarioEditComponent } from './usuario/usuario-edit/usuario-edit.component';
+import { UsuarioComponent } from './usuario/usuario.component';
 
-import { MultiSelectModule } from 'primeng/multiselect';
-import { PessoaComponent } from './pessoa/pessoa.component';
-import { PessoaEditComponent } from './pessoa/pessoa-edit/pessoa-edit.component';
-import { LacamentoComponent } from './lacamento/lacamento.component';
-import { LancamentoEditComponent } from './lacamento/lancamento-edit/lancamento-edit.component';
-import { CalendarModule } from 'primeng/calendar';
-import { DropdownModule } from 'primeng/dropdown';
-import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { DialogModule } from 'primeng/dialog';
-import { FormsModule } from '@angular/forms';
-import { InputTextareaModule } from 'primeng/inputtextarea';
-import { InputNumberModule } from 'primeng/inputnumber';
-import { DecimalPipe } from '@angular/common';
-import { AcessDeniedComponent } from './acess-denied/acess-denied.component';
-import { NovaSenhaComponent } from './login/nova-senha/nova-senha.component';
 
 
 
@@ -100,7 +100,8 @@ import { NovaSenhaComponent } from './login/nova-senha/nova-senha.component';
     DialogModule,
     FormsModule,
     InputTextareaModule,
-    InputNumberModule
+    InputNumberModule,
+    FileUploadModule
 
   ],
   providers: [
