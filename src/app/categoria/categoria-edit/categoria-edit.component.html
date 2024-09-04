@@ -17,6 +17,21 @@
         <input id="name" type="text" pInputText formControlName="name" class="form-control" />
       </div>
     </div>
+    <div class="p-col-12">
+      <div class="p-field">
+        <label for="imagemUrl">Imagem de Categoria</label>
+        <p-fileUpload
+              mode="basic"
+              chooseLabel="Choose"
+              chooseIcon="pi pi-upload"
+              name="demo[]"
+              url="https://www.primefaces.org/cdn/api/upload.php"
+              accept="image/*"
+              maxFileSize="1000000"
+             />
+        <!-- <input id="imagemUrl" type="text" pInputText formControlName="imagemUrl" class="form-control" /> -->
+      </div>
+    </div>
 
     <div class="p-col-12">
       <div class="button-group">
