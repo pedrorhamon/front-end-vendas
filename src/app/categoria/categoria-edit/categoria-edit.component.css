@@ -24,4 +24,11 @@
 
 .p-error {
   color: #f44336;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* Adicionando espaçamento no input de imagem */
+input[type="file"] {
+  margin-top: 1rem;
 }
