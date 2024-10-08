@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Usuario } from './model/usuario';
 import { Page } from '../../assets/page';
@@ -70,15 +70,5 @@ export class UsuarioService {
 
   deletar(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
-  }
-
-  alterarSenha(senhaAtual: string, novaSenha: string, confirmarNovaSenha: string): Observable<any> {
-    const payload = {
-      senhaAtual: senhaAtual,
-      novaSenha: novaSenha,
-      confirmarNovaSenha: confirmarNovaSenha
-    };
-
-    return this.http.put(`${this.baseUrl}/alterar-senha`, payload);
   }
 }

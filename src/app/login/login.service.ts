@@ -253,5 +253,31 @@ private handleError(error: HttpErrorResponse) {
   return throwError(() => new Error(errorMessage));
 }
 
+alterarSenha(senhaAtual: string, novaSenha: string, confirmarNovaSenha: string): Observable<any> {
+  const token = this.isClient() ? localStorage.getItem('token') : null;
+
+  if (!token) {
+    throw new Error('Token de autenticação não encontrado');
+  }
+
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+  const payload = {
+    senhaAtual: senhaAtual,
+    novaSenha: novaSenha,
+    confirmarNovaSenha: confirmarNovaSenha
+  };
+
+  // Defina responseType como 'text' para evitar que o Angular tente parsear a resposta como JSON
+  return this.http.put(`${this.baseUrl}/alterar-senha`, payload, { headers, responseType: 'text' })
+    .pipe(
+      tap(() => {
+        console.log('Senha alterada com sucesso');
+      }),
+      catchError(this.handleError)
+    );
+}
+
+
 }
 
