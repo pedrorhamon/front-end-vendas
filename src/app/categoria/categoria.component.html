@@ -3,7 +3,7 @@
 <div class="categoria-list-container">
   <div class="header">
     <h2>Lista de Categorias</h2>
-    <button *ngIf="canCreate()" pButton type="button" label="Nova Categoria" icon="pi pi-plus" class="p-button-success" (click)="novaCategoria()"></button>
+    <button *ngIf="!canCreate()" pButton type="button" label="Nova Categoria" icon="pi pi-plus" class="p-button-success" (click)="novaCategoria()"></button>
   </div>
 
   <div class="filter-container">
@@ -16,16 +16,18 @@
       <tr>
         <th>Id</th>
         <th>Nome</th>
-        <th *ngIf="canDelete()">Ações</th>
+        <th>Imagem</th>
+        <th *ngIf="!canDelete()">Ações</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-categoria>
       <tr>
         <td>{{ categoria.id }}</td>
         <td>{{ categoria.name }}</td>
+        <td>{{ categoria.imagem }}</td>
         <td>
-          <button *ngIf="canEdit()" pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editCategoria(categoria.id)"></button>
-          <button *ngIf="canDelete()" pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteCategoria(categoria.id)"></button>
+          <button *ngIf="!canEdit()" pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editCategoria(categoria.id)"></button>
+          <button *ngIf="!canDelete()" pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteCategoria(categoria.id)"></button>
         </td>
       </tr>
     </ng-template>
