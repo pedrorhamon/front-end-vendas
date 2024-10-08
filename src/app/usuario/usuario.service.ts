@@ -71,4 +71,14 @@ export class UsuarioService {
   deletar(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
+
+  alterarSenha(senhaAtual: string, novaSenha: string, confirmarNovaSenha: string): Observable<any> {
+    const payload = {
+      senhaAtual: senhaAtual,
+      novaSenha: novaSenha,
+      confirmarNovaSenha: confirmarNovaSenha
+    };
+
+    return this.http.put(`${this.baseUrl}/alterar-senha`, payload);
+  }
 }

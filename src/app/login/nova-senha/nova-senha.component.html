@@ -1,43 +1,21 @@
-<!-- <div class="nova-senha-container">
-  <h2>Resetar Senha</h2>
-
+<div class="nova-senha-container">
+  <h2>Alterar Senha</h2>
   <form #novaSenhaForm="ngForm" (ngSubmit)="onSubmit(novaSenhaForm)">
     <div class="p-field">
       <label for="senhaAtual">Senha Atual</label>
-      <p-password
-        id="senhaAtual"
-        name="senhaAtual"
-        [(ngModel)]="senhaAtual"
-        #senhaAtualInput="ngModel"
-        [feedback]="false"
-        required
-        class="w-full"
-        [ngClass]="{'ng-invalid ng-dirty': senhaAtualInput.invalid && senhaAtualInput.touched}"
-      ></p-password>
-      <div *ngIf="senhaAtualInput.invalid && senhaAtualInput.touched" class="p-error">
-        <small *ngIf="senhaAtualInput.errors?.required">A senha atual é obrigatória.</small>
-      </div>
+      <p-password id="senhaAtual" name="senhaAtual" [(ngModel)]="senhaAtual" required></p-password>
     </div>
 
     <div class="p-field">
       <label for="novaSenha">Nova Senha</label>
-      <p-password
-        id="novaSenha"
-        name="novaSenha"
-        [(ngModel)]="novaSenha"
-        #novaSenhaInput="ngModel"
-        [feedback]="true"
-        required
-        minlength="8"
-        class="w-full"
-        [ngClass]="{'ng-invalid ng-dirty': novaSenhaInput.invalid && novaSenhaInput.touched}"
-      ></p-password>
-      <div *ngIf="novaSenhaInput.invalid && novaSenhaInput.touched" class="p-error">
-        <small *ngIf="novaSenhaInput.errors?.required">A nova senha é obrigatória.</small>
-        <small *ngIf="novaSenhaInput.errors?.minlength">A senha deve ter pelo menos 8 caracteres.</small>
-      </div>
+      <p-password id="novaSenha" name="novaSenha" [(ngModel)]="novaSenha" minlength="8" required></p-password>
     </div>
--->
+
     <div class="p-field">
-      <label for="confirmarSenha">Confirmar Senha</label>
+      <label for="confirmarNovaSenha">Confirmar Nova Senha</label>
+      <p-password id="confirmarNovaSenha" name="confirmarNovaSenha" [(ngModel)]="confirmarNovaSenha" required></p-password>
     </div>
+
+    <button type="submit" pButton label="Alterar Senha" [disabled]="novaSenhaForm.invalid"></button>
+  </form>
+</div>
