@@ -1,21 +1,21 @@
-<div class="nova-senha-container">
+<div class="alterar-senha-container">
   <h2>Alterar Senha</h2>
-  <form #novaSenhaForm="ngForm" (ngSubmit)="onSubmit(novaSenhaForm)">
-    <div class="p-field">
+  <form (ngSubmit)="onSubmit()">
+    <div>
       <label for="senhaAtual">Senha Atual</label>
-      <p-password id="senhaAtual" name="senhaAtual" [(ngModel)]="senhaAtual" required></p-password>
+      <input type="password" id="senhaAtual" [(ngModel)]="senhaAtual" name="senhaAtual" required>
     </div>
 
-    <div class="p-field">
+    <div>
       <label for="novaSenha">Nova Senha</label>
-      <p-password id="novaSenha" name="novaSenha" [(ngModel)]="novaSenha" minlength="8" required></p-password>
+      <input type="password" id="novaSenha" [(ngModel)]="novaSenha" name="novaSenha" required>
     </div>
 
-    <div class="p-field">
+    <div>
       <label for="confirmarNovaSenha">Confirmar Nova Senha</label>
-      <p-password id="confirmarNovaSenha" name="confirmarNovaSenha" [(ngModel)]="confirmarNovaSenha" required></p-password>
+      <input type="password" id="confirmarNovaSenha" [(ngModel)]="confirmarNovaSenha" name="confirmarNovaSenha" required>
     </div>
 
-    <button type="submit" pButton label="Alterar Senha" [disabled]="novaSenhaForm.invalid"></button>
+    <button type="submit">Alterar Senha</button>
   </form>
 </div>
