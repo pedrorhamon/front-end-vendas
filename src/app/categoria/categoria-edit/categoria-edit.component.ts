@@ -14,6 +14,7 @@ export class CategoriaEditComponent implements OnInit {
   categoriaForm: FormGroup;
   categoria: Categoria = new Categoria();
   loading: boolean = false
+  selectedFile: File | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -24,7 +25,8 @@ export class CategoriaEditComponent implements OnInit {
   ) {
     this.categoriaForm = this.fb.group({
       id: [null],
-      name: ['', [Validators.required, Validators.minLength(3)]]
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      imageFile: [null]
     });
   }
 
@@ -49,7 +51,21 @@ export class CategoriaEditComponent implements OnInit {
     }
   }
 
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
+    }
+  }
+
   salvar(): void {
+    const formData = new FormData();
+  formData.append('name', this.categoriaForm.get('name')?.value);
+
+    if (this.selectedFile) {
+      formData.append('imageFile', this.selectedFile); // Certifique-se de que o arquivo de imagem está sendo enviado
+    }
+
     this.categoriaService.createCategoria(this.categoriaForm.value).subscribe(
       () => {
         this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Categoria salva com sucesso.' });

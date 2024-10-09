@@ -38,7 +38,26 @@ export class CategoriaService {
     );
   }
 
-  createCategoria(categoria: Categoria): Observable<Categoria> {
-    return this.http.post<Categoria>(this.baseUrl, categoria);
+  createCategoria(categoria: Categoria, imageFile?: File): Observable<Categoria> {
+    const formData = new FormData();
+
+    // Adiciona os campos da categoria ao FormData
+    formData.append('categoria', new Blob([JSON.stringify(categoria)], { type: 'application/json' }));
+
+    // Se o arquivo de imagem for fornecido, adiciona ao FormData
+    if (imageFile) {
+      formData.append('imageFile', imageFile);
+    }
+
+    // Envia a requisição usando multipart/form-data
+    return this.http.post<Categoria>(this.baseUrl, formData);
   }
+
+  getImagemById(id: number): Observable<Blob> {
+    return this.http.get(`${this.baseUrl}/${id}/imagem`, { responseType: 'blob' });
+  }
+
+  // createCategoria(categoria: Categoria): Observable<Categoria> {
+  //   return this.http.post<Categoria>(this.baseUrl, categoria);
+  // }
 }
