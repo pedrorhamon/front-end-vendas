@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable } from 'rxjs';
 import { Categoria } from './model/categoria';
@@ -38,23 +38,35 @@ export class CategoriaService {
     );
   }
 
-  createCategoria(categoria: Categoria, imageFile?: File): Observable<Categoria> {
-    const formData = new FormData();
+  // createCategoria(categoria: Categoria, imageFile?: File): Observable<Categoria> {
+  //   const formData = new FormData();
 
-    // Adiciona os campos da categoria ao FormData
-    formData.append('categoria', new Blob([JSON.stringify(categoria)], { type: 'application/json' }));
+  //   // Adiciona os campos da categoria ao FormData
+  //   formData.append('categoria', new Blob([JSON.stringify(categoria)], { type: 'application/json' }));
 
-    // Se o arquivo de imagem for fornecido, adiciona ao FormData
-    if (imageFile) {
-      formData.append('imageFile', imageFile);
-    }
+  //   // Se o arquivo de imagem for fornecido, adiciona ao FormData
+  //   if (imageFile) {
+  //     formData.append('imageFile', imageFile);
+  //   }
 
-    // Envia a requisição usando multipart/form-data
-    return this.http.post<Categoria>(this.baseUrl, formData);
-  }
+  //   // Envia a requisição usando multipart/form-data
+  //   return this.http.post<Categoria>(this.baseUrl, formData);
+  // }
 
-  getImagemById(id: number): Observable<Blob> {
-    return this.http.get(`${this.baseUrl}/${id}/imagem`, { responseType: 'blob' });
+  // getImagemById(id: number): Observable<Blob> {
+  //   return this.http.get(`${this.baseUrl}/${id}/imagem`, { responseType: 'blob' });
+  // }
+
+  // createCategoria(formData: FormData): Observable<Categoria> {
+  //   return this.http.post<Categoria>(this.baseUrl, formData);
+  // }
+
+  createCategoria(categoria: FormData): Observable<Categoria> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}` // Adiciona o token de autenticação
+    });
+
+    return this.http.post<Categoria>(this.baseUrl, categoria, { headers });
   }
 
   // createCategoria(categoria: Categoria): Observable<Categoria> {
