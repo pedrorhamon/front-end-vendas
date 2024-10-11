@@ -1,5 +1,4 @@
 <p-confirmDialog></p-confirmDialog>
-<!-- <p-messages></p-messages> -->
 
 <div *ngIf="loading" class="loading-overlay">
   <div class="spinner"></div>
@@ -17,20 +16,18 @@
         <input id="name" type="text" pInputText formControlName="name" class="form-control" />
       </div>
     </div>
+
     <div class="p-col-12">
       <div class="p-field">
-        <label for="imagemUrl">Imagem de Categoria</label>
+        <label for="imageFile">Imagem de Categoria</label>
         <p-fileUpload
-              mode="basic"
-              chooseLabel="Choose"
-              chooseIcon="pi pi-upload"
-              name="demo[]"
-              url="https://www.primefaces.org/cdn/api/upload.php"
-              accept="image/*"
-              maxFileSize="1000000"
-              formGroupName="imageFile"
-             />
-        <!-- <input id="imagemUrl" type="text" pInputText formControlName="imagemUrl" class="form-control" /> -->
+          mode="basic"
+          chooseLabel="Escolher Imagem"
+          name="imageFile"
+          accept="image/*"
+          maxFileSize="1000000"
+          (onSelect)="onFileSelected($event)"
+        ></p-fileUpload>
       </div>
     </div>
 

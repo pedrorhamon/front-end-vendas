@@ -63,7 +63,7 @@ export class CategoriaService {
 
   createCategoria(categoria: FormData): Observable<Categoria> {
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem('token')}` // Adiciona o token de autenticação
+      'Authorization': `Bearer ${localStorage.getItem('token')}` // Adiciona o token de autenticação, se necessário
     });
 
     return this.http.post<Categoria>(this.baseUrl, categoria, { headers });
