@@ -3,5 +3,5 @@ export class Categoria {
   name!: string;
   createdAt?: string;
   updatedAt?: string;
-  imageFile?: File;
+  imageFile?: string;
 }

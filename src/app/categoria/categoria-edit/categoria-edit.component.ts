@@ -15,6 +15,7 @@ export class CategoriaEditComponent implements OnInit {
   categoria: Categoria = new Categoria();
   loading: boolean = false;
   selectedFile: File | null = null; // Armazena o arquivo selecionado
+  imagePreview: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -26,7 +27,7 @@ export class CategoriaEditComponent implements OnInit {
     this.categoriaForm = this.fb.group({
       id: [null],
       name: ['', [Validators.required, Validators.minLength(3)]],
-      imageFile: [null]
+      imageFile: ['']
     });
   }
 
@@ -36,28 +37,54 @@ export class CategoriaEditComponent implements OnInit {
       this.categoriaService.getCategoriaById(+id).subscribe(categoria => {
         this.categoria = categoria;
         this.categoriaForm.patchValue(categoria);
+
+        if (categoria.imageFile) {
+          this.imagePreview = `data:image/jpeg;base64,${categoria.imageFile}`;
+        }
       });
+    }
+
+  }
+
+  onFileSelected(event: any): void {
+    this.selectedFile = event.files[0];
+
+    if (this.selectedFile) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreview = reader.result as string;
+      };
+      reader.readAsDataURL(this.selectedFile);
     }
   }
 
-  // Captura o arquivo selecionado
-  onFileSelected(event: any): void {
-    this.selectedFile = event.files[0]; // Armazena o arquivo selecionado
+  onRemoveImage(): void {
+    this.selectedFile = null; // Remove o arquivo selecionado
+    this.imagePreview = null; // Remove a pré-visualização
+
+    // Reseta o campo de upload no formulário
+    const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
+    if (fileInput) {
+      fileInput.value = ''; // Limpa o campo de upload manualmente
+    }
+
+    // Reseta o controle do form de imagem
+    this.categoriaForm.get('imageFile')?.setValue(null);
+    this.categoriaForm.get('imageFile')?.updateValueAndValidity(); // Atualiza o valor e o estado do campo
   }
+
 
   onSubmit(): void {
     if (this.categoriaForm.valid) {
       const formData = new FormData();
       formData.append('name', this.categoriaForm.get('name')?.value);
 
-      // Verifica se o arquivo foi selecionado e o adiciona ao FormData
       if (this.selectedFile) {
         formData.append('imageFile', this.selectedFile);
       }
 
       this.loading = true;
 
-      // Verifica se está criando ou atualizando
       if (this.categoria.id) {
         this.atualizar(formData);
       } else {
@@ -81,7 +108,7 @@ export class CategoriaEditComponent implements OnInit {
   }
 
   atualizar(formData: FormData): void {
-    this.categoriaService.updateCategoria(this.categoria.id!, this.categoria).subscribe(
+    this.categoriaService.updateCategoria(this.categoria.id!, formData).subscribe(
       () => {
         this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Categoria atualizada com sucesso.' });
         this.router.navigate(['/categoria']);

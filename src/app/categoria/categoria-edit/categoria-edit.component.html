@@ -20,14 +20,30 @@
     <div class="p-col-12">
       <div class="p-field">
         <label for="imageFile">Imagem de Categoria</label>
-        <p-fileUpload
-          mode="basic"
-          chooseLabel="Escolher Imagem"
-          name="imageFile"
-          accept="image/*"
-          maxFileSize="1000000"
-          (onSelect)="onFileSelected($event)"
-        ></p-fileUpload>
+
+        <!-- Imagem de Upload -->
+        <div class="image-upload-container">
+          <p-fileUpload
+            mode="basic"
+            chooseLabel="Escolher Imagem"
+            name="imageFile"
+            accept="image/*"
+            maxFileSize="1000000"
+            (onSelect)="onFileSelected($event)"
+            [disabled]="!!selectedFile"
+          ></p-fileUpload>
+
+          <!-- Botão de Remover Imagem -->
+          <button *ngIf="selectedFile || imagePreview" pButton type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-small remove-btn" (click)="onRemoveImage()"></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pré-visualização da Imagem -->
+    <div *ngIf="imagePreview" class="p-col-12">
+      <div class="p-field">
+        <label>Pré-visualização:</label>
+        <img [src]="imagePreview" alt="Imagem da Categoria" class="image-preview" />
       </div>
     </div>
 

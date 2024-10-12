@@ -24,7 +24,10 @@
       <tr>
         <td>{{ categoria.id }}</td>
         <td>{{ categoria.name }}</td>
-        <td>{{ categoria.imagem }}</td>
+        <td>
+          <!-- Renderizando a imagem se disponível -->
+          <img *ngIf="categoria.imageFile" [src]="'http://localhost:8080/api/categorias/' + categoria.id + '/imagem'" alt="{{ categoria.name }}" width="100" height="100">
+        </td>
         <td>
           <button *ngIf="!canEdit()" pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editCategoria(categoria.id)"></button>
           <button *ngIf="!canDelete()" pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteCategoria(categoria.id)"></button>

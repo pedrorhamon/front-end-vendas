@@ -23,9 +23,14 @@ export class CategoriaService {
     return this.http.get<Categoria>(`${this.baseUrl}/${id}`);
   }
 
-  updateCategoria(id: number, categoria: Categoria): Observable<Categoria> {
-    return this.http.put<Categoria>(`${this.baseUrl}/${id}`, categoria);
+  updateCategoria(id: number, categoria: FormData): Observable<Categoria> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}` // Adiciona o token de autenticação, se necessário
+    });
+
+    return this.http.put<Categoria>(`${this.baseUrl}/${id}`, categoria, { headers });
   }
+
 
   deleteCategoria(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`).pipe(
@@ -38,29 +43,6 @@ export class CategoriaService {
     );
   }
 
-  // createCategoria(categoria: Categoria, imageFile?: File): Observable<Categoria> {
-  //   const formData = new FormData();
-
-  //   // Adiciona os campos da categoria ao FormData
-  //   formData.append('categoria', new Blob([JSON.stringify(categoria)], { type: 'application/json' }));
-
-  //   // Se o arquivo de imagem for fornecido, adiciona ao FormData
-  //   if (imageFile) {
-  //     formData.append('imageFile', imageFile);
-  //   }
-
-  //   // Envia a requisição usando multipart/form-data
-  //   return this.http.post<Categoria>(this.baseUrl, formData);
-  // }
-
-  // getImagemById(id: number): Observable<Blob> {
-  //   return this.http.get(`${this.baseUrl}/${id}/imagem`, { responseType: 'blob' });
-  // }
-
-  // createCategoria(formData: FormData): Observable<Categoria> {
-  //   return this.http.post<Categoria>(this.baseUrl, formData);
-  // }
-
   createCategoria(categoria: FormData): Observable<Categoria> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('token')}` // Adiciona o token de autenticação, se necessário
@@ -69,7 +51,8 @@ export class CategoriaService {
     return this.http.post<Categoria>(this.baseUrl, categoria, { headers });
   }
 
-  // createCategoria(categoria: Categoria): Observable<Categoria> {
-  //   return this.http.post<Categoria>(this.baseUrl, categoria);
-  // }
+  getCategoriaImage(id: number): Observable<Blob> {
+    const url = `${this.baseUrl}/${id}/imagem`;
+    return this.http.get(url, { responseType: 'blob' });
+  }
 }
