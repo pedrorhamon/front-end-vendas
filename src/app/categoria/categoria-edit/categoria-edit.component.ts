@@ -16,6 +16,8 @@ export class CategoriaEditComponent implements OnInit {
   loading: boolean = false;
   selectedFile: File | null = null; // Armazena o arquivo selecionado
   imagePreview: string | null = null;
+  uploadedFiles: any[] = [];
+  imageFileRemoved: any;
 
   constructor(
     private fb: FormBuilder,
@@ -46,33 +48,49 @@ export class CategoriaEditComponent implements OnInit {
 
   }
 
-  onFileSelected(event: any): void {
-    this.selectedFile = event.files[0];
 
-    if (this.selectedFile) {
+
+  onFileSelected(event: any): void {
+    const file = event.files[0];
+    if (file) {
+      this.selectedFile = file;
+
+      // Carrega a pré-visualização da imagem
       const reader = new FileReader();
       reader.onload = () => {
         this.imagePreview = reader.result as string;
       };
-      reader.readAsDataURL(this.selectedFile);
+      reader.readAsDataURL(file);
     }
   }
+
 
   onRemoveImage(): void {
-    this.selectedFile = null; // Remove o arquivo selecionado
-    this.imagePreview = null; // Remove a pré-visualização
-
-    // Reseta o campo de upload no formulário
-    const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
-    if (fileInput) {
-      fileInput.value = ''; // Limpa o campo de upload manualmente
+    if (this.categoria.id) {
+      // Se está editando e a imagem existe, chama o backend para remover a imagem
+      this.categoriaService.removeImage(this.categoria.id).subscribe(
+        () => {
+          this.selectedFile = null;
+          this.imagePreview = null;
+          this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Imagem removida com sucesso.' });
+        },
+        error => {
+          this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Erro ao remover a imagem.' });
+        }
+      );
+    } else {
+      // Lógica de remoção local se ainda não está salva no backend
+      this.selectedFile = null;
+      this.imagePreview = null;
+      this.uploadedFiles = [];
     }
-
-    // Reseta o controle do form de imagem
-    this.categoriaForm.get('imageFile')?.setValue(null);
-    this.categoriaForm.get('imageFile')?.updateValueAndValidity(); // Atualiza o valor e o estado do campo
   }
 
+
+  onUpload(event: any): void {
+    // Manipule o evento de upload aqui (caso precise)
+    console.log('Arquivos carregados com sucesso!');
+  }
 
   onSubmit(): void {
     if (this.categoriaForm.valid) {
@@ -81,6 +99,9 @@ export class CategoriaEditComponent implements OnInit {
 
       if (this.selectedFile) {
         formData.append('imageFile', this.selectedFile);
+      } else if (this.imageFileRemoved) {
+        // Adiciona uma flag para indicar que a imagem foi removida
+        formData.append('imageFileRemoved', 'true');
       }
 
       this.loading = true;

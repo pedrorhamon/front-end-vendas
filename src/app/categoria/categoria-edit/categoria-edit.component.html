@@ -20,32 +20,28 @@
     <div class="p-col-12">
       <div class="p-field">
         <label for="imageFile">Imagem de Categoria</label>
-
-        <!-- Imagem de Upload -->
-        <div class="image-upload-container">
+<!-- Componente de upload da imagem -->
           <p-fileUpload
-            mode="basic"
-            chooseLabel="Escolher Imagem"
             name="imageFile"
+            cancelLabel="Cancelar"
+            chooseLabel="Escolher Imagem"
             accept="image/*"
             maxFileSize="1000000"
             (onSelect)="onFileSelected($event)"
-            [disabled]="!!selectedFile"
-          ></p-fileUpload>
+            (onClear)="onRemoveImage()"
+            [showUploadButton]="false">
+          </p-fileUpload>
 
-          <!-- Botão de Remover Imagem -->
-          <button *ngIf="selectedFile || imagePreview" pButton type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-small remove-btn" (click)="onRemoveImage()"></button>
-        </div>
+          <!-- Pré-visualização da imagem carregada ou selecionada -->
+          <div *ngIf="imagePreview" class="p-col-12">
+            <div class="p-field">
+              <label>Pré-visualização:</label>
+              <img [src]="imagePreview" alt="Imagem da Categoria" class="image-preview" />
+            </div>
+          </div>
       </div>
     </div>
 
-    <!-- Pré-visualização da Imagem -->
-    <div *ngIf="imagePreview" class="p-col-12">
-      <div class="p-field">
-        <label>Pré-visualização:</label>
-        <img [src]="imagePreview" alt="Imagem da Categoria" class="image-preview" />
-      </div>
-    </div>
 
     <div class="p-col-12">
       <div class="button-group">

@@ -55,4 +55,8 @@ export class CategoriaService {
     const url = `${this.baseUrl}/${id}/imagem`;
     return this.http.get(url, { responseType: 'blob' });
   }
+
+  removeImage(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${id}/imagem`);
+  }
 }

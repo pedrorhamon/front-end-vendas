@@ -22,11 +22,6 @@
   gap: 1rem;
 }
 
-.p-error {
-  color: #f44336;
-  font-size: 0.875rem;
-  margin-top: 0.25rem;
-}
 
 /* Adicionando espaçamento no input de imagem */
 input[type="file"] {
@@ -39,14 +34,37 @@ input[type="file"] {
   margin-top: 10px; /* Espaçamento entre a imagem e outros elementos */
 }
 
-.file-info {
+/* .file-info {
   display: flex;
   align-items: center;
   gap: 10px;
-}
+} */
 
 .remove-btn {
   margin-left: 10px;
   height: 32px;
   width: 32px;
 }
+
+.p-fileupload-content ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.p-fileupload-content ul li {
+  display: flex;
+  align-items: center;
+}
+
+.p-button-small {
+  margin-left: 10px;
+}
+
+.p-element p-button-icon-only p-button p-component {
+  display: inline;
+}
+
+
+
+
+
