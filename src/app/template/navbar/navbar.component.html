@@ -4,7 +4,7 @@
   </div>
   <div class="navbar-menu">
     <div class="user-info" *ngIf="isAuthenticated()">
-      <i class="pi pi-user"></i> <!-- Ícone de usuário -->
+      <i class="pi pi-user" routerLink="/alterar-senha"></i> <!-- Ícone de usuário -->
       <span>{{ userName }}</span> <!-- Nome do usuário -->
     </div>
     <div class="spacer"></div>
