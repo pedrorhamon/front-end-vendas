@@ -6,15 +6,41 @@
       <input type="password" id="senhaAtual" [(ngModel)]="senhaAtual" name="senhaAtual" required>
     </div>
 
-    <div>
-      <label for="novaSenha">Nova Senha</label>
-      <input type="password" id="novaSenha" [(ngModel)]="novaSenha" name="novaSenha" required>
+    <div class="nova-senha-section">
+      <div class="input-container">
+        <label for="novaSenha">Nova Senha</label>
+        <input type="password" id="novaSenha" [(ngModel)]="novaSenha" name="novaSenha" (input)="validarNovaSenha()" required>
+      </div>
+
     </div>
 
     <div>
       <label for="confirmarNovaSenha">Confirmar Nova Senha</label>
       <input type="password" id="confirmarNovaSenha" [(ngModel)]="confirmarNovaSenha" name="confirmarNovaSenha" required>
     </div>
+    <br>
+
+    <div class="password-criteria">
+      <ul>
+        <li [class.valid]="criterios.minLength" [class.invalid]="!criterios.minLength">
+          <span>{{ criterios.minLength ? '✔' : '❌' }}</span> No mínimo 8 caracteres
+        </li>
+        <li [class.valid]="criterios.upperCase" [class.invalid]="!criterios.upperCase">
+          <span>{{ criterios.upperCase ? '✔' : '❌' }}</span> Pelo menos uma letra maiúscula
+        </li>
+        <li [class.valid]="criterios.lowerCase" [class.invalid]="!criterios.lowerCase">
+          <span>{{ criterios.lowerCase ? '✔' : '❌' }}</span> Pelo menos uma letra minúscula
+        </li>
+        <li [class.valid]="criterios.digit" [class.invalid]="!criterios.digit">
+          <span>{{ criterios.digit ? '✔' : '❌' }}</span> Pelo menos um número
+        </li>
+        <li [class.valid]="criterios.specialChar" [class.invalid]="!criterios.specialChar">
+          <span>{{ criterios.specialChar ? '✔' : '❌' }}</span> Pelo menos um caractere especial ($!%*?&)
+        </li>
+      </ul>
+    </div>
+
+    <br>
 
     <button type="submit">Alterar Senha</button>
   </form>

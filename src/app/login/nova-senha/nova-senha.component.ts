@@ -16,7 +16,15 @@ export class NovaSenhaComponent {
   novaSenha: string = '';
   confirmarNovaSenha: string = '';
 
-  constructor(private loginService: LoginService,  private messageService: MessageService,  private router: Router) {}
+  criterios = {
+    minLength: false,
+    upperCase: false,
+    lowerCase: false,
+    digit: false,
+    specialChar: false
+  };
+
+  constructor(private loginService: LoginService, private messageService: MessageService, private router: Router) {}
 
   onSubmit() {
     if (this.novaSenha !== this.confirmarNovaSenha) {
@@ -24,27 +32,41 @@ export class NovaSenhaComponent {
       return;
     }
 
+    if (!this.isSenhaValida()) {
+      this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'A nova senha não atende aos critérios de segurança.' });
+      return;
+    }
+
     this.loginService.alterarSenha(this.senhaAtual, this.novaSenha, this.confirmarNovaSenha)
       .subscribe({
         next: (response) => {
           this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Senha alterada com sucesso!' });
-
-          // Chama o logout e redireciona para a página de login após o logout ser bem-sucedido
           this.loginService.logout().subscribe({
             next: () => {
-              // Redireciona o usuário para a página de login
               this.router.navigate(['/login']);
             },
             error: (err) => {
-              console.error('Erro ao realizar logout', err);
               this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Erro ao realizar logout' });
             }
           });
         },
         error: (err) => {
-          console.error('Erro ao alterar senha', err);
           this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Erro ao alterar senha' });
         }
       });
+  }
+
+  validarNovaSenha() {
+    const senha = this.novaSenha;
+
+    this.criterios.minLength = senha.length >= 8;
+    this.criterios.upperCase = /[A-Z]/.test(senha);
+    this.criterios.lowerCase = /[a-z]/.test(senha);
+    this.criterios.digit = /\d/.test(senha);
+    this.criterios.specialChar = /[@$!%*?&]/.test(senha);
+  }
+
+  isSenhaValida() {
+    return Object.values(this.criterios).every(criterio => criterio === true);
   }
 }

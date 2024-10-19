@@ -1,11 +1,11 @@
-/* Estilos gerais */
 .alterar-senha-container {
-  max-width: 400px;
+  max-width: 500px;
   margin: 0 auto;
   padding: 20px;
   border-radius: 8px;
   background-color: #f9f9f9;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
 }
 
 h2 {
@@ -14,23 +14,22 @@ h2 {
   margin-bottom: 20px;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
+.input-group {
+  margin-bottom: 20px;
 }
 
 label {
-  margin-bottom: 8px;
+  margin-bottom: 5px;
   font-size: 14px;
   color: #555;
 }
 
 input {
+  width: 100%;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  margin-bottom: 16px;
   transition: border-color 0.2s;
 }
 
@@ -88,3 +87,26 @@ button:hover {
     font-size: 14px;
   }
 }
+
+.password-criteria {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.password-criteria ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.password-criteria li {
+  margin-bottom: 5px;
+}
+
+.valid {
+  color: green;
+}
+
+.invalid {
+  color: red;
+}
+
