@@ -38,6 +38,7 @@ import { LacamentoComponent } from './lacamento/lacamento.component';
 import { LancamentoEditComponent } from './lacamento/lancamento-edit/lancamento-edit.component';
 import { LoginComponent } from './login/login.component';
 import { NovaSenhaComponent } from './login/nova-senha/nova-senha.component';
+import { PermissaoComponent } from './permissao/permissao.component';
 import { PessoaEditComponent } from './pessoa/pessoa-edit/pessoa-edit.component';
 import { PessoaComponent } from './pessoa/pessoa.component';
 import { FooterComponent } from './template/footer/footer.component';
@@ -45,8 +46,6 @@ import { NavbarComponent } from './template/navbar/navbar.component';
 import { SidebarComponent } from './template/sidebar/sidebar.component';
 import { UsuarioEditComponent } from './usuario/usuario-edit/usuario-edit.component';
 import { UsuarioComponent } from './usuario/usuario.component';
-import { PermissaoListComponent } from './permissao-list/permissao-list.component';
-import { PermissaoComponent } from './permissao/permissao/permissao.component';
 
 
 
@@ -73,7 +72,6 @@ import { PermissaoComponent } from './permissao/permissao/permissao.component';
     LancamentoEditComponent,
     AcessDeniedComponent,
     NovaSenhaComponent,
-    PermissaoListComponent,
     PermissaoComponent
   ],
   imports: [
