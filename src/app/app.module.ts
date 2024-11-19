@@ -46,6 +46,7 @@ import { SidebarComponent } from './template/sidebar/sidebar.component';
 import { UsuarioEditComponent } from './usuario/usuario-edit/usuario-edit.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { PermissaoListComponent } from './permissao-list/permissao-list.component';
+import { PermissaoComponent } from './permissao/permissao/permissao.component';
 
 
 
@@ -72,7 +73,8 @@ import { PermissaoListComponent } from './permissao-list/permissao-list.componen
     LancamentoEditComponent,
     AcessDeniedComponent,
     NovaSenhaComponent,
-    PermissaoListComponent
+    PermissaoListComponent,
+    PermissaoComponent
   ],
   imports: [
     BrowserModule,
