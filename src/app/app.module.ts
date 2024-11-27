@@ -38,7 +38,10 @@ import { LacamentoComponent } from './lacamento/lacamento.component';
 import { LancamentoEditComponent } from './lacamento/lancamento-edit/lancamento-edit.component';
 import { LoginComponent } from './login/login.component';
 import { NovaSenhaComponent } from './login/nova-senha/nova-senha.component';
+import { PermissaoEditComponent } from './permissao/permissao-edit/permissao-edit.component';
 import { PermissaoComponent } from './permissao/permissao.component';
+import { SubPermissaoEditComponent } from './permissao/sub-permissao/sub-permissao-edit/sub-permissao-edit.component';
+import { SubPermissaoComponent } from './permissao/sub-permissao/sub-permissao.component';
 import { PessoaEditComponent } from './pessoa/pessoa-edit/pessoa-edit.component';
 import { PessoaComponent } from './pessoa/pessoa.component';
 import { FooterComponent } from './template/footer/footer.component';
@@ -46,9 +49,6 @@ import { NavbarComponent } from './template/navbar/navbar.component';
 import { SidebarComponent } from './template/sidebar/sidebar.component';
 import { UsuarioEditComponent } from './usuario/usuario-edit/usuario-edit.component';
 import { UsuarioComponent } from './usuario/usuario.component';
-import { PermissaoEditComponent } from './permissao/permissao-edit/permissao-edit.component';
-import { SubPermissaoComponent } from './permissao/sub-permissao/sub-permissao.component';
-import { SubPermissaoEditComponent } from './subPermissao/sub-permissao-edit/sub-permissao-edit.component';
 
 
 
