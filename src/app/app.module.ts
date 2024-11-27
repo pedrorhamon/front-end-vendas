@@ -48,6 +48,7 @@ import { UsuarioEditComponent } from './usuario/usuario-edit/usuario-edit.compon
 import { UsuarioComponent } from './usuario/usuario.component';
 import { PermissaoEditComponent } from './permissao/permissao-edit/permissao-edit.component';
 import { SubPermissaoComponent } from './permissao/sub-permissao/sub-permissao.component';
+import { SubPermissaoEditComponent } from './subPermissao/sub-permissao-edit/sub-permissao-edit.component';
 
 
 
@@ -76,7 +77,8 @@ import { SubPermissaoComponent } from './permissao/sub-permissao/sub-permissao.c
     NovaSenhaComponent,
     PermissaoComponent,
     PermissaoEditComponent,
-    SubPermissaoComponent
+    SubPermissaoComponent,
+    SubPermissaoEditComponent
   ],
   imports: [
     BrowserModule,
