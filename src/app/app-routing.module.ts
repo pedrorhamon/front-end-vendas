@@ -13,6 +13,8 @@ import { LancamentoEditComponent } from './lacamento/lancamento-edit/lancamento-
 import { authGuard } from './auth/auth.guard';
 import { AcessDeniedComponent } from './acess-denied/acess-denied.component';
 import { NovaSenhaComponent } from './login/nova-senha/nova-senha.component';
+import { PermissaoComponent } from './permissao/permissao.component';
+import { PermissaoEditComponent } from './permissao/permissao-edit/permissao-edit.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -35,7 +37,10 @@ const routes: Routes = [
   { path: 'esqueci-senha', component: NovaSenhaComponent},
   { path: 'alterar-senha', component: NovaSenhaComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] }},
   { path: 'access-denied', component: AcessDeniedComponent }, // Corrigido: sem a barra inicial
-  { path: '**', redirectTo: 'login' } // Rota de fallback para qualquer caminho desconhecido
+  { path: '**', redirectTo: 'login' }, // Rota de fallback para qualquer caminho desconhecido
+  { path: 'permissao', component: PermissaoComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] } },
+  { path: 'permissao/new', component: PermissaoEditComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] } },
+  { path: 'permissao/edit/:id', component: PermissaoEditComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] } },
 ];
 
 @NgModule({
