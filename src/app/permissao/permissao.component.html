@@ -24,9 +24,6 @@
       <tr>
         <td>{{ permissao.id }}</td>
         <td>{{ permissao.name }}</td>
-        <!-- <td>{{ pessoa.ativo ? 'Sim' : 'Não' }}</td>
-        <td>{{ pessoa.createdAt}}</td>
-        <td>{{ pessoa.updatedAt}}</td> -->
         <td>
           <button  *ngIf="!canEdit()" pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" ></button>
           <button  *ngIf="!canDelete()" pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" ></button>
