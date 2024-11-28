@@ -1,1 +1,37 @@
-<p>permissao works!</p>
+<p-confirmDialog></p-confirmDialog>
+<!-- <p-messages></p-messages> -->
+
+<div class="permissao-list-container">
+  <div class="header">
+    <h2>Lista Permissões</h2>
+    <button pButton type="button" label="Nova Pessoa" icon="pi pi-plus" class="p-button-success"></button>
+  </div>
+
+  <div class="filter-container">
+    <input type="text" pInputText placeholder="Filtrar por nome" />
+    <button pButton type="button" label="Limpar" icon="pi pi-times" class="p-button-secondary" ></button>
+  </div>
+
+  <p-table  [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Id</th>
+        <th>Nome</th>
+        <!-- <th  *ngIf="!canCreate()">Ações</th> -->
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-permissao>
+      <tr>
+        <td>{{ permissao.id }}</td>
+        <td>{{ permissao.name }}</td>
+        <!-- <td>{{ pessoa.ativo ? 'Sim' : 'Não' }}</td>
+        <td>{{ pessoa.createdAt}}</td>
+        <td>{{ pessoa.updatedAt}}</td> -->
+        <td>
+          <!-- <button  *ngIf="!canEdit()" pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editarPessoa(pessoa.id)"></button>
+          <button  *ngIf="!canDelete()" pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deletarPessoa(pessoa.id)"></button> -->
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
