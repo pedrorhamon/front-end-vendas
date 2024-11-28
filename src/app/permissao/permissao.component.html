@@ -17,7 +17,7 @@
       <tr>
         <th>Id</th>
         <th>Nome</th>
-        <!-- <th  *ngIf="!canCreate()">Ações</th> -->
+        <th  *ngIf="!canCreate()">Ações</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-permissao>
@@ -28,8 +28,8 @@
         <td>{{ pessoa.createdAt}}</td>
         <td>{{ pessoa.updatedAt}}</td> -->
         <td>
-          <!-- <button  *ngIf="!canEdit()" pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editarPessoa(pessoa.id)"></button>
-          <button  *ngIf="!canDelete()" pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deletarPessoa(pessoa.id)"></button> -->
+          <button  *ngIf="!canEdit()" pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" ></button>
+          <button  *ngIf="!canDelete()" pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" ></button>
         </td>
       </tr>
     </ng-template>
