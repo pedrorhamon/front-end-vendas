@@ -41,4 +41,8 @@ export class PermissaoService {
 
     return this.http.get<Page<Permissao>>(this.baseUrl, { params });
   }
+
+  criar(permissao: Permissao): Observable<Permissao> {
+    return this.http.post<Permissao>(this.baseUrl, permissao);
+  }
 }
