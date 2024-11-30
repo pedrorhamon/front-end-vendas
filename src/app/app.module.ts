@@ -23,6 +23,7 @@ import { MenubarModule } from 'primeng/menubar';
 import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { PickListModule } from 'primeng/picklist';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { SidebarModule } from 'primeng/sidebar';
 import { TableModule } from 'primeng/table';
@@ -49,7 +50,6 @@ import { NavbarComponent } from './template/navbar/navbar.component';
 import { SidebarComponent } from './template/sidebar/sidebar.component';
 import { UsuarioEditComponent } from './usuario/usuario-edit/usuario-edit.component';
 import { UsuarioComponent } from './usuario/usuario.component';
-
 
 
 
@@ -109,7 +109,8 @@ import { UsuarioComponent } from './usuario/usuario.component';
     FormsModule,
     InputTextareaModule,
     InputNumberModule,
-    FileUploadModule
+    FileUploadModule,
+    PickListModule
 
   ],
   providers: [
