@@ -49,4 +49,8 @@ export class PermissaoService {
   atualizar(id: number, permissao: Permissao): Observable<Permissao> {
     return this.http.put<Permissao>(`${this.baseUrl}/${id}`, permissao);
   }
+
+  deletar(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  }
 }
