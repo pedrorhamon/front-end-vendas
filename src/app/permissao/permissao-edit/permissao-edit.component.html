@@ -1,1 +1,15 @@
-<p>permissao-edit works!</p>
+<p-pickList
+  [source]="disponiveis"
+  [target]="selecionadas"
+  sourceHeader="Permissões Disponíveis"
+  targetHeader="Permissões Selecionadas"
+  dragdrop="true"
+  (onMoveToTarget)="onAdicionarPermissao($event)"
+  (onMoveToSource)="onRemoverPermissao($event)"
+  [responsive]="true"
+  [style]="{'width':'100%'}"
+>
+  <ng-template let-item pTemplate="item">
+    <div>{{ item.name }}</div>
+  </ng-template>
+</p-pickList>

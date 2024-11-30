@@ -28,7 +28,7 @@ export class SubPermissaoService {
     }
 
     if (name !== undefined) {
-      params = params.set('name', name);
+      params = params.set('nome', name);
     }
 
     // if (id !== undefined) {

@@ -23,11 +23,12 @@ import { MenubarModule } from 'primeng/menubar';
 import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
 import { MultiSelectModule } from 'primeng/multiselect';
-import { PickListModule } from 'primeng/picklist';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { SidebarModule } from 'primeng/sidebar';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
+import { PickListModule } from 'primeng/picklist';
+
 
 import { AcessDeniedComponent } from './acess-denied/acess-denied.component';
 import { AppRoutingModule } from './app-routing.module';
