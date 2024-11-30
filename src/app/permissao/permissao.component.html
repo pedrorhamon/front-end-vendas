@@ -4,7 +4,7 @@
 <div class="permissao-list-container">
   <div class="header">
     <h2>Lista Permissões</h2>
-    <button pButton type="button" label="Nova Pessoa" icon="pi pi-plus" class="p-button-success"></button>
+    <button pButton type="button" label="Nova Permissão" icon="pi pi-plus" class="p-button-success"></button>
   </div>
 
   <div class="filter-container">
@@ -12,7 +12,7 @@
     <button pButton type="button" label="Limpar" icon="pi pi-times" class="p-button-secondary" ></button>
   </div>
 
-  <p-table  [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }">
+  <p-table [value]="filteredPermissao" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template pTemplate="header">
       <tr>
         <th>Id</th>
@@ -20,13 +20,13 @@
         <th  *ngIf="!canCreate()">Ações</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-permissao>
+    <ng-template pTemplate="body" let-permissoes>
       <tr>
-        <td>{{ permissao.id }}</td>
-        <td>{{ permissao.name }}</td>
+        <td>{{ permissoes.id }}</td>
+        <td>{{ permissoes.name }}</td>
         <td>
-          <button  *ngIf="!canEdit()" pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editarPermissao(permissao.id)"></button>
-          <button  *ngIf="!canDelete()" pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deletarPermissao(permissao.id)"></button>
+          <button  *ngIf="!canEdit()" pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editarPermissao(permissoes.id)"></button>
+          <button  *ngIf="!canDelete()" pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deletarPermissao(permissoes.id)"></button>
         </td>
       </tr>
     </ng-template>

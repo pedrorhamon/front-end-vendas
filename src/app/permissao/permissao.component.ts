@@ -32,19 +32,20 @@ export class PermissaoComponent implements OnInit{
   ) {}
 
    ngOnInit(): void {
+    this.listarPermissao();
   }
 
-  listarPessoas(id?: number, name?: string): void {
+  listarPermissao(id?: number, name?: string): void {
     this.permissaoService.listarPessoa(id, name, this.page, this.size).subscribe(page => {
       this.permissoes = page.content;
       this.totalPages = page.totalPages;
       this.loading = false;
 
-      this.filterPessoas()
+      this.filterPermissao()
     });
   }
 
-  filterPessoas(): void {
+  filterPermissao(): void {
     this.filteredPermissao = this.permissoes.filter(permissao =>
       permissao.name?.toLowerCase().includes(this.filterName.toLowerCase())
     );
@@ -70,13 +71,13 @@ export class PermissaoComponent implements OnInit{
         this.permissaoService.deletar(id).subscribe(
           () => {
             this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Permissão excluída com sucesso.' });
-            this.listarPessoas();
+            this.listarPermissao();
           },
           error => {
             if (error.status === 400 && error.error.message === 'Permissão possui relacionamentos e não pode ser excluída.') {
               this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Permissão não pode ser excluída pois possui relacionamentos com Lançamentos.' });
             } else {
-              this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'A Permissão selecionada possui relacionamento com Sub Permissãoa.' });
+              this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'A Permissão selecionada possui relacionamento com Sub Permissão e o Usuário.' });
             }
           }
         );
