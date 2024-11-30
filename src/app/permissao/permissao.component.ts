@@ -50,6 +50,40 @@ export class PermissaoComponent implements OnInit{
     );
   }
 
+  editarPermissao(id: number): void {
+    // Implementar a lógica para editar o usuário
+    // this.router.navigate(['/usuario/']);
+    this.router.navigate(['/permissao/edit', id]);
+    console.log('Editar Permissão', id);
+  }
+
+  deletarPermissao(id: number): void {
+    this.confirmationService.confirm({
+      message: 'Tem certeza que gostaria de excluir a Permissão?',
+      acceptLabel: 'Sim',
+      rejectLabel: 'Não',
+      acceptIcon: 'pi pi-check',
+      rejectIcon: 'pi pi-times',
+      acceptButtonStyleClass: 'p-button-danger', // Classe customizada para o botão de aceitação
+      rejectButtonStyleClass: 'p-button-secondary', // Classe customizada para o botão de rejeição
+      accept: () => {
+        this.permissaoService.deletar(id).subscribe(
+          () => {
+            this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Permissão excluída com sucesso.' });
+            this.listarPessoas();
+          },
+          error => {
+            if (error.status === 400 && error.error.message === 'Permissão possui relacionamentos e não pode ser excluída.') {
+              this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Permissão não pode ser excluída pois possui relacionamentos com Lançamentos.' });
+            } else {
+              this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'A Permissão selecionada possui relacionamento com Sub Permissãoa.' });
+            }
+          }
+        );
+      }
+    });
+  }
+
   canEdit(): boolean {
     return this.authService.hasRole('ADMIN_PRIVILEGE');
   }
