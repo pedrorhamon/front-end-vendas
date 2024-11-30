@@ -45,4 +45,8 @@ export class PermissaoService {
   criar(permissao: Permissao): Observable<Permissao> {
     return this.http.post<Permissao>(this.baseUrl, permissao);
   }
+
+  atualizar(id: number, permissao: Permissao): Observable<Permissao> {
+    return this.http.put<Permissao>(`${this.baseUrl}/${id}`, permissao);
+  }
 }
