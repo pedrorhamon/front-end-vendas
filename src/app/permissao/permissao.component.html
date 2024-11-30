@@ -25,8 +25,8 @@
         <td>{{ permissao.id }}</td>
         <td>{{ permissao.name }}</td>
         <td>
-          <button  *ngIf="!canEdit()" pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" ></button>
-          <button  *ngIf="!canDelete()" pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" ></button>
+          <button  *ngIf="!canEdit()" pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editarPermissao(permissao.id)"></button>
+          <button  *ngIf="!canDelete()" pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deletarPermissao(permissao.id)"></button>
         </td>
       </tr>
     </ng-template>
