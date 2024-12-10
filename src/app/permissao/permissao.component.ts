@@ -85,6 +85,10 @@ export class PermissaoComponent implements OnInit{
     });
   }
 
+  novaPermissao(): void {
+    this.router.navigate(['/permissao/new']);
+  }
+
   canEdit(): boolean {
     return this.authService.hasRole('ADMIN_PRIVILEGE');
   }
