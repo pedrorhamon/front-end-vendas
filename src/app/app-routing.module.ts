@@ -15,6 +15,8 @@ import { AcessDeniedComponent } from './acess-denied/acess-denied.component';
 import { NovaSenhaComponent } from './login/nova-senha/nova-senha.component';
 import { PermissaoComponent } from './permissao/permissao.component';
 import { PermissaoEditComponent } from './permissao/permissao-edit/permissao-edit.component';
+import { SubPermissaoComponent } from './permissao/sub-permissao/sub-permissao.component';
+import { SubPermissaoEditComponent } from './permissao/sub-permissao/sub-permissao-edit/sub-permissao-edit.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -39,6 +41,9 @@ const routes: Routes = [
   { path: 'permissao', component: PermissaoComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] } },
   { path: 'permissao/new', component: PermissaoEditComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] } },
   { path: 'permissao/edit/:id', component: PermissaoEditComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] } },
+  { path: 'sub-permissao', component: SubPermissaoComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] } },
+  { path: 'sub-permissao/new', component: SubPermissaoEditComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] } },
+  { path: 'sub-permissao/edit/:id', component: SubPermissaoEditComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] } },
   { path: 'access-denied', component: AcessDeniedComponent }, // Corrigido: sem a barra inicial
   { path: '**', redirectTo: 'login' }, // Rota de fallback para qualquer caminho desconhecido
 ];
