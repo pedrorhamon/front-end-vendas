@@ -41,4 +41,8 @@ export class SubPermissaoService {
 
     return this.http.get<Page<SubPermissao>>(this.baseUrl, { params });
   }
+
+  listarTodas(): Observable<SubPermissao[]> {
+    return this.http.get<SubPermissao[]>(`${this.baseUrl}/listar`);
+  }
 }

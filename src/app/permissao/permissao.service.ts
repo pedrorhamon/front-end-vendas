@@ -53,4 +53,8 @@ export class PermissaoService {
   deletar(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
+
+  obterId(id: number): Observable<Permissao> {
+      return this.http.get<Permissao>(`${this.baseUrl}/${id}`);
+  }
 }
