@@ -54,18 +54,20 @@ export class PermissaoEditComponent implements OnInit {
     if (id !== null) {
       this.permissaoId = +id; // Converte string para número
       this.editMode = true;
+
       this.permissaoService.obterId(this.permissaoId).subscribe(permissao => {
+        // Atualiza o formulário com os dados da permissão
         this.permissaoForm.patchValue({
           name: permissao.name,
-          subPermissoes: permissao.subPermissoes // IDs das sub-permissões
+          subPermissoes: permissao.subPermissoes.map((sp: any) => sp.id) // IDs das sub-permissões
         });
 
-        // Atualiza as listas de disponíveis e selecionadas
-        this.selecionadas = this.disponiveis.filter((item) =>
-          permissao.subPermissoes.includes(item.id)
-        );
+        // Move as sub-permissões associadas para "Selecionadas"
+        this.selecionadas = permissao.subPermissoes;
+
+        // Remove os itens selecionados da lista "Disponíveis"
         this.disponiveis = this.disponiveis.filter(
-          (item) => !permissao.subPermissoes.includes(item.id)
+          (item) => !this.selecionadas.find((sp) => sp.id === item.id)
         );
       });
     }
@@ -104,18 +106,18 @@ export class PermissaoEditComponent implements OnInit {
       if (this.editMode && this.permissaoId !== undefined) {
         this.permissaoService.atualizar(this.permissaoId, permissao).subscribe(() => {
           this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Permissão atualizada com sucesso' });
-          this.router.navigate(['/permissoes']);
+          this.router.navigate(['/permissao']);
         });
       } else {
         this.permissaoService.criar(permissao).subscribe(() => {
           this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Permissão criada com sucesso' });
-          this.router.navigate(['/permissoes']);
+          this.router.navigate(['/permissao']);
         });
       }
     }
   }
 
   onCancel(): void {
-    this.router.navigate(['/permissoes']); // Redireciona para a lista de permissões
+    this.router.navigate(['/permissao']); // Redireciona para a lista de permissões
   }
 }
