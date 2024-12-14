@@ -45,4 +45,20 @@ export class SubPermissaoService {
   listarTodas(): Observable<SubPermissao[]> {
     return this.http.get<SubPermissao[]>(`${this.baseUrl}/listar`);
   }
+
+  criar(subPermissao: SubPermissao): Observable<SubPermissao> {
+    return this.http.post<SubPermissao>(this.baseUrl, subPermissao);
+  }
+
+  atualizar(id: number, subPermissao: SubPermissao): Observable<SubPermissao> {
+    return this.http.put<SubPermissao>(`${this.baseUrl}/${id}`, subPermissao);
+  }
+
+  deletar(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  }
+
+  obterId(id: number): Observable<SubPermissao> {
+    return this.http.get<SubPermissao>(`${this.baseUrl}/${id}`);
+  }
 }
