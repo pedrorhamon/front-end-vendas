@@ -81,7 +81,7 @@ export class SubPermissaoComponent implements OnInit{
             if (error.status === 400 && error.error.message === 'Sub-Permissão possui relacionamentos e não pode ser excluída.') {
               this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Permissão não pode ser excluída pois possui relacionamentos com Permissões.' });
             } else {
-              this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'A Permissão selecionada possui relacionamento com Sub Permissão e o Usuário.' });
+              this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'A Permissão selecionada possui relacionamento com Permissão e o Usuário.' });
             }
           }
         );

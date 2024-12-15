@@ -17,6 +17,7 @@ export class PermissaoEditComponent implements OnInit {
   selecionadas: SubPermissao[] = [];
   editMode: boolean = false;
   permissaoId?: number;
+  mensagemErro: any[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -101,6 +102,19 @@ export class PermissaoEditComponent implements OnInit {
   }
 
   onSubmit(): void {
+    if (this.permissaoForm.invalid) {
+      this.mensagemErro = [
+        {
+          severity: 'error',
+          summary: 'Erro',
+          detail: 'Nome é obrigatório e deve ter entre 5 e 150 caracteres.',
+        },
+      ];
+    } else {
+      this.mensagemErro = []; // Limpa a mensagem em caso de sucesso
+      // Processa o envio do formulário
+      console.log(this.permissaoForm.value);
+    }
     if (this.permissaoForm.valid) {
       const permissao = this.permissaoForm.value;
       if (this.editMode && this.permissaoId !== undefined) {
