@@ -8,8 +8,8 @@
   </div>
 
   <div class="filter-container">
-    <input type="text" pInputText placeholder="Filtrar por nome" />
-    <button pButton type="button" label="Limpar" icon="pi pi-times" class="p-button-secondary" ></button>
+    <input type="text" pInputText placeholder="Filtrar por nome" [(ngModel)]="filterName" (input)="filterPermissao()"/>
+    <button pButton type="button" label="Limpar" icon="pi pi-times" class="p-button-secondary" (click)="clearFilter()"></button>
   </div>
 
   <p-table [value]="filteredPermissao" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }">

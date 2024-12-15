@@ -51,6 +51,11 @@ export class PermissaoComponent implements OnInit{
     );
   }
 
+  clearFilter(): void {
+    this.filterName = '';
+    this.filteredPermissao = this.permissoes;
+  }
+
   editarPermissao(id: number): void {
     // Implementar a lógica para editar o usuário
     // this.router.navigate(['/usuario/']);
