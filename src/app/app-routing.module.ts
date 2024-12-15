@@ -19,31 +19,130 @@ import { SubPermissaoComponent } from './permissao/sub-permissao/sub-permissao.c
 import { SubPermissaoEditComponent } from './permissao/sub-permissao/sub-permissao-edit/sub-permissao-edit.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent, canActivate: [authGuard] },
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
+     path: 'login',
+      component: LoginComponent
+  },
+  {
+    path: 'home',
+     component: HomeComponent,
+     canActivate: [authGuard] },
   // { path: 'categoria', component: CategoriaComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] } },
-  { path: 'categoria', component: CategoriaComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] } },
-  { path: 'categoria/edit/:id', component: CategoriaEditComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] }  },
-  { path: 'categoria/delete/:id', component: CategoriaComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] }  },
-  { path: 'categoria/new', component: CategoriaEditComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] }  },
-  { path: 'usuario', component: UsuarioComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] }},
-  { path: 'usuario/edit/:id', component: UsuarioEditComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] }},
-  { path: 'usuario/new', component: UsuarioEditComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] }},
-  { path: 'pessoa', component: PessoaComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] }},
-  { path: 'pessoa/edit/:id', component: PessoaEditComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] }},
-  { path: 'pessoa/new', component: PessoaEditComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] }},
-  { path: 'lancamento', component: LacamentoComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] } },
-  { path: 'lancamento/edit/:id', component: LancamentoEditComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] }},
-  { path: 'lancamento/new', component: LancamentoEditComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] }},
-  { path: 'esqueci-senha', component: NovaSenhaComponent},
-  { path: 'alterar-senha', component: NovaSenhaComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] }},
-  { path: 'permissao', component: PermissaoComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] } },
-  { path: 'permissao/new', component: PermissaoEditComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] } },
-  { path: 'permissao/edit/:id', component: PermissaoEditComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] } },
-  { path: 'sub-permissao', component: SubPermissaoComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] } },
-  { path: 'sub-permissao/new', component: SubPermissaoEditComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] } },
-  { path: 'sub-permissao/edit/:id', component: SubPermissaoEditComponent, canActivate: [authGuard], data: { roles: ['ADMIN_PRIVILEGE'] } },
+  {
+    path: 'categoria',
+    component: CategoriaComponent,
+    canActivate: [authGuard],
+    data: { roles: ['ADMIN_PRIVILEGE'] }
+  },
+  {
+    path: 'categoria/edit/:id',
+    component: CategoriaEditComponent,
+     canActivate: [authGuard],
+     data: { roles: ['ADMIN_PRIVILEGE'] }
+  },
+  {
+    path: 'categoria/delete/:id',
+    component: CategoriaComponent,
+    canActivate: [authGuard],
+    data: { roles: ['ADMIN_PRIVILEGE'] }
+  },
+  {
+    path: 'categoria/new',
+    component: CategoriaEditComponent,
+    canActivate: [authGuard],
+    data: { roles: ['ADMIN_PRIVILEGE'] }
+  },
+  {
+    path: 'usuario',
+     component: UsuarioComponent,
+     canActivate: [authGuard],
+     data: { roles: ['ADMIN_PRIVILEGE'] }
+  },
+  { path: 'usuario/edit/:id',
+     component: UsuarioEditComponent,
+     canActivate: [authGuard],
+     data: { roles: ['ADMIN_PRIVILEGE'] }
+  },
+  { path: 'usuario/new',
+    component: UsuarioEditComponent,
+     canActivate: [authGuard],
+     data: { roles: ['ADMIN_PRIVILEGE'] }
+  },
+  { path: 'pessoa',
+     component: PessoaComponent,
+     canActivate: [authGuard],
+     data: { roles: ['ADMIN_PRIVILEGE'] }
+  },
+  { path: 'pessoa/edit/:id',
+     component: PessoaEditComponent,
+      canActivate: [authGuard],
+      data: { roles: ['ADMIN_PRIVILEGE'] }
+  },
+  { path: 'pessoa/new',
+     component: PessoaEditComponent,
+     canActivate: [authGuard],
+      data: { roles: ['ADMIN_PRIVILEGE'] }
+  },
+  { path: 'lancamento',
+    component: LacamentoComponent,
+    canActivate: [authGuard],
+    data: { roles: ['ADMIN_PRIVILEGE'] }
+  },
+  { path: 'lancamento/edit/:id',
+    component: LancamentoEditComponent,
+    canActivate: [authGuard],
+    data: { roles: ['ADMIN_PRIVILEGE'] }
+  },
+  { path: 'lancamento/new',
+    component: LancamentoEditComponent,
+    canActivate: [authGuard],
+    data: { roles: ['ADMIN_PRIVILEGE'] }
+  },
+  { path: 'esqueci-senha',
+     component: NovaSenhaComponent},
+  { path: 'alterar-senha',
+    component: NovaSenhaComponent,
+    canActivate: [authGuard],
+    data: { roles: ['ADMIN_PRIVILEGE'] }
+  },
+  { path: 'permissao',
+     component: PermissaoComponent,
+     canActivate: [authGuard],
+      data: { roles: ['ADMIN_PRIVILEGE'] }
+  },
+  {
+    path: 'permissao/new',
+    component: PermissaoEditComponent,
+    canActivate: [authGuard],
+    data: { roles: ['ADMIN_PRIVILEGE'] } },
+  {
+    path: 'permissao/edit/:id',
+    component: PermissaoEditComponent,
+    canActivate: [authGuard],
+    data: { roles: ['ADMIN_PRIVILEGE'] } },
+  {
+    path: 'sub-permissao',
+    component: SubPermissaoComponent,
+    canActivate: [authGuard],
+    data: { roles: ['ADMIN_PRIVILEGE'] }
+  },
+  {
+    path: 'sub-permissao/new',
+    component: SubPermissaoEditComponent,
+    canActivate: [authGuard],
+    data: { roles: ['ADMIN_PRIVILEGE'] }
+  },
+  {
+    path: 'sub-permissao/edit/:id',
+    component: SubPermissaoEditComponent,
+    canActivate: [authGuard],
+    data: { roles: ['ADMIN_PRIVILEGE'] }
+  },
   { path: 'access-denied', component: AcessDeniedComponent }, // Corrigido: sem a barra inicial
   { path: '**', redirectTo: 'login' }, // Rota de fallback para qualquer caminho desconhecido
 ];

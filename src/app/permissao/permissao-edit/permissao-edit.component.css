@@ -10,22 +10,29 @@ p-pickList .ui-picklist-buttons {
   gap: 5px; /* Espaçamento entre os botões */
 }
 
-p-pickList .ui-picklist-buttons .ui-button {
-  background-color: #007bff; /* Cor azul para os botões */
-  border: none;
-  color: #fff;
+/* Reduz o tamanho dos botões do PickList */
+.ui-picklist-buttons .ui-button {
+  width: var(--button-width);
+  height: var(--button-height);
+  background-color: #007bff; /* Azul padrão */
+  border-radius: 5px;
 }
 
-p-pickList .ui-picklist-buttons .ui-button:hover {
-  background-color: #0056b3; /* Cor ao passar o mouse */
+.ui-picklist-buttons .ui-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05); /* Pequeno zoom ao passar o mouse */
 }
 
-/* Botões de Salvar e Cancelar */
+
 .form-actions {
   display: flex;
-  justify-content: flex-start; /* Alinha os botões à direita */
+  justify-content: flex-end; /* Alinha à direita */
   gap: 10px; /* Espaçamento entre os botões */
   margin-top: 20px;
+}
+
+button {
+  transition: all 0.3s ease; /* Suaviza efeitos */
 }
 
 .btn-salvar {
@@ -54,6 +61,19 @@ p-pickList .ui-picklist-buttons .ui-button:hover {
   background-color: #c82333;
 }
 
+.btn-salvar:hover, .btn-cancelar:hover {
+  transform: scale(1.05); /* Efeito de zoom */
+}
+
 .form-group {
   margin-bottom: 15px;
+}
+
+/* Adiciona altura fixa e scroll ao conteúdo do PickList */
+.ui-picklist-list {
+  max-height: 300px; /* Altura máxima com scroll */
+  overflow-y: auto; /* Scroll vertical */
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  border-radius: 5px;
 }
