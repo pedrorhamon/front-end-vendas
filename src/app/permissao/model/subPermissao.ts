@@ -1,6 +1,6 @@
 export interface SubPermissao {
-  id: number;
+  id?: number;
   nome: string;
-  permissaoPrincipal: number;
-  permissaoPrincipalName: string;
+  // permissaoPrincipal: number;
+  // permissaoPrincipalName: string;
 }

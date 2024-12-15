@@ -58,7 +58,7 @@ export class SubPermissaoComponent implements OnInit{
   editarSubPermissao(id: number): void {
     // Implementar a lógica para editar o usuário
     // this.router.navigate(['/usuario/']);
-    this.router.navigate(['/permissao/edit', id]);
+    this.router.navigate(['/sub-permissao/edit', id]);
     console.log('Editar Permissão', id);
   }
 

@@ -1,1 +1,19 @@
-<p>sub-permissao-edit works!</p>
+<p-confirmDialog></p-confirmDialog>
+<div class="container">
+  <h2>{{ editMode ? 'Editar Sub Permissões' : 'Salvar Sub Permissões' }}</h2>
+  <form [formGroup]="subPermissaoForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Nome</label>
+      <input pInputText type="text" id="name" formControlName="nome" />
+      <div *ngIf="subPermissaoForm.get('nome')?.invalid && subPermissaoForm.get('nome')?.touched" class="error-message">
+        Nome é obrigatório e deve ter entre 5 e 150 caracteres.
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button pButton type="button" label="Cancelar" class="p-button-secondary" (click)="onCancel()"></button>
+      <button pButton type="submit" label="{{ editMode ? 'Atualizar' : 'Salvar' }}" class="p-button-primary" [disabled]="subPermissaoForm.invalid"></button>
+    </div>
+  </form>
+</div>
+

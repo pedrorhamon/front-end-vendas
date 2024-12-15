@@ -47,7 +47,7 @@ export class SubPermissaoService {
   }
 
   criar(subPermissao: SubPermissao): Observable<SubPermissao> {
-    return this.http.post<SubPermissao>(this.baseUrl, subPermissao);
+    return this.http.post<SubPermissao>(this.baseUrl, { nome: subPermissao.nome });
   }
 
   atualizar(id: number, subPermissao: SubPermissao): Observable<SubPermissao> {

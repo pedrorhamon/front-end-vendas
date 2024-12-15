@@ -1,0 +1,57 @@
+/* Container principal */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilização dos títulos */
+h2 {
+  text-align: center;
+  color: #333;
+}
+
+/* Estilização do formulário */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Espaçamento entre os campos do formulário */
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* Estilização dos rótulos dos campos */
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+  color: #555;
+}
+
+/* Container para os botões */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+/* Botões */
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 48%;
+}
+
+/* Mensagens de erro */
+.error-message {
+  color: red;
+  font-size: 14px;
+}
