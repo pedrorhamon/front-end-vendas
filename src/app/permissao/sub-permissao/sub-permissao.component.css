@@ -1,0 +1,46 @@
+.subpermissao-list-container {
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.pessoa-new-container {
+  padding: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+button {
+  margin-right: 10px;
+}
+
+/* Botão de aceitação em vermelho */
+.p-confirm-dialog .p-confirm-dialog-accept {
+  background-color: #f44336 !important;
+  border: none;
+}
+
+/* Botão de fechar à esquerda */
+.p-confirm-dialog .p-dialog-header .p-dialog-header-close {
+  position: absolute;
+  left: 1rem;
+}
+
+.filter-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.filter-container input {
+  margin-right: 10px;
+  width: 200px;
+}
+

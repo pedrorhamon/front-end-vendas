@@ -1,1 +1,34 @@
-<p>sub-permissao works!</p>
+<p-confirmDialog></p-confirmDialog>
+<!-- <p-messages></p-messages> -->
+
+<div class="subpermissao-list-container">
+  <div class="header">
+    <h2>Lista Sub-Permissoes</h2>
+    <button pButton type="button" label="Nova Permissão" icon="pi pi-plus" class="p-button-success"(click)="novaSubPermissao()"></button>
+  </div>
+
+  <div class="filter-container">
+    <input type="text" pInputText placeholder="Filtrar por nome" [(ngModel)]="filterName" (input)="filterSubPermissao()" />
+    <button pButton type="button" label="Limpar" icon="pi pi-times" class="p-button-secondary" (click)="clearFilter()"></button>
+  </div>
+
+  <p-table [value]="filteredSubPermissao" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Id</th>
+        <th>Nome</th>
+        <th  *ngIf="!canCreate()">Ações</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-subPermissoes>
+      <tr>
+        <td>{{ subPermissoes.id }}</td>
+        <td>{{ subPermissoes.nome }}</td>
+        <td>
+          <button  *ngIf="!canEdit()" pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editarSubPermissao(subPermissoes.id)"></button>
+          <button  *ngIf="!canDelete()" pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deletarSubPermissao(subPermissoes.id)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
