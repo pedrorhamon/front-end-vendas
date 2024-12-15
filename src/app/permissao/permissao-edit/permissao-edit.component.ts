@@ -53,20 +53,20 @@ export class PermissaoEditComponent implements OnInit {
   private loadPermissao(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id !== null) {
-      this.permissaoId = +id; // Converte string para número
+      this.permissaoId = +id;
       this.editMode = true;
 
       this.permissaoService.obterId(this.permissaoId).subscribe(permissao => {
         // Atualiza o formulário com os dados da permissão
         this.permissaoForm.patchValue({
           name: permissao.name,
-          subPermissoes: permissao.subPermissoes.map((sp: any) => sp.id) // IDs das sub-permissões
+          subPermissoes: permissao.subPermissoes.map((sp: any) => sp.id)
         });
 
         // Move as sub-permissões associadas para "Selecionadas"
         this.selecionadas = permissao.subPermissoes;
 
-        // Remove os itens selecionados da lista "Disponíveis"
+        // Remove os itens já selecionados da lista de disponíveis
         this.disponiveis = this.disponiveis.filter(
           (item) => !this.selecionadas.find((sp) => sp.id === item.id)
         );
@@ -74,26 +74,38 @@ export class PermissaoEditComponent implements OnInit {
     }
   }
 
-
   onAdicionarPermissao(event: any): void {
+    // Adiciona apenas itens que ainda não estão em "selecionadas"
     const novosItens = event.items.filter(
       (item: any) => !this.selecionadas.some((selecionada) => selecionada.id === item.id)
     );
-    this.selecionadas.push(...novosItens); // Adiciona apenas os itens que não estão duplicados
+    this.selecionadas.push(...novosItens);
+
+    // Remove os itens adicionados da lista "disponíveis"
     this.disponiveis = this.disponiveis.filter(
       (item) => !event.items.find((added: any) => added.id === item.id)
     );
+
     this.updateFormSubPermissoes();
   }
+
 
 
   onRemoverPermissao(event: any): void {
-    this.disponiveis.push(...event.items); // Remove itens da seleção
+    // Adiciona os itens removidos apenas se ainda não estiverem em disponíveis
+    const itensUnicos = event.items.filter(
+      (item: any) => !this.disponiveis.some((disponivel) => disponivel.id === item.id)
+    );
+    this.disponiveis.push(...itensUnicos);
+
+    // Atualiza a lista de selecionadas removendo os itens passados
     this.selecionadas = this.selecionadas.filter(
       (item) => !event.items.find((removed: any) => removed.id === item.id)
     );
+
     this.updateFormSubPermissoes();
   }
+
 
   private updateFormSubPermissoes(): void {
     this.permissaoForm.patchValue({
