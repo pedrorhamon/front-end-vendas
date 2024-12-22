@@ -12,4 +12,6 @@ export interface Pessoa {
   cep: string;
   cidade: string;
   estado: string;
+
+  coordenadas: string;
 }

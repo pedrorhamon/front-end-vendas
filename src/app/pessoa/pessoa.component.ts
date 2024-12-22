@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { Pessoa } from './model/pessoa';
 import { PessoaRequest } from './model/pessoa.request';
 import { PessoaService } from './pessoa.service';
@@ -6,12 +6,20 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from '../login/login.service';
 
+import Map from 'ol/Map';
+import View from 'ol/View';
+import TileLayer from 'ol/layer/Tile';
+import OSM from 'ol/source/OSM';
+import { fromLonLat } from 'ol/proj';
+import { defaults as defaultControls } from 'ol/control';
+
 @Component({
   selector: 'app-pessoa',
   templateUrl: './pessoa.component.html',
   styleUrl: './pessoa.component.css'
 })
 export class PessoaComponent implements OnInit{
+
 
   pessoas: Pessoa[] = [];
   pessoa: PessoaRequest = {} as PessoaRequest;
@@ -21,6 +29,11 @@ export class PessoaComponent implements OnInit{
   totalPages: number = 0;
   page: number = 0;
   size: number = 20;
+  selectedPessoa!: Pessoa | null;
+
+  displayMapa: boolean = false;
+
+  map!: Map; // Instância do mapa
 
   constructor(
     private pessoaService: PessoaService,
@@ -28,7 +41,7 @@ export class PessoaComponent implements OnInit{
     private messageService: MessageService,
     private route: ActivatedRoute,
     private router: Router,
-    private authService: LoginService
+    private authService: LoginService,
   ) {}
 
    ngOnInit(): void {
@@ -120,4 +133,48 @@ export class PessoaComponent implements OnInit{
     return this.authService.hasRole('ADMIN_PRIVILEGE');
   }
 
+  abrirMapa(pessoa: Pessoa): void {
+    this.selectedPessoa = pessoa;
+    this.displayMapa = true;
+
+    setTimeout(() => {
+      const mapElement = document.getElementById('map');
+      if (mapElement) {
+        this.map = new Map({
+          target: mapElement,
+          layers: [
+            new TileLayer({
+              source: new OSM(),
+            }),
+          ],
+          controls: defaultControls(),
+          view: new View({
+            center: fromLonLat([0, 0]), // Coordenadas genéricas
+            zoom: 2, // Zoom inicial para visualização global
+          }),
+        });
+
+        // Caso haja coordenadas, centralizar o mapa
+        if (pessoa.coordenadas) {
+          const [lon, lat] = pessoa.coordenadas.split(' ').map(Number);
+          this.map.getView().setCenter(fromLonLat([lon, lat]));
+          this.map.getView().setZoom(15); // Zoom específico para a localização
+        }
+      } else {
+        console.error('Elemento do mapa não encontrado');
+      }
+    }, 100); // Atraso para garantir que o modal seja carregado
+  }
+
+  fecharMapa(): void {
+    this.displayMapa = false;
+    if (this.map) {
+      this.map.setTarget(); // Remove a instância do mapa
+    }
+  }
+
+  async getLeaflet() {
+    const L = await import('leaflet');
+    return L;
+  }
 }

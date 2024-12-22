@@ -33,8 +33,19 @@
         <td>
           <button  *ngIf="!canEdit()" pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editarPessoa(pessoa.id)"></button>
           <button  *ngIf="!canDelete()" pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deletarPessoa(pessoa.id)"></button>
+          <button pButton type="button" icon="pi pi-map" class="p-button-rounded p-button-info" (click)="abrirMapa(pessoa)"></button>
         </td>
       </tr>
     </ng-template>
   </p-table>
 </div>
+
+
+<p-dialog header="Mapa de Localização" [(visible)]="displayMapa" [modal]="true" [style]="{ width: '80vw', height: '80vh' }" [closable]="true">
+  <div id="map" style="width: 100%; height: 100%; position: relative;"></div>
+  <div class="p-dialog-footer">
+    <button pButton type="button" label="Fechar" icon="pi pi-times" (click)="fecharMapa()" class="p-button-secondary"></button>
+  </div>
+</p-dialog>
+
+

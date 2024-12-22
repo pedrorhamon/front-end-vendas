@@ -51,6 +51,7 @@ import { NavbarComponent } from './template/navbar/navbar.component';
 import { SidebarComponent } from './template/sidebar/sidebar.component';
 import { UsuarioEditComponent } from './usuario/usuario-edit/usuario-edit.component';
 import { UsuarioComponent } from './usuario/usuario.component';
+import { MapsModule } from '@syncfusion/ej2-angular-maps';
 
 
 
@@ -111,7 +112,8 @@ import { UsuarioComponent } from './usuario/usuario.component';
     InputTextareaModule,
     InputNumberModule,
     FileUploadModule,
-    PickListModule
+    PickListModule,
+    MapsModule
 
   ],
   providers: [

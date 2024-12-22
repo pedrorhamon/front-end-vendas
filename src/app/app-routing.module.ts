@@ -70,8 +70,8 @@ const routes: Routes = [
   },
   { path: 'usuario/new',
     component: UsuarioEditComponent,
-     canActivate: [authGuard],
-     data: { roles: ['ADMIN_PRIVILEGE'] }
+    //  canActivate: [authGuard],
+    //  data: { roles: ['ADMIN_PRIVILEGE'] }
   },
   { path: 'pessoa',
      component: PessoaComponent,

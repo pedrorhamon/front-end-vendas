@@ -86,5 +86,11 @@ body.login-page .main-content {
   100% { transform: rotate(360deg); }
 }
 
+#map {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
 
 
