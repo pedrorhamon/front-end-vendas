@@ -44,13 +44,14 @@ button {
   width: 200px;
 }
 
-/* Estilo geral do mapa */
 #map {
   width: 100%;
   height: 100%;
+  border-radius: 10px; /* Borda arredondada */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  margin: 20px 0; /* Margem superior e inferior */
+  overflow: hidden; /* Evita overflow em bordas arredondadas */
   position: relative;
-  border-radius: 10px; /* Cantos arredondados */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra */
 }
 
 /* Controles do OpenLayers */
@@ -59,43 +60,62 @@ button {
   border-radius: 4px; /* Bordas arredondadas */
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Sombra */
   padding: 5px; /* Espaçamento interno */
+  visibility: visible !important;
+  z-index: 1000 !important;
 }
 
 /* Controles de Zoom */
 .ol-zoom {
+  position: absolute;
+  top: 50%; /* Centraliza verticalmente */
+  left: 10px; /* Alinha à direita */
+  transform: translateY(-50%); /* Ajusta posição para centralização */
   display: flex;
   flex-direction: column; /* Organiza os botões verticalmente */
+  gap: 5px; /* Espaçamento entre os botões */
 }
 
 .ol-zoom button {
-  background-color: #007bff; /* Azul similar ao Google Maps */
-  color: #fff; /* Texto branco */
-  border: none; /* Remove bordas */
-  border-radius: 4px; /* Bordas arredondadas */
-  margin: 2px; /* Espaçamento entre botões */
+  background-color: #f8f9fa; /* Cor clara e discreta */
+  color: #495057; /* Texto cinza escuro */
+  border: 1px solid #ced4da; /* Borda leve */
+  border-radius: 50%; /* Botões arredondados */
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer; /* Mostra o cursor de clique */
-  font-size: 18px; /* Tamanho do texto */
-  padding: 5px;
-  transition: background-color 0.3s ease; /* Efeito de hover */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Efeitos de hover */
 }
 
 .ol-zoom button:hover {
-  background-color: #0056b3; /* Cor mais escura ao passar o mouse */
+  background-color: #e9ecef; /* Cor mais clara ao passar o mouse */
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15); /* Sombra ao passar o mouse */
 }
 
 /* Controle de tela cheia */
 .ol-full-screen {
-  top: 10px;
+  position: absolute;
   right: 10px;
+  top: 10px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s;
 }
 
+/* Linha de escala */
 .ol-scale-line {
+  position: absolute;
   bottom: 10px;
-  left: 10px;
+  right: 10px;
   font-size: 14px; /* Tamanho da fonte da escala */
   color: #007bff; /* Cor do texto */
 }
-
-
-
-
