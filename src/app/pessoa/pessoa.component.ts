@@ -12,6 +12,12 @@ import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 import { fromLonLat } from 'ol/proj';
 import { defaults as defaultControls } from 'ol/control';
+import VectorSource from 'ol/source/Vector';
+import VectorLayer from 'ol/layer/Vector';
+import { Feature } from 'ol';
+import { Point } from 'ol/geom';
+import Style from 'ol/style/Style';
+import Icon from 'ol/style/Icon';
 
 @Component({
   selector: 'app-pessoa',
@@ -133,6 +139,39 @@ export class PessoaComponent implements OnInit{
     return this.authService.hasRole('ADMIN_PRIVILEGE');
   }
 
+  // abrirMapa(pessoa: Pessoa): void {
+  //   this.selectedPessoa = pessoa;
+  //   this.displayMapa = true;
+
+  //   setTimeout(() => {
+  //     const mapElement = document.getElementById('map');
+  //     if (mapElement) {
+  //       this.map = new Map({
+  //         target: mapElement,
+  //         layers: [
+  //           new TileLayer({
+  //             source: new OSM(),
+  //           }),
+  //         ],
+  //         controls: defaultControls(),
+  //         view: new View({
+  //           center: fromLonLat([0, 0]), // Coordenadas genéricas
+  //           zoom: 2, // Zoom inicial para visualização global
+  //         }),
+  //       });
+
+  //       // Caso haja coordenadas, centralizar o mapa
+  //       if (pessoa.coordenadas) {
+  //         const [lon, lat] = pessoa.coordenadas.split(' ').map(Number);
+  //         this.map.getView().setCenter(fromLonLat([lon, lat]));
+  //         this.map.getView().setZoom(15); // Zoom específico para a localização
+  //       }
+  //     } else {
+  //       console.error('Elemento do mapa não encontrado');
+  //     }
+  //   }, 100); // Atraso para garantir que o modal seja carregado
+  // }
+
   abrirMapa(pessoa: Pessoa): void {
     this.selectedPessoa = pessoa;
     this.displayMapa = true;
@@ -150,26 +189,53 @@ export class PessoaComponent implements OnInit{
           controls: defaultControls(),
           view: new View({
             center: fromLonLat([0, 0]), // Coordenadas genéricas
-            zoom: 2, // Zoom inicial para visualização global
+            zoom: 2, // Zoom global para o começo
           }),
         });
 
-        // Caso haja coordenadas, centralizar o mapa
-        if (pessoa.coordenadas) {
-          const [lon, lat] = pessoa.coordenadas.split(' ').map(Number);
-          this.map.getView().setCenter(fromLonLat([lon, lat]));
-          this.map.getView().setZoom(15); // Zoom específico para a localização
+        debugger
+        // Utiliza latitude e longitude
+        if (pessoa.latitude !== undefined && pessoa.longitude !== undefined) {
+          this.map.getView().setCenter(fromLonLat([pessoa.longitude, pessoa.latitude]));
+          this.map.getView().setZoom(15);
+
+          // Adiciona marcador
+          const marker = new Feature({
+            geometry: new Point(fromLonLat([pessoa.longitude, pessoa.latitude])),
+          });
+
+          marker.setStyle(
+            new Style({
+              image: new Icon({
+                color: 'red',
+                crossOrigin: 'anonymous',
+                src: 'https://openlayers.org/en/v6.5.0/examples/data/dot.png',
+              }),
+            })
+          );
+
+          const vectorLayer = new VectorLayer({
+            source: new VectorSource({
+              features: [marker],
+            }),
+          });
+
+          this.map.addLayer(vectorLayer);
         }
       } else {
         console.error('Elemento do mapa não encontrado');
       }
-    }, 100); // Atraso para garantir que o modal seja carregado
+    }, 100);
   }
 
+
+
+
+
   fecharMapa(): void {
-    this.displayMapa = false;
+    this.displayMapa = false; // Fecha o modal do mapa
     if (this.map) {
-      this.map.setTarget(); // Remove a instância do mapa
+      this.map.setTarget(); // Desvincula o mapa
     }
   }
 

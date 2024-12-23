@@ -13,5 +13,6 @@ export interface Pessoa {
   cidade: string;
   estado: string;
 
-  coordenadas: string;
+  latitude: number;
+  longitude: number;
 }
