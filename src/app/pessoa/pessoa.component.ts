@@ -11,7 +11,7 @@ import View from 'ol/View';
 import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 import { fromLonLat } from 'ol/proj';
-import { defaults as defaultControls } from 'ol/control';
+import { defaults as defaultControls, FullScreen, ScaleLine, Zoom } from 'ol/control';
 import VectorSource from 'ol/source/Vector';
 import VectorLayer from 'ol/layer/Vector';
 import { Feature } from 'ol';
@@ -186,20 +186,19 @@ export class PessoaComponent implements OnInit{
               source: new OSM(),
             }),
           ],
-          controls: defaultControls(),
+          controls: defaultControls().extend([
+            new Zoom(), // Controles de Zoom
+            new FullScreen(), // Controle de Tela Cheia
+            new ScaleLine({ units: 'metric' }), // Linha de escala métrica
+          ]),
           view: new View({
-            center: fromLonLat([0, 0]), // Coordenadas genéricas
-            zoom: 2, // Zoom global para o começo
+            center: fromLonLat([pessoa.longitude || 0, pessoa.latitude || 0]), // Centraliza no local da pessoa ou no mundo
+            zoom: pessoa.latitude && pessoa.longitude ? 15 : 2, // Zoom específico ou global
           }),
         });
 
-        debugger
-        // Utiliza latitude e longitude
+        // Adiciona o marcador para a localização da pessoa
         if (pessoa.latitude !== undefined && pessoa.longitude !== undefined) {
-          this.map.getView().setCenter(fromLonLat([pessoa.longitude, pessoa.latitude]));
-          this.map.getView().setZoom(15);
-
-          // Adiciona marcador
           const marker = new Feature({
             geometry: new Point(fromLonLat([pessoa.longitude, pessoa.latitude])),
           });
@@ -207,9 +206,8 @@ export class PessoaComponent implements OnInit{
           marker.setStyle(
             new Style({
               image: new Icon({
-                color: 'red',
-                crossOrigin: 'anonymous',
-                src: 'https://openlayers.org/en/v6.5.0/examples/data/dot.png',
+                anchor: [0.5, 1],
+                src: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png', // Ícone do marcador
               }),
             })
           );

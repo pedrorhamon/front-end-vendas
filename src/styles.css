@@ -92,5 +92,18 @@ body.login-page .main-content {
   position: relative;
 }
 
+@media (max-width: 768px) {
+  #map {
+    height: 60vh; /* Ajusta a altura em telas menores */
+  }
+}
+
+@media (max-width: 480px) {
+  #map {
+    height: 50vh; /* Ajusta ainda mais em telas muito pequenas */
+  }
+}
+
+
 
 
