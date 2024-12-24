@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Pessoa } from './model/pessoa';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Page } from '../../assets/page';
 import { PessoaRequest } from './model/pessoa.request';
 
@@ -66,7 +66,8 @@ export class PessoaService {
 
   geocodeAddress(address: string): Observable<[number, number]> {
     const params = new HttpParams().set('address', address);
-    return this.http.get<[number, number]>(this.baseUrl, { params });
+    return this.http.get<any>(`${this.baseUrl}/coordenadas`, { params }).pipe(
+      map((response) => [response.latitude, response.longitude] as [number, number])
+    );
   }
-
 }

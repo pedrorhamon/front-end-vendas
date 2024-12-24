@@ -6,6 +6,13 @@ import { Pessoa } from '../model/pessoa';
 import { PessoaService } from '../pessoa.service';
 import { ViaCepService } from '../via-cep.service';
 import { Endereco } from '../model/endereco';
+import Map from 'ol/Map';
+import { Overlay, View } from 'ol';
+import { fromLonLat } from 'ol/proj';
+import { OSM } from 'ol/source';
+import TileLayer from 'ol/layer/Tile';
+import { defaults as defaultControls, FullScreen, ScaleLine, Zoom } from 'ol/control';
+
 
 @Component({
   selector: 'app-pessoa-edit',
@@ -16,6 +23,8 @@ export class PessoaEditComponent implements OnInit {
   pessoaForm: FormGroup;
   editMode: boolean = false;
   pessoaId?: number;
+  map!: Map;
+  marker!: Overlay;
 
   constructor(
     private fb: FormBuilder,
@@ -44,8 +53,16 @@ export class PessoaEditComponent implements OnInit {
   ngOnInit(): void {
     this.loadPessoa();
 
-    this.pessoaForm.get('cep')?.valueChanges.subscribe(cep => {
-      if (cep.length === 8) { // Quando o CEP tiver 8 caracteres
+    this.initializeMap();
+
+    this.pessoaForm.valueChanges.subscribe((value) => {
+      if (this.isAddressComplete(value)) {
+        this.updateMap(value);
+      }
+    });
+
+    this.pessoaForm.get('cep')?.valueChanges.subscribe((cep) => {
+      if (cep.length === 8) { // Após preencher o CEP
         this.cepService.consultarCep(cep).subscribe((endereco: Endereco) => {
           if (endereco) {
             this.pessoaForm.patchValue({
@@ -56,10 +73,30 @@ export class PessoaEditComponent implements OnInit {
               cidade: endereco.localidade,
               estado: endereco.uf
             });
+
+            // Atualizar o mapa com o endereço completo
+            this.updateMap(this.pessoaForm.value);
           }
         });
       }
     });
+
+    // this.pessoaForm.get('cep')?.valueChanges.subscribe(cep => {
+    //   if (cep.length === 8) { // Quando o CEP tiver 8 caracteres
+    //     this.cepService.consultarCep(cep).subscribe((endereco: Endereco) => {
+    //       if (endereco) {
+    //         this.pessoaForm.patchValue({
+    //           logradouro: endereco.logradouro,
+    //           numero: endereco.numero ?? '',
+    //           complemento: endereco.complemento ?? '',
+    //           bairro: endereco.bairro,
+    //           cidade: endereco.localidade,
+    //           estado: endereco.uf
+    //         });
+    //       }
+    //     });
+    //   }
+    // });
   }
 
   private loadPessoa(): void {
@@ -106,4 +143,72 @@ export class PessoaEditComponent implements OnInit {
   onCancel(): void {
     this.router.navigate(['/pessoa']); // Redireciona para a lista de usuários
   }
+
+  initializeMap(): void {
+    this.map = new Map({
+      target: 'map',
+      layers: [
+        new TileLayer({
+          source: new OSM(),
+        }),
+      ],
+      view: new View({
+        center: fromLonLat([-34.879, -7.115]), // Coordenadas iniciais (genéricas)
+        zoom: 2,
+      }),
+      controls: defaultControls(),
+    });
+  }
+
+  isAddressComplete(value: any): boolean {
+    return (
+      value.logradouro &&
+      value.numero &&
+      value.bairro &&
+      value.cidade &&
+      value.estado
+    );
+  }
+
+  updateMap(address: any): void {
+    const fullAddress = `${address.logradouro}, ${address.numero}, ${address.bairro}, ${address.cidade}, ${address.estado}`;
+
+    this.pessoaService.geocodeAddress(fullAddress).subscribe((coordinates: [number, number]) => {
+      const [latitude, longitude] = coordinates;
+
+      // Atualiza a posição no mapa
+      const position = fromLonLat([longitude, latitude]);
+      this.map.getView().setCenter(position);
+      this.map.getView().setZoom(15);
+
+      // Remove o marcador antigo, se existir
+      if (this.marker) {
+        this.map.removeOverlay(this.marker);
+      }
+
+      // Criar elemento HTML para o marcador
+      const markerElement = document.createElement('div');
+      markerElement.style.width = '20px';
+      markerElement.style.height = '20px';
+      markerElement.style.background = 'red';
+      markerElement.style.borderRadius = '50%';
+      markerElement.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.2)';
+      markerElement.style.position = 'absolute';
+      markerElement.style.transform = 'translate(-50%, -50%)';
+
+      // Criar o Overlay para o marcador
+      this.marker = new Overlay({
+        position: position,
+        positioning: 'center-center',
+        element: markerElement,
+      });
+
+      // Adicionar o Overlay ao mapa
+      this.map.addOverlay(this.marker);
+    }, error => {
+      console.error('Erro ao buscar coordenadas:', error);
+    });
+  }
 }
+
+

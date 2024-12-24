@@ -1,4 +1,4 @@
-<p-confirmDialog></p-confirmDialog>
+<!-- <p-confirmDialog></p-confirmDialog>
 <div class="container">
   <h2>{{ editMode ? 'Editar Pessoa' : 'Salvar Pessoa' }}</h2>
   <form [formGroup]="pessoaForm" (ngSubmit)="onSubmit()">
@@ -15,15 +15,6 @@
       <input type="checkbox" id="ativo" formControlName="ativo" />
     </div>
 
-    <!-- <div class="form-group">
-      <label for="createdAt">Data de Criação</label>
-      <input type="datetime-local" id="createdAt" formControlName="createdAt" />
-    </div>
-
-    <div class="form-group">
-      <label for="updatedAt">Data de Atualização</label>
-      <input type="datetime-local" id="updatedAt" formControlName="updatedAt" />
-    </div> -->
     <div class="form-group">
       <label for="cep">CEP</label>
       <p-inputMask  type="text" id="cep" formControlName="cep"  mask="99999-999"/>
@@ -59,6 +50,51 @@
       <label for="estado">Estado</label>
       <input type="text" id="estado" formControlName="estado" />
     </div>
+
+    <div class="button-group">
+      <button pButton type="button" label="Cancelar" class="p-button-secondary" (click)="onCancel()"></button>
+      <button pButton type="submit" label="{{ editMode ? 'Atualizar' : 'Salvar' }}" class="p-button-primary" [disabled]="pessoaForm.invalid"></button>
+    </div>
+  </form>
+</div>
+ -->
+<p-confirmDialog></p-confirmDialog>
+ <div class="container">
+  <h2>{{ editMode ? 'Editar Pessoa' : 'Salvar Pessoa' }}</h2>
+  <form [formGroup]="pessoaForm" (ngSubmit)="onSubmit()">
+    <!-- Campos do formulário -->
+    <div class="form-group">
+      <label for="cep">CEP</label>
+      <p-inputMask type="text" id="cep" formControlName="cep" mask="99999-999" />
+    </div>
+
+    <div class="form-group">
+      <label for="logradouro">Logradouro</label>
+      <input type="text" id="logradouro" formControlName="logradouro" />
+    </div>
+
+    <div class="form-group">
+      <label for="numero">Número</label>
+      <input type="text" id="numero" formControlName="numero" />
+    </div>
+
+    <div class="form-group">
+      <label for="bairro">Bairro</label>
+      <input type="text" id="bairro" formControlName="bairro" />
+    </div>
+
+    <div class="form-group">
+      <label for="cidade">Cidade</label>
+      <input type="text" id="cidade" formControlName="cidade" />
+    </div>
+
+    <div class="form-group">
+      <label for="estado">Estado</label>
+      <input type="text" id="estado" formControlName="estado" />
+    </div>
+
+    <!-- Mapa -->
+    <div id="map" style="width: 100%; height: 300px; margin-top: 20px; border: 1px solid #ddd;"></div>
 
     <div class="button-group">
       <button pButton type="button" label="Cancelar" class="p-button-secondary" (click)="onCancel()"></button>
