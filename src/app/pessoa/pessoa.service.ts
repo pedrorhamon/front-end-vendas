@@ -10,6 +10,7 @@ import { PessoaRequest } from './model/pessoa.request';
 })
 export class PessoaService {
 
+
   private baseUrl = 'http://localhost:8080/api/pessoas';
 
 
@@ -61,6 +62,11 @@ export class PessoaService {
 
   getPessoaById(id: number): Observable<Pessoa> {
     return this.http.get<Pessoa>(`${this.baseUrl}/${id}`);
+  }
+
+  geocodeAddress(address: string): Observable<[number, number]> {
+    const params = new HttpParams().set('address', address);
+    return this.http.get<[number, number]>(this.baseUrl, { params });
   }
 
 }
