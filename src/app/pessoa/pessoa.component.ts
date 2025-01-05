@@ -139,39 +139,6 @@ export class PessoaComponent implements OnInit{
     return this.authService.hasRole('ADMIN_PRIVILEGE');
   }
 
-  // abrirMapa(pessoa: Pessoa): void {
-  //   this.selectedPessoa = pessoa;
-  //   this.displayMapa = true;
-
-  //   setTimeout(() => {
-  //     const mapElement = document.getElementById('map');
-  //     if (mapElement) {
-  //       this.map = new Map({
-  //         target: mapElement,
-  //         layers: [
-  //           new TileLayer({
-  //             source: new OSM(),
-  //           }),
-  //         ],
-  //         controls: defaultControls(),
-  //         view: new View({
-  //           center: fromLonLat([0, 0]), // Coordenadas genéricas
-  //           zoom: 2, // Zoom inicial para visualização global
-  //         }),
-  //       });
-
-  //       // Caso haja coordenadas, centralizar o mapa
-  //       if (pessoa.coordenadas) {
-  //         const [lon, lat] = pessoa.coordenadas.split(' ').map(Number);
-  //         this.map.getView().setCenter(fromLonLat([lon, lat]));
-  //         this.map.getView().setZoom(15); // Zoom específico para a localização
-  //       }
-  //     } else {
-  //       console.error('Elemento do mapa não encontrado');
-  //     }
-  //   }, 100); // Atraso para garantir que o modal seja carregado
-  // }
-
   abrirMapa(pessoa: Pessoa): void {
     this.selectedPessoa = pessoa;
     this.displayMapa = true;
