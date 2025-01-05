@@ -193,10 +193,6 @@ export class PessoaComponent implements OnInit{
     }, 100);
   }
 
-
-
-
-
   fecharMapa(): void {
     this.displayMapa = false; // Fecha o modal do mapa
     if (this.map) {
