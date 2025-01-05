@@ -52,6 +52,7 @@ import { SidebarComponent } from './template/sidebar/sidebar.component';
 import { UsuarioEditComponent } from './usuario/usuario-edit/usuario-edit.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { MapsModule } from '@syncfusion/ej2-angular-maps';
+import { PainelControleComponent } from './painel-controle/painel-controle.component';
 
 
 
@@ -80,7 +81,8 @@ import { MapsModule } from '@syncfusion/ej2-angular-maps';
     PermissaoComponent,
     PermissaoEditComponent,
     SubPermissaoComponent,
-    SubPermissaoEditComponent
+    SubPermissaoEditComponent,
+    PainelControleComponent
   ],
   imports: [
     BrowserModule,
