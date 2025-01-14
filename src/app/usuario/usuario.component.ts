@@ -115,6 +115,30 @@ export class UsuarioComponent implements OnInit {
     })
   }
 
+  desativarUsuario(gestorId: number, usuarioId: number): void {
+    this.confirmationService.confirm({
+      message: 'Tem certeza que deseja desativar este usuário?',
+      acceptLabel: 'Sim',
+      rejectLabel: 'Não',
+      acceptIcon: 'pi pi-check',
+      rejectIcon: 'pi pi-times',
+      acceptButtonStyleClass: 'p-button-danger',
+      rejectButtonStyleClass: 'p-button-secondary',
+      accept: () => {
+        this.usuarioService.desativar(gestorId, usuarioId).subscribe({
+          next: (usuario) => {
+            this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: `Usuário ${usuario.name} desativado.` });
+            this.listarUsuarios();
+          },
+          error: (err) => {
+            console.error('Erro ao desativar usuário', err);
+            this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Erro ao desativar usuário.' });
+          }
+        });
+      }
+    });
+  }
+
   novoUsuario(): void {
     this.router.navigate(['/usuario/new']);
   }
