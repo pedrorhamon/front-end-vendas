@@ -125,7 +125,7 @@ export class UsuarioComponent implements OnInit {
       acceptButtonStyleClass: 'p-button-danger',
       rejectButtonStyleClass: 'p-button-secondary',
       accept: () => {
-        this.usuarioService.desativar(gestorId, usuarioId).subscribe({
+        this.usuarioService.desativar(gestorId,  usuarioId).subscribe({
           next: (usuario) => {
             this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: `Usuário ${usuario.name} desativado.` });
             this.listarUsuarios();
