@@ -86,7 +86,6 @@ export class UsuarioComponent implements OnInit {
 
   editarUsuario(usuario: Usuario): void {
     // Implementar a lógica para editar o usuário
-    // this.router.navigate(['/usuario/']);
     this.router.navigate(['/usuario/edit', usuario.id]);
     console.log('Editar usuário', usuario);
   }
