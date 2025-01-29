@@ -20,26 +20,19 @@ export class UsuarioComponent implements OnInit {
   size: number = 10;
   totalPages: number = 0;
   loading: boolean = true;
-  // usuarioForm: FormGroup;
 
 
   constructor(
     private route: ActivatedRoute, private confirmationService: ConfirmationService,
     private router: Router, private fb: FormBuilder, private usuarioService: UsuarioService, private messageService: MessageService) {
-    // this.usuarioForm = this.fb.group({
-    //   id: [''],
-    //   descricao: ['']
-    // });
   }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.usuarioService.getUsuariosById(+id).subscribe(usuario => {
-        // Implementação para carregar uma categoria específica, se necessário
       });
     }
-    // this.listarUsuarios();
     this.verificarUsuarios();
   }
 
@@ -54,8 +47,6 @@ export class UsuarioComponent implements OnInit {
       if (data.totalElements > 0) {
         this.listarUsuarios();
       } else {
-        console.log('Nenhum usuário encontrado.');
-        // Opcional: Adicione uma mensagem ou ação caso não haja usuários
       }
     });
   }
@@ -85,7 +76,6 @@ export class UsuarioComponent implements OnInit {
 
 
   editarUsuario(usuario: Usuario): void {
-    // Implementar a lógica para editar o usuário
     this.router.navigate(['/usuario/edit', usuario.id]);
     console.log('Editar usuário', usuario);
   }
