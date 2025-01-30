@@ -33,14 +33,6 @@ export class PessoaService {
       params = params.set('name', name);
     }
 
-    // if (id !== undefined) {
-    //   params.id = id.toString();
-    // }
-
-    // if (name !== undefined) {
-    //   params.name = name;
-    // }
-
     return this.http.get<Page<Pessoa>>(this.baseUrl, { params });
   }
 
