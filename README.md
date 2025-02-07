@@ -1,4 +1,3 @@
-# VendasFront
+# Vendas Front
 
- [Angular CLI](https://github.com/angular/angular-cli) version 17.3
-
+Este projeto foi gerado com Angular CLI versão 17.3
