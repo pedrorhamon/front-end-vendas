@@ -17,10 +17,7 @@ export class PessoaService {
   constructor(private http: HttpClient) {}
 
   listarPessoa(id?: number, name?: string, page: number = 0, size: number = 10): Observable<Page<Pessoa>> {
-    // let params: any = {
-    //   page: page.toString(),
-    //   size: size.toString()
-    // };
+
     let params = new HttpParams()
     .set('page', page.toString())
     .set('size', size.toString());
