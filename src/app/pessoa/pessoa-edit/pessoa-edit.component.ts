@@ -176,12 +176,10 @@ export class PessoaEditComponent implements OnInit {
     this.pessoaService.geocodeAddress(fullAddress).subscribe((coordinates: [number, number]) => {
       const [latitude, longitude] = coordinates;
 
-      // Atualiza a posição no mapa
       const position = fromLonLat([longitude, latitude]);
       this.map.getView().setCenter(position);
       this.map.getView().setZoom(15);
 
-      // Remove o marcador antigo, se existir
       if (this.marker) {
         this.map.removeOverlay(this.marker);
       }
