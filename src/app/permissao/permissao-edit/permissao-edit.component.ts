@@ -27,7 +27,6 @@ export class PermissaoEditComponent implements OnInit {
     private subPermissaoService: SubPermissaoService,
     private messageService: MessageService
   ) {
-    // Define o FormGroup
     this.permissaoForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
       subPermissoes: [[]] // Controla as sub-permissões selecionadas
@@ -98,7 +97,6 @@ export class PermissaoEditComponent implements OnInit {
     );
     this.disponiveis.push(...itensUnicos);
 
-    // Atualiza a lista de selecionadas removendo os itens passados
     this.selecionadas = this.selecionadas.filter(
       (item) => !event.items.find((removed: any) => removed.id === item.id)
     );
