@@ -57,8 +57,6 @@ export class PermissaoComponent implements OnInit{
   }
 
   editarPermissao(id: number): void {
-    // Implementar a lógica para editar o usuário
-    // this.router.navigate(['/usuario/']);
     this.router.navigate(['/permissao/edit', id]);
     console.log('Editar Permissão', id);
   }
