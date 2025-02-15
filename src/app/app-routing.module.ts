@@ -17,6 +17,7 @@ import { PermissaoComponent } from './permissao/permissao.component';
 import { PermissaoEditComponent } from './permissao/permissao-edit/permissao-edit.component';
 import { SubPermissaoComponent } from './permissao/sub-permissao/sub-permissao.component';
 import { SubPermissaoEditComponent } from './permissao/sub-permissao/sub-permissao-edit/sub-permissao-edit.component';
+import { PainelControleComponent } from './painel-controle/painel-controle.component';
 
 const routes: Routes = [
   {
@@ -140,6 +141,12 @@ const routes: Routes = [
   {
     path: 'sub-permissao/edit/:id',
     component: SubPermissaoEditComponent,
+    canActivate: [authGuard],
+    data: { roles: ['ADMIN_PRIVILEGE'] }
+  },
+  {
+    path: 'administracao',
+    component: PainelControleComponent,
     canActivate: [authGuard],
     data: { roles: ['ADMIN_PRIVILEGE'] }
   },
