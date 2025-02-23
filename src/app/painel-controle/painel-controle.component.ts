@@ -1,6 +1,7 @@
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { PainelControleService } from './painel-controle.service';
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-painel-controle',
@@ -14,7 +15,8 @@ export class PainelControleComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private painelControleService: PainelControleService
+    private painelControleService: PainelControleService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit() {
@@ -35,7 +37,16 @@ export class PainelControleComponent implements OnInit {
         this.configForm.patchValue(config);
       }
     })
+  }
 
-    }
+  salvarConfiguracoes() {
+    this.painelControleService.salvarConfiguracoes(this.configForm.value).subscribe(() => {
+      this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Configurações salvas com sucesso!' });
+    });
+  }
+
+  alternarVisibilidadeSenha() {
+    this.mostrarSenha = !this.mostrarSenha;
+  }
 
 }
