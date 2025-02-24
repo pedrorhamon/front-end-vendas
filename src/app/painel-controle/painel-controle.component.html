@@ -1,7 +1,44 @@
-<p>painel-controle works!</p>
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h1>Painel de Controle</h1>
+<div class="painel-controle">
+  <h2>Configurações do Sistema</h2>
+
+  <form [formGroup]="configForm" (ngSubmit)="salvarConfiguracoes()">
+
+    <h3>Configurações de E-mail</h3>
+
+    <label for="emailUsuario">E-mail:</label>
+    <input id="emailUsuario" type="email" formControlName="emailUsuario" placeholder="Digite seu e-mail" />
+
+    <label for="servidorSMTP">Servidor SMTP:</label>
+    <input id="servidorSMTP" type="text" formControlName="servidorSMTP" placeholder="smtp.exemplo.com" />
+
+    <label for="portaSMTP">Porta SMTP:</label>
+    <input id="portaSMTP" type="number" formControlName="portaSMTP" placeholder="587" />
+
+    <label for="senhaEmail">Senha:</label>
+    <div class="senha-container">
+      <input [type]="mostrarSenha ? 'text' : 'password'" id="senhaEmail" formControlName="senhaEmail" placeholder="Digite a senha" />
+      <button type="button" (click)="alternarVisibilidadeSenha()">👁</button>
     </div>
-  </div>
+
+    <label>
+      <input type="checkbox" formControlName="autenticacaoSMTP" /> Requer Autenticação?
+    </label>
+
+    <label>
+      <input type="checkbox" formControlName="tlsAtivado" /> Habilitar TLS/SSL?
+    </label>
+
+    <h3>Configurações do Sistema</h3>
+
+    <label for="dominio">Domínio:</label>
+    <input id="dominio" type="text" formControlName="dominio" placeholder="exemplo.com" />
+
+    <label for="urlApi">URL da API:</label>
+    <input id="urlApi" type="url" formControlName="urlApi" placeholder="https://api.exemplo.com" />
+
+    <label for="nomeSistema">Nome do Sistema:</label>
+    <input id="nomeSistema" type="text" formControlName="nomeSistema" placeholder="Minha Plataforma" />
+
+    <button type="submit">Salvar Configurações</button>
+  </form>
+</div>

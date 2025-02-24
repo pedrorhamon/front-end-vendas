@@ -1,0 +1,55 @@
+.painel-controle {
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+}
+
+h2, h3 {
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin: 10px 0 5px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilização para a senha */
+.senha-container {
+  display: flex;
+  align-items: center;
+}
+
+.senha-container input {
+  flex: 1;
+}
+
+.senha-container button {
+  margin-left: 5px;
+  padding: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 18px;
+}
