@@ -66,7 +66,6 @@ export class PessoaComponent implements OnInit{
 
   editarPessoa(id: number): void {
     // Implementar a lógica para editar o usuário
-    // this.router.navigate(['/usuario/']);
     this.router.navigate(['/pessoa/edit', id]);
     console.log('Editar pessoa', id);
   }
