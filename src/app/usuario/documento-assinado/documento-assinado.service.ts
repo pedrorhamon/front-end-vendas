@@ -11,4 +11,11 @@ export class DocumentoAssinadoService {
   constructor(
     private http: HttpClient
   ) { }
+
+  assinarDocumento(userId: number, documento: File) {
+    const formData = new FormData();
+    formData.append('file', documento);
+
+    return this.http.post(`${this.baseUrl}/${userId}/assinar-documento`, formData, { responseType: 'text' });
+  }
 }
