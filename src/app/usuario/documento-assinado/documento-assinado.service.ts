@@ -18,4 +18,12 @@ export class DocumentoAssinadoService {
 
     return this.http.post(`${this.baseUrl}/${userId}/assinar-documento`, formData, { responseType: 'text' });
   }
+
+  listarDocumentosAssinados(userId: number) {
+    return this.http.get(`${this.baseUrl}/${userId}/documentos`);
+  }
+
+  baixarDocumentoAssinado(documentoId: number) {
+    return this.http.get(`${this.baseUrl}/documento`, { responseType: 'blob' });
+  }
 }
